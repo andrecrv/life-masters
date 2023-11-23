@@ -1,1 +1,1 @@
-# life-masters
+# LifeMasters
