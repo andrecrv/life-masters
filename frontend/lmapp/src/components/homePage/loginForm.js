@@ -12,7 +12,7 @@ function LoginForm() {
   }
 
   const handleNewAccount = () => {
-    navigate('/newAccount');
+    navigate('/new-account');
   }
 
   return (
