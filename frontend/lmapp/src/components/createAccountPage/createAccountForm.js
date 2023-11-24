@@ -8,11 +8,11 @@ function CreateAccountForm() {
 
   const handleCreateAccountButton = () => {
     //USER INPUT LOGIC VERFICATION HERE ...
-    navigate('/createAccount');
+    navigate('/create-account');
   }
 
   const handleSignInButton = () => {
-    navigate('/homePage');
+    navigate('/homepage');
   }
 
 
