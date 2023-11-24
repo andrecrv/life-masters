@@ -1,1 +1,0 @@
-init smaple text file into frontend directory.
