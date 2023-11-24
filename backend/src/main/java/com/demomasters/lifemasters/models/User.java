@@ -1,48 +1,58 @@
 package com.demomasters.lifemasters.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
-    private int userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int user_id;
     private String username;
-    private String password;
+    private String passwd;
     private String email;
-    private int level;
+    private int lvl;
     private String title;
 
-    public User(int userId, String username, String password, String email, int level) {
-        this.userId = userId;
+    public User() {
+
+    }
+
+    public User(int user_id, String username, String passwd, String email, int lvl) {
+        this.user_id = user_id;
         this.username = username;
-        this.password = password;
+        this.passwd = passwd;
         this.email = email;
-        this.level = level;
+        this.lvl = lvl;
     }
 
     public int getId() {
-        return userId;
+        return user_id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswd() {
+        return passwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getLevel() {
-        return level;
+    public int getLvl() {
+        return lvl;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public String getTitle() {
