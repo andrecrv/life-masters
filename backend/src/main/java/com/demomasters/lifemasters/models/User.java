@@ -27,7 +27,7 @@ public class User {
         this.lvl = lvl;
     }
 
-    public int getId() {
+    public int getUser_id() {
         return user_id;
     }
 
