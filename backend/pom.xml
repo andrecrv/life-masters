@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.demomasters</groupId>
-    <artifactId>lifemasters</artifactId>
+    <artifactId>life-masters</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>life-masters</name>
     <description>Demo project for LifeMasters</description>
