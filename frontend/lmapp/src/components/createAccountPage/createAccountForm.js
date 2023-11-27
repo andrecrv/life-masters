@@ -24,41 +24,46 @@ function CreateAccountForm() {
     */
 
     const userDto = {
-      username: "user",
-      password: "user",
-      email: "user@gmail.com",
-      level:"1",
-      title: "title 1"
+      username: "userdto-react",
+      email: "userreactdto@gmail.com",
+      passwd: "userpwd",
       // Add other fields as needed
     };
 
+    const basicAuth = btoa('user:3898ec90-0dcf-4de4-bf77-f441eb0da365') // Basic Authentication - server credentials
+
     try {
       // Send POST request to the Spring Boot backend
-      const response = await fetch('http://localhost:8081/create-user', {
+      await fetch('http://localhost:8080/api/create-user', {
         method: 'POST',
         headers: {
+          'Authorization': 'Basic ' + basicAuth,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userDto),
         credentials: 'include',
+        withCredentials: true,
+
+      }).then(response => {
+        if (response.ok) {
+          // Handle success (you might want to redirect or show a success message)
+          console.log('User created successfully!')
+          console.log(response)
+        }
+      }).catch(error => {
+        // Handle error (you might want to show an error message)
+        console.log('Error creating user.')
+        console.log('Error: ' + error)
       });
 
-      if (response.ok) {
-        // Handle success (you might want to redirect or show a success message)
-        console.log('User created successfully');
-        navigate('/homepage'); // Redirect to homepage after successful creation
-      } else {
-        // Handle error (you might want to show an error message)
-        console.error('Error creating user');
-      }
     } catch (error) {
       // Handle network or other errors
-      console.error('Error:', error);
+      console.error('try/catch error: ', error);
     }
   };
 
   const handleSignInButton = () => {
-    navigate('/homepage');
+    navigate('/signin');
   };
 
   return (

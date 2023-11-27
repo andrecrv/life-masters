@@ -9,25 +9,30 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
+    @Column
     private String username;
+    @Column
     private String passwd;
+    @Column
     private String email;
+    @Column
     private int lvl;
+    @Column
     private String title;
 
     public User() {
 
     }
 
-    public User(int user_id, String username, String passwd, String email, int lvl) {
-        this.user_id = user_id;
+    public User(String username, String passwd, String email, int lvl, String title) {
         this.username = username;
         this.passwd = passwd;
         this.email = email;
         this.lvl = lvl;
+        this.title = title;
     }
 
-    public int getUser_id() {
+    public int getId() {
         return user_id;
     }
 
@@ -62,4 +67,5 @@ public class User {
     public void setTitle(String title) {
         this.title = title;
     }
+
 }

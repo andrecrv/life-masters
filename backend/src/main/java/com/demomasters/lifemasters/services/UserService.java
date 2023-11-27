@@ -3,6 +3,8 @@ package com.demomasters.lifemasters.services;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,10 @@ public class UserService {
     @Autowired
     private UserRepository repo;
 
-    public User createUser(User user) {
-        return repo.save(user);
+    public ResponseEntity<User> createUser(User user) {
+        User mockUser = new User(user.getUsername(), user.getPasswd(), user.getEmail(), 1, "Newbie");
+        User newUser = repo.save(mockUser);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 
     public User getUser(int id) {
@@ -26,7 +30,7 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        User existingUser = repo.findById(user.getUser_id()).orElse(null);
+        User existingUser = repo.findById(user.getId()).orElse(null);
         return repo.save(existingUser);
     }
 
