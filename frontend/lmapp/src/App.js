@@ -10,9 +10,10 @@ function App() {
       <div className="App">
         {/* POSSIBLE ROUTES */}
         <Routes>
-          <Route path='/homepage' index element={<HomePage/>} />
+          <Route path='/signin' index element={<HomePage/>} />
+          <Route path='/signup' element= {<CreateAccountPage/>}/>
           <Route path='/start' element= {<StartPage/>}/>
-          <Route path='/new-account' element= {<CreateAccountPage/>}/>
+          
         </Routes>
       </div>
 </Router>
