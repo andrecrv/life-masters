@@ -24,13 +24,13 @@ function CreateAccountForm() {
     */
 
     const userDto = {
-      username: "userdto-react",
-      email: "userreactdto@gmail.com",
-      passwd: "userpwd",
+      username: "userdto-react44",
+      email: "userreactdto44@gmail.com",
+      passwd: "userpwd44",
       // Add other fields as needed
     };
 
-    const basicAuth = btoa('user:3898ec90-0dcf-4de4-bf77-f441eb0da365') // Basic Authentication - server credentials
+    const basicAuth = btoa('user:$2a$10$1iHtzX.r3uVfjgK.iVkuFee39NtkD//gKL9oYSnC9xZGRA8RGX.Bu') // Basic Authentication - server credentials
 
     try {
       // Send POST request to the Spring Boot backend

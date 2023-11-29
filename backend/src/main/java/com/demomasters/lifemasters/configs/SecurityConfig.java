@@ -6,6 +6,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -25,5 +30,22 @@ public class SecurityConfig {
                         .requestMatchers("/api/**").authenticated()
                 )
                 .build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        // Modify server user credentials
+        UserDetails user = User.builder()
+                .username("user")
+                .password("$2a$10$1iHtzX.r3uVfjgK.iVkuFee39NtkD//gKL9oYSnC9xZGRA8RGX.Bu")
+                .roles("USER")
+                .build();
+        //System.out.println("# Encrypted Password: " + passwordEncoder().encode("password"));
+        return new InMemoryUserDetailsManager(user);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
