@@ -1,13 +1,14 @@
-// startPage.js
+// StartPage.js
+
 import React from 'react';
-import StartForm from '../components/startPage/startForm';
-import '../style/startPage.css'
+import StartAccount from '../components/StartAccount';
+import '../styles/startPage.css'
 
 function StartPage() {
   return (
     <div className="App">
         {/*CALLING THE CARD COMPONENT*/}
-      <StartForm />
+      <StartAccount />
     </div>
   );
 }

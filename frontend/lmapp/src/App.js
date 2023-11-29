@@ -1,8 +1,10 @@
+// App.js
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/homePage';
-import StartPage from './pages/startPage';
-import CreateAccountPage from './pages/createAccountPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import StartPage from './pages/StartPage';
 
 function App() {
   return (
@@ -10,10 +12,9 @@ function App() {
       <div className="App">
         {/* POSSIBLE ROUTES */}
         <Routes>
-          <Route path='/signin' index element={<HomePage/>} />
-          <Route path='/signup' element= {<CreateAccountPage/>}/>
+          <Route path='/signin' index element={<LoginPage/>} />
+          <Route path='/signup' element= {<RegisterPage/>}/>
           <Route path='/start' element= {<StartPage/>}/>
-          
         </Routes>
       </div>
 </Router>
