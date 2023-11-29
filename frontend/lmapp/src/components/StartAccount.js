@@ -1,7 +1,8 @@
-// startPage/startForm.js
+// StartAccount.js
+
 import React from 'react';
 
-function StartForm() {
+function StartAccount() {
 
   let username = "HolyDonutDude";
   let level = "1";
@@ -34,4 +35,4 @@ function StartForm() {
   );
 }
 
-export default StartForm;
+export default StartAccount;

@@ -1,7 +1,10 @@
+// RegisterForm.js
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function CreateAccountForm() {
+function RegisterForm() {
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -128,4 +131,4 @@ function CreateAccountForm() {
   );
 }
 
-export default CreateAccountForm;
+export default RegisterForm;
