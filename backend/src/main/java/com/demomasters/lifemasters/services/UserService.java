@@ -38,4 +38,8 @@ public class UserService {
         repo.deleteById(id);
         return "User was deleted." + id;
     }
+
+    public User findUserByUsername(String username) {
+        return repo.findUserByUsername(username);
+    }
 }

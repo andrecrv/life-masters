@@ -26,7 +26,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/create-user").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/user/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/user/**").permitAll()
-                        .requestMatchers("/api/users", "/api/user/**").permitAll()
+                        .requestMatchers("/api/users", "/api/user/**", "/api/username/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                 )
                 .build();

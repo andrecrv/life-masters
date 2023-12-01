@@ -1,16 +1,51 @@
 // LoginForm.js
 
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import fetchData from '../utils/api';
+//import setUserData from '../utils/user';
+import useAuth from '../hooks/useAuth';
 
-function LoginForm() {
+const LoginForm = () => {
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleSignInButton = () => {
-    //USER INPUT LOGIC VERFICATION HERE ...
-    navigate('/start');
-  }
+  const [formData, setFormData] = useState({
+    username: '',
+    passwd: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { username, passwd } = formData;
+
+    const response = await fetchData(`api/username/${username}`);
+
+    if (response != null) {
+      if (passwd == response.passwd) {
+        alert('Authentication Succssesful');
+
+        // Call the login function to set the user upon login
+        login(response);
+
+        //setUserData(response);
+        navigate('/start');
+      } else {
+        alert('Password Incorrect');
+      }
+    } else {
+      alert('Username does not exist!');
+    }
+
+  };
 
   const handleNewAccount = () => {
     navigate('/signup');
@@ -25,11 +60,11 @@ function LoginForm() {
         <form>
           <div className="form-group">
             {/*USERNAME FIELD*/}
-            <input type="text" id="username" name="username" placeholder='Username' />
+            <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} placeholder='Username' />
           </div>
           <div className="form-group">
             {/*PASSWORD FIELD*/}
-            <input type="password" id="password" name="password" placeholder='Password'/>
+            <input type="password" id="password" name="passwd" value={formData.passwd} onChange={handleChange} placeholder='Password' />
           </div>
           <div className="forgot-password">
             <p>
@@ -38,7 +73,7 @@ function LoginForm() {
             </p>
           </div>
           {/*SIGN IN BUTTON*/}
-          <button type="submit" onClick={handleSignInButton}>Sign In</button>
+          <button type="submit" onClick={handleSubmit}>Sign In</button>
           <div className="new-to-life-masters">
             <p>
               {/*NEW ACCOUNT REDIRECT*/}
@@ -50,8 +85,10 @@ function LoginForm() {
           </div>
         </form>
       </div>
-    </div> 
+    </div>
   );
 }
 
+
 export default LoginForm;
+

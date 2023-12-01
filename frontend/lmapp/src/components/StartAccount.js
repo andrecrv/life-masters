@@ -4,10 +4,11 @@ import React from 'react';
 
 function StartAccount() {
 
-  let username = "HolyDonutDude";
-  let level = "1";
-  let title = "Novice Wanderer I";
+  // Retrieving user data from localStorage
+  const storedUserData = localStorage.getItem('userData');
 
+  // Parsing the stored data back into a JavaScript object
+  const userData = JSON.parse(storedUserData);
 
   return (
     <div className="card">
@@ -19,13 +20,13 @@ function StartAccount() {
         {/* Start Form Fields */}
         <form>
           {/* Username Field */}
-          <h5>{username}</h5>
+          <h5>{userData.username}</h5>
 
           {/* Level Field */}
-          <h5>Level {level}</h5>
+          <h5>Level {userData.lvl}</h5>
 
           {/* Player Title Field */}
-          <h5>{title}</h5>
+          <h5>{userData.title}</h5>
 
           {/* Start Game Button */}
           <button type="button">Start Game</button>
