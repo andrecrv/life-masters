@@ -52,6 +52,7 @@
   align-items: space-between;
 }
 
+/* Global input styling in -> loginPage.css
 .input-register {
   width: 235px;
   height: 20px;
@@ -67,6 +68,7 @@
   opacity: 1;
   color: #B2FEE9;
 }
+*/
 
 .register-button {
   width: 175px;
@@ -81,18 +83,18 @@
 }
 
 .register-button:hover {
-  background-color: #0056b3;
+  background: #0beb82;
 }
 
 .already-have-account {
   font-size: 0.75em;
   margin-top: 0px;
   margin-bottom: 15px;
-  color: #7FFCC0;
+  color: #30FFC1;
 }
 
 .underline {
   text-decoration: underline;
-  color: #7FFCC0;
+  color: #30FFC1;
   cursor: pointer;
 }
