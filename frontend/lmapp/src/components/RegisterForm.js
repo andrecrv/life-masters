@@ -54,7 +54,7 @@ function RegisterForm() {
       <div className="register-form">
         <div className="register-logo">
           <img src="logo192.png" alt="Logo" className="register-img" />
-          <h1 className="app-title">Life Masters</h1>
+          <h1 className="form-title">Fill out some info</h1>
         </div>
         <form className="form-group-register">
           <input

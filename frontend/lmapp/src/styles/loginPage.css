@@ -17,8 +17,8 @@
   display: flex;
   justify-content: center stretch;
   align-items: center;
-  width: 350px;
-  height: 414px;
+  width: 360px;
+  height: 420px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   background: #fff;
@@ -55,7 +55,8 @@
   align-items: space-between;
 }
 
-.input-login {
+/* Global input styling */
+input {
   width: 235px;
   height: 20px;
   margin: 6px 0;
@@ -63,11 +64,19 @@
   border-radius: 20px;
   border: 2px solid rgba(29, 255, 193, 0.45);
   background: #FFF;
+  font-weight: normal;
+  color: #696969;
 }
 
-.input-login::placeholder {
-  font-weight: bold;
-  opacity: 1;
+/* highlight input field, when selected */
+input:focus {
+  outline: none;
+  /*outline-color: #1AFFC8;*/
+}
+
+input::placeholder {
+  font-weight: normal;
+  opacity: 0.8;
   color: #B2FEE9;
 }
 
@@ -75,12 +84,12 @@
   font-size: 0.7em;
   margin-bottom: 15px;
   text-decoration: underline;
-  color: #7FFCC0;
+  color: #30FFC1;
 }
 
 .login-button {
-  width: 180px;
-  height: 38px;
+  width: 175px;
+  height: 35px;
   margin-top: 18px;
   flex-shrink: 0;
   color: #fff;
@@ -91,17 +100,17 @@
 }
 
 .login-button:hover {
-  background: #0056b3;
+  background: #0beb82;
 }
 
 .new-to-life-masters {
-  font-size: 0.8em;
-  margin-top: 20px;
-  color: #7FFCC0;
+  font-size: 0.75em;
+  margin-top: 35px;
+  color: #30FFC1;
 }
 
 .underline {
   text-decoration: underline;
-  color: #7FFCC0;
+  color: #30FFC1;
   cursor: pointer;
 }
