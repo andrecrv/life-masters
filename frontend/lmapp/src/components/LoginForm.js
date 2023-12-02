@@ -48,7 +48,7 @@ const LoginForm = () => {
 
   };
 
-  const handleNewAccount = () => {
+  const goToRegisterPage = () => {
     navigate('/signup');
   }
 
@@ -91,7 +91,7 @@ const LoginForm = () => {
         <div className="new-to-life-masters">
           {/*NEW ACCOUNT REDIRECT*/}
           New to Life Masters?{' '}
-          <a className="underline" onClick={handleNewAccount}>
+          <a className="underline" onClick={goToRegisterPage}>
             Start Now
           </a>
         </div>

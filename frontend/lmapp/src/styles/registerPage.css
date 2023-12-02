@@ -17,8 +17,8 @@
   display: flex;
   justify-content: center stretch;
   align-items: center;
-  width: 350px;
-  height: 494px;
+  width: 360px;
+  height: 420px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   background: #fff;
@@ -26,12 +26,13 @@
 }
 
 .register-img {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
+  margin-top: 15px;
 }
 
-.app-title {
-  font-size: 1.5em;
+.form-title {
+  font-size: 1em;
   color: #7FFCC0;
 }
 
@@ -68,9 +69,9 @@
 }
 
 .register-button {
-  width: 180px;
-  height: 38px;
-  margin-top: 25px;
+  width: 175px;
+  height: 35px;
+  margin-top: 18px;
   flex-shrink: 0;
   color: #fff;
   border: none;
@@ -84,8 +85,9 @@
 }
 
 .already-have-account {
-  font-size: 0.8em;
-  margin-top: 20px;
+  font-size: 0.75em;
+  margin-top: 0px;
+  margin-bottom: 15px;
   color: #7FFCC0;
 }
 

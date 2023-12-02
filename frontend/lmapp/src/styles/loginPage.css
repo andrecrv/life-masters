@@ -17,8 +17,8 @@
   display: flex;
   justify-content: center stretch;
   align-items: center;
-  width: 350px;
-  height: 414px;
+  width: 360px;
+  height: 420px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   background: #fff;
@@ -79,8 +79,8 @@
 }
 
 .login-button {
-  width: 180px;
-  height: 38px;
+  width: 175px;
+  height: 35px;
   margin-top: 18px;
   flex-shrink: 0;
   color: #fff;
@@ -95,8 +95,8 @@
 }
 
 .new-to-life-masters {
-  font-size: 0.8em;
-  margin-top: 20px;
+  font-size: 0.75em;
+  margin-top: 35px;
   color: #7FFCC0;
 }
 
