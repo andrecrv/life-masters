@@ -2,13 +2,13 @@
 
 import React from 'react';
 import LoginForm from '../components/LoginForm';
-import '../styles/loginPage.css'
+import '../styles/loginPage.css';
 
 function LoginPage() {
   return (
     <div>
-        {/*CALLING THE CARD COMPONENT*/}
-      <LoginForm/>
+      {/*CALLING THE CARD COMPONENT*/}
+      <LoginForm />
     </div>
   );
 }

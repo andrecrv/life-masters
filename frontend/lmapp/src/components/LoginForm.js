@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fetchData from '../utils/api';
-//import setUserData from '../utils/user';
 import useAuth from '../hooks/useAuth';
 import '../styles/loginPage.css'
 
