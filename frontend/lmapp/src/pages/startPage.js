@@ -6,7 +6,7 @@ import '../styles/startPage.css'
 
 function StartPage() {
   return (
-    <div className="App">
+    <div className="app-start">
         {/*CALLING THE CARD COMPONENT*/}
       <StartAccount />
     </div>

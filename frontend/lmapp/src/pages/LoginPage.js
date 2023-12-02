@@ -6,7 +6,7 @@ import '../styles/loginPage.css'
 
 function LoginPage() {
   return (
-    <div className="App">
+    <div>
         {/*CALLING THE CARD COMPONENT*/}
       <LoginForm/>
     </div>

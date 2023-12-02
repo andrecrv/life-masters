@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import fetchData from '../utils/api';
 //import setUserData from '../utils/user';
 import useAuth from '../hooks/useAuth';
+import '../styles/loginPage.css'
 
 const LoginForm = () => {
 
@@ -52,40 +53,50 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="card">
+    <div className="login-card">
       <div className="login-form">
-        {/*<img src={logo} alt="Logo" className="logo" /> - LOGO*/}
-        <h1>Life Masters</h1>
+        <div className="login-logo">
+          <img src="logo192.png" alt="Logo" className="login-img" />
+          <h1 className="app-title">Life Masters</h1>
+        </div>
         {/*LOGIN FORM FIELDS*/}
-        <form>
-          <div className="form-group">
-            {/*USERNAME FIELD*/}
-            <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} placeholder='Username' />
-          </div>
-          <div className="form-group">
-            {/*PASSWORD FIELD*/}
-            <input type="password" id="password" name="passwd" value={formData.passwd} onChange={handleChange} placeholder='Password' />
-          </div>
+        <form className="form-group-login">
+          {/*USERNAME FIELD*/}
+          <input
+            type="text"
+            className="input-login"
+            placeholder='username'
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          {/*PASSWORD FIELD*/}
+          <input
+            type="password"
+            className="input-login"
+            placeholder='password'
+            id="password"
+            name="passwd"
+            value={formData.passwd}
+            onChange={handleChange}
+          />
           <div className="forgot-password">
-            <p>
-              {/*FORGOT PASSWORD FIELD*/}
-              <a href="#">Forgot your password?</a>
-            </p>
+            {/*FORGOT PASSWORD FIELD*/}
+            <a href="#">Forgot your password?</a>
           </div>
           {/*SIGN IN BUTTON*/}
-          <button type="submit" onClick={handleSubmit}>Sign In</button>
-          <div className="new-to-life-masters">
-            <p>
-              {/*NEW ACCOUNT REDIRECT*/}
-              New to Life Masters?{' '}
-              <a className="underline" onClick={handleNewAccount}>
-                Start Now
-              </a>
-            </p>
-          </div>
+          <button type="submit" className="login-button" onClick={handleSubmit}>Sign In</button>
         </form>
+        <div className="new-to-life-masters">
+          {/*NEW ACCOUNT REDIRECT*/}
+          New to Life Masters?{' '}
+          <a className="underline" onClick={handleNewAccount}>
+            Start Now
+          </a>
+        </div>
       </div>
-    </div>
+    </div >
   );
 }
 

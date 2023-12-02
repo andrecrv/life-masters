@@ -50,66 +50,60 @@ function RegisterForm() {
   };
 
   return (
-    <div className="card">
-      <div className="start-form">
-        <h1>Life Masters</h1>
-        <form>
-          <div className="form-group">
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              value={formData.username || ''}
-              onChange={(e) => handleInput(e.target.name, e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email || ''}
-              onChange={(e) => handleInput(e.target.name, e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              id="passwd"
-              name="passwd"
-              placeholder="Password"
-              value={formData.passwd || ''}
-              onChange={(e) => handleInput(e.target.name, e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              id="confirmPasswd"
-              name="confirmPasswd"
-              placeholder="Confirm Password"
-              value={formData.confirmPasswd || ''}
-              onChange={(e) => handleInput(e.target.name, e.target.value)}
-            />
-          </div>
-          <button type="button" onClick={handleRegistration}>
+    <div className="register-card">
+      <div className="register-form">
+        <div className="register-logo">
+          <img src="logo192.png" alt="Logo" className="register-img" />
+          <h1 className="app-title">Life Masters</h1>
+        </div>
+        <form className="form-group-register">
+          <input
+            type="text"
+            id="username"
+            className="input-register"
+            name="username"
+            placeholder="username"
+            value={formData.username || ''}
+            onChange={(e) => handleInput(e.target.name, e.target.value)}
+          />
+          <input
+            type="email"
+            id="email"
+            className="input-register"
+            name="email"
+            placeholder="email"
+            value={formData.email || ''}
+            onChange={(e) => handleInput(e.target.name, e.target.value)}
+          />
+          <input
+            type="password"
+            id="passwd"
+            className="input-register"
+            name="passwd"
+            placeholder="password"
+            value={formData.passwd || ''}
+            onChange={(e) => handleInput(e.target.name, e.target.value)}
+          />
+          <input
+            type="password"
+            id="confirmPasswd"
+            className="input-register"
+            name="confirmPasswd"
+            placeholder="confirm password"
+            value={formData.confirmPasswd || ''}
+            onChange={(e) => handleInput(e.target.name, e.target.value)}
+          />
+          <button type="button" className="register-button" onClick={handleRegistration}>
             Create Account
           </button>
-          <div className="already-have-account">
-            <p>
-              Already have an account?{' '}
-              <a className="underline" onClick={goToLoginPage}>
-                Sign In
-              </a>
-            </p>
-          </div>
-          {/* Display current form data for testing - <pre> for preformatting text */}
-          <pre>{JSON.stringify(formData, null, 2)}</pre>
         </form>
+        <div className="already-have-account">
+          Already have an account?{' '}
+          <a className="underline" onClick={goToLoginPage}>
+            Sign In
+          </a>
+        </div>
       </div>
-
     </div>
   );
 }

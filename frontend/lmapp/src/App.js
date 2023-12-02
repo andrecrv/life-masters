@@ -9,7 +9,7 @@ import StartPage from './pages/startPage';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         {/* POSSIBLE ROUTES */}
         <Routes>
           <Route path='/signin' index element={<LoginPage/>} />

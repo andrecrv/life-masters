@@ -10,29 +10,20 @@ function StartAccount() {
   // Parsing the stored data back into a JavaScript object
   const userData = JSON.parse(storedUserData);
 
+  //
   return (
-    <div className="card">
-      <div className="start-form">
-        <div className="logo-container">
-          {/* Circular Logo */}
-          <div className="logo"></div>
+    <div>
+      <div className="card-start">
+          <img src="/resources/icons/icon8.jpg" alt="Icon" className="icon-start" />
+          <div className="user-info">
+            <p className='username'>{userData.username}</p>
+            <p className='title'>{userData.title}</p>
+            <p className='level'>Lvl. {userData.lvl}</p>
         </div>
-        {/* Start Form Fields */}
-        <form>
-          {/* Username Field */}
-          <h5>{userData.username}</h5>
-
-          {/* Level Field */}
-          <h5>Level {userData.lvl}</h5>
-
-          {/* Player Title Field */}
-          <h5>{userData.title}</h5>
-
-          {/* Start Game Button */}
-          <button type="button">Start Game</button>
-        </form>
       </div>
+      <button className="button-start">Start Game</button>
     </div>
+
   );
 }
 
