@@ -23,14 +23,22 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authCustomizer -> authCustomizer
+                        //USERS
                         .requestMatchers(HttpMethod.POST, "/api/create-user").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/api/user/**").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/api/user/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/*/delete-user").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/*/update-user").permitAll()
                         .requestMatchers("/api/users", "/api/user/**", "/api/username/**").permitAll()
+                        //TASKS
+                        .requestMatchers(HttpMethod.POST, "/api/tasks/*/create-task").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/tasks/delete-task/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/tasks/update-task/**").permitAll()
+                        .requestMatchers("/api/task/**", "/api/tasks/*/list", "/api/tasks/*/status/**","/api/tasks/*/priority/**", "/api/tasks/*/type/**").permitAll()
+                        .requestMatchers("/api/tasks").permitAll()
                         .requestMatchers("/api/**").authenticated()
                 )
                 .build();
     }
+
 
     @Bean
     public UserDetailsService userDetailsService() {

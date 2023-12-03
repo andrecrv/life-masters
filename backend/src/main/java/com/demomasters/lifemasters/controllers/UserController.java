@@ -14,41 +14,74 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController {
 
-    @Autowired
-    private UserService service;
 
-    @GetMapping()
-    public String displayDBEntry() {
-        return "You've entered the LifeMasters Secret DataBase.";
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/api/users")
+    public ResponseEntity<List<User>> getUsers() {
+        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable int userId) {
+        User user = userService.getUser(userId);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/username/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username){
+        User user = userService.findUserByUsername(username);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/api/create-user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        return service.createUser(user);
+        try {
+            User newUser = userService.createUser(user);
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @GetMapping("/api/user/{id}")
-    public User getUser(@PathVariable int id) {
-        return service.getUser(id);
+    @DeleteMapping("/api/{userId}/delete-user")
+    public ResponseEntity<User> deleteUser(@PathVariable int userId) {
+        try{
+            User user = userService.getUser(userId);
+            if(user != null){
+                userService.deleteUser(userId);
+                return new ResponseEntity<>(user, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("/api/users")
-    public List<User> getUsers() {
-        return service.getUsers();
+    @PutMapping("/api/{userId}/update-user")
+    public ResponseEntity<User> updateUser(@PathVariable int userId, @RequestBody User user) {
+        try {
+            if(userService.getUser(userId) != null) {
+                User newUser = userService.getUser(userId);
+                userService.updateUser(userId, newUser);
+                return new ResponseEntity<>(newUser, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @PutMapping("/api/user/{id}/update")
-    public User updateUser(@RequestBody User user) {
-        return service.updateUser(user);
-    }
 
-    @DeleteMapping("/api/user/{id}/delete")
-    public String deleteUser(@PathVariable int id) {
-        return service.deleteUser(id);
-    }
 
-    @GetMapping("/api/username/{username}")
-    public User getUserByUsername(@PathVariable String username){
-        return service.findUserByUsername(username);
-    }
+
 }

@@ -8,17 +8,20 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
-    @Column
+    @Column(name = "user_id")
+    private int id;
+    @Column(name = "username")
     private String username;
-    @Column
-    private String passwd;
-    @Column
+    @Column(name = "passwd")
+    private String password;
+    @Column(name = "email")
     private String email;
-    @Column
-    private int lvl;
-    @Column
+    @Column(name = "lvl")
+    private int level;
+    @Column(name = "title")
     private String title;
+
+    /* CONSTRUCTORS */
 
     public User() {
 
@@ -26,38 +29,52 @@ public class User {
 
     public User(String username, String passwd, String email, int lvl, String title) {
         this.username = username;
-        this.passwd = passwd;
+        this.password = passwd;
         this.email = email;
-        this.lvl = lvl;
+        this.level = lvl;
         this.title = title;
     }
 
+    /* GETTERS AND SETTERS */
+
     public int getId() {
-        return user_id;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getLvl() {
-        return lvl;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getTitle() {
@@ -68,4 +85,17 @@ public class User {
         this.title = title;
     }
 
+    /*TO STRING*/
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", level=" + level +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
