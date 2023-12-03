@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import StartPage from './pages/startPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   return (
@@ -12,12 +13,13 @@ function App() {
       <div className="app">
         {/* POSSIBLE ROUTES */}
         <Routes>
-          <Route path='/signin' index element={<LoginPage/>} />
-          <Route path='/signup' element= {<RegisterPage/>}/>
-          <Route path='/start' element= {<StartPage/>}/>
+          <Route path='/signin' index element={<LoginPage />} />
+          <Route path='/signup' element={<RegisterPage />} />
+          <Route path='/start' element={<StartPage />} />
+          <Route path='/dashboard' element={<DashboardPage />} />
         </Routes>
       </div>
-</Router>
+    </Router>
   );
 }
 
