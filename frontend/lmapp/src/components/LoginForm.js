@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const [formData, setFormData] = useState({
     username: '',
-    passwd: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -25,13 +25,15 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, passwd } = formData;
+    const { username, password: password } = formData;
 
+    // Fetch user
     const response = await fetchData(`api/username/${username}`);
-
-    if (response != null) {
-      if (passwd == response.passwd) {
-        alert('Authentication Succssesful');
+    console.log('Response: ' + JSON.stringify(response));
+    
+    if (response !== null) {
+      if (password === response.password) {
+        alert('Authentication Successful');
 
         // Call the login function to set the user upon login
         login(response);
@@ -39,6 +41,7 @@ const LoginForm = () => {
         //setUserData(response);
         navigate('/start');
       } else {
+        
         alert('Password Incorrect');
       }
     } else {
@@ -76,8 +79,8 @@ const LoginForm = () => {
             className="input-login"
             placeholder='password'
             id="password"
-            name="passwd"
-            value={formData.passwd}
+            name="password"
+            value={formData.password}
             onChange={handleChange}
           />
           <div className="forgot-password">

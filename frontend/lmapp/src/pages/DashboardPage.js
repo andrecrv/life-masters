@@ -8,7 +8,7 @@ import DashNav from '../components/DashNav';
 function DashboardPage() {
     return (
         <div>
-            {/*CALLING THE DASHBOARD ELEMENTS*/}
+            {/*CALLING THE NAVIGATION MENU*/}
             <DashNav />
         </div>
     );

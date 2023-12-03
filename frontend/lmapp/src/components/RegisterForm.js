@@ -9,8 +9,8 @@ function RegisterForm() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    passwd: '',
-    confirmPasswd: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function RegisterForm() {
     const userDto = {
       username: formData.username,
       email: formData.email,
-      passwd: formData.passwd,
+      password: formData.password,
       // Add other fields as needed
     };
 
@@ -43,6 +43,7 @@ function RegisterForm() {
 
     // Fetch request
     fetchData('api/create-user', 'POST', userDto);
+    navigate('/signin');
   };
 
   const goToLoginPage = () => {
@@ -77,20 +78,20 @@ function RegisterForm() {
           />
           <input
             type="password"
-            id="passwd"
+            id="password"
             className="input-register"
-            name="passwd"
+            name="password"
             placeholder="password"
-            value={formData.passwd || ''}
+            value={formData.password || ''}
             onChange={(e) => handleInput(e.target.name, e.target.value)}
           />
           <input
             type="password"
-            id="confirmPasswd"
+            id="confirmPassword"
             className="input-register"
-            name="confirmPasswd"
+            name="confirmPassword"
             placeholder="confirm password"
-            value={formData.confirmPasswd || ''}
+            value={formData.confirmPassword || ''}
             onChange={(e) => handleInput(e.target.name, e.target.value)}
           />
           <button type="button" className="register-button" onClick={handleRegistration}>
