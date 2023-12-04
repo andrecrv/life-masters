@@ -1,7 +1,6 @@
 // PageView.js - Display todos, overview,...
 
 import React from 'react';
-import TodoList from './ToDoList/TodoList';
 
 const DashView = ({ view }) => {
 

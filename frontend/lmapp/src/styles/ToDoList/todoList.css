@@ -3,10 +3,6 @@
 .todo-card {
     width: 95%;
     height: 95%;
-    /* pos-y 
-    top: 0;*/
-    /* pos-x 
-    left: 0;*/
     background: #464646;
     border-radius: 20px;
 }

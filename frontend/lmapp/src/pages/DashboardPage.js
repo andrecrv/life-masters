@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-import '../styles/DashNav/dashboardPage.css';
+import '../styles/dashboardPage.css';
 import DashNav from '../components/DashNav/DashNav';
 import DashView from '../components/DashView';
 import Overview from '../components/Overview/Overview';
