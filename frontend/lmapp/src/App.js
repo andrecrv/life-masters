@@ -4,10 +4,11 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import StartPage from './pages/startPage';
+import StartPage from './pages/StartPage';
 import DashboardPage from './pages/DashboardPage';
 
 function App() {
+
   return (
     <Router>
       <div className="app">
