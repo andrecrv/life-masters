@@ -3,6 +3,7 @@ package com.demomasters.lifemasters.controllers;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
 @RequestMapping("/")
 public class UserController {
-
 
     @Autowired
     private UserService userService;
@@ -33,6 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/api/username/{username}")
+    //@Cacheable(value = "userCache", key = "#username")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username){
         User user = userService.findUserByUsername(username);
         if(user == null){
@@ -41,7 +42,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+
     @PostMapping("/api/create-user")
+    //@Cacheable(value = "userCache", key = "#user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User newUser = userService.createUser(user);

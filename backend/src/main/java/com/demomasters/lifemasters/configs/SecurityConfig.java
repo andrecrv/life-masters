@@ -12,10 +12,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,7 +29,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/create-user").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/*/delete-user").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/*/update-user").permitAll()
-                        .requestMatchers("/api/users", "/api/user/**", "/api/username/**").permitAll()
+                        .requestMatchers("/api/username/**").permitAll()
+                        .requestMatchers("/api/users", "/api/user/**").permitAll()
                         //TASKS
                         .requestMatchers(HttpMethod.POST, "/api/tasks/*/create-task").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/tasks/delete-task/**").permitAll()
@@ -39,6 +42,14 @@ public class SecurityConfig {
                 .build();
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
