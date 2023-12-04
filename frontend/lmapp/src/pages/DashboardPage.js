@@ -1,15 +1,25 @@
 // DashboardPage.js
 
-import React from 'react';
+import React, { useState } from 'react';
 
-import '../styles/dashboardPage.css';
-import DashNav from '../components/DashNav';
+import '../styles/DashNav/dashboardPage.css';
+import DashNav from '../components/DashNav/DashNav';
+import DashView from '../components/DashView';
+import Overview from '../components/Overview/Overview';
 
 function DashboardPage() {
+
+    const [view, setView] = useState(<Overview />);
+
+    const updateView = (newView) => {
+        setView(newView);
+    }
+
     return (
-        <div>
+        <div className="page">
             {/*CALLING THE NAVIGATION MENU*/}
-            <DashNav />
+            <DashNav handleView={updateView} />
+            <DashView view={view} />
         </div>
     );
 }
