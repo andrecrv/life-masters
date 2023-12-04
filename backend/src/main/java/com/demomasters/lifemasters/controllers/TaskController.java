@@ -37,12 +37,10 @@ public class TaskController {
     @GetMapping("/api/tasks/{userId}/list")
     public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId){
         User user = userService.getUser(userId);
-
         if(user == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         List<Task> tasks = taskService.getTasksByUserId(user);
-
         if(tasks.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -52,7 +50,6 @@ public class TaskController {
     @GetMapping("/api/tasks/{userId}/status/{status}")
     public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable int userId, @PathVariable String status) {
         User user = userService.getUser(userId);
-
         if(user == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -67,7 +64,6 @@ public class TaskController {
     @GetMapping("/api/tasks/{userId}/priority/{priority}")
     public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable int userId, @PathVariable String priority) {
         User user = userService.getUser(userId);
-
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -82,7 +78,6 @@ public class TaskController {
     @GetMapping("/api/tasks/{userId}/type/{taskType}")
     public ResponseEntity<List<Task>> getTasksByType(@PathVariable int userId, @PathVariable String taskType) {
         User user = userService.getUser(userId);
-
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -116,8 +111,7 @@ public class TaskController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle other exceptions and return an appropriate response
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -131,7 +125,7 @@ public class TaskController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
