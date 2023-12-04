@@ -11,5 +11,6 @@ CREATE TABLE users (
 
 INSERT INTO users (username, passwd, email, lvl, title) VALUES ('andrc', '123456', 'andc@devco.com', 1, 'Fancy Feet');
 INSERT INTO users (username, passwd, email, lvl, title) VALUES ('hugof', '35218', 'hfaria@devco.com', 1, 'Maverick');
+INSERT INTO users (username, passwd, email, lvl, title) VALUES ('thethird', '33333', 'de.third@devco.com', 1, 'Maverick');
 
 SELECT * FROM users;
