@@ -2,15 +2,14 @@
 
 import React from "react";
 
-
-const UserProfile = ({ user }) => {
+const UserProfile = ({ user, icon }) => {
 
     return (
         <div className="profile-container" >
-            <img src={user.icon} alt="Profile image" className="profile-icon" />
+            <img src={icon} alt="User profile" className="profile-icon" />
             <div className="username">{user.username}</div>
             <div className="user-title">{user.title}</div>
-            <div className="user-level">Lvl. {user.lvl}</div>
+            <div className="user-level">Lvl. {user.level}</div>
         </div>
     );
 };

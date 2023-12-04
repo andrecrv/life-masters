@@ -1,7 +1,7 @@
 // MenuButton.js
 
 import React from 'react';
-import '../styles/dashNav.css';
+import '../../styles/DashNav/dashNav.css';
 
 const MenuButton = (props) => {
 

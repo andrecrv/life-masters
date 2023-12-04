@@ -1,27 +1,32 @@
 // StartAccount.js
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Retrieving user data from localStorage
+const storedUserData = localStorage.getItem('userData');
+// Parsing the stored data back into a JavaScript object
+const userData = JSON.parse(storedUserData);
 
 function StartAccount() {
 
-  // Retrieving user data from localStorage
-  const storedUserData = localStorage.getItem('userData');
+  const navigate = useNavigate();
 
-  // Parsing the stored data back into a JavaScript object
-  const userData = JSON.parse(storedUserData);
+  const goToDashboardPage = () => {
+    navigate('/dashboard');
+  };
 
-  //
   return (
     <div>
       <div className="card-start">
-          <img src="/resources/icons/icon8.jpg" alt="Icon" className="icon-start" />
-          <div className="user-info">
-            <p className='username'>{userData.username}</p>
-            <p className='title'>{userData.title}</p>
-            <p className='level'>Lvl. {userData.lvl}</p>
+        <img src="/resources/icons/icon8.jpg" alt="Icon" className="icon-start" />
+        <div className="user-info">
+          <p className='username'>{userData.username}</p>
+          <p className='title'>{userData.title}</p>
+          <p className='level'>Lvl. {userData.level}</p>
         </div>
       </div>
-      <button className="button-start">Start Game</button>
+      <button className="button-start" onClick={goToDashboardPage}>Start Game</button>
     </div>
 
   );
