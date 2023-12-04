@@ -14,3 +14,5 @@ INSERT INTO users (username, passwd, email, lvl, title) VALUES ('hugof', '35218'
 INSERT INTO users (username, passwd, email, lvl, title) VALUES ('thethird', '33333', 'de.third@devco.com', 1, 'Maverick');
 
 SELECT * FROM users;
+DROP TABLE users;
+TRUNCATE TABLE users;

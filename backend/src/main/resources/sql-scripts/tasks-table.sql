@@ -11,8 +11,6 @@ CREATE TABLE tasks (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-DROP TABLE tasks;
-
 -- Sample tasks for user 1
 INSERT INTO tasks (user_id, task_description, priority, task_type, exp, due_date, status)
 VALUES
@@ -35,4 +33,5 @@ VALUES
     (3, 'Review and organize emails', 'Medium', 'Productivity', 35, '2023-12-08', 'Complete');
     
 SELECT * FROM tasks;
+DROP TABLE tasks;
 TRUNCATE TABLE tasks;

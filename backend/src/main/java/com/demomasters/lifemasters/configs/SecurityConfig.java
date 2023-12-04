@@ -37,6 +37,12 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .requestMatchers(HttpMethod.PUT, "/api/tasks/update-task/**").permitAll()
                         .requestMatchers("/api/task/**", "/api/tasks/*/list", "/api/tasks/*/status/**","/api/tasks/*/priority/**", "/api/tasks/*/type/**").permitAll()
                         .requestMatchers("/api/tasks").permitAll()
+                        //GOALS
+                        .requestMatchers(HttpMethod.POST, "/api/goals/*/create-goal").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/goals/delete-goal/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/goals/update-goal/**").permitAll()
+                        .requestMatchers("/api/goal/**", "/api/goals/*/list", "/api/goals/*/status/**","/api/goals/*/difficulty/**", "/api/goals/*/type/**").permitAll()
+                        .requestMatchers("/api/goals").permitAll()
                         .requestMatchers("/api/**").authenticated()
                 )
                 .build();
