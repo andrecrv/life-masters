@@ -1,5 +1,10 @@
 /* goalsLayout.css */
 
+.goals-body {
+    display: flex;
+    justify-content: center;
+}
+
 /* TAB HEADERS */
 .goals-tabs {
     display: flex;
