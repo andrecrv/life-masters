@@ -2,12 +2,12 @@
 
 import React from 'react';
 import '../../styles/Goals/goals-view.css';
+import ListItem from '../ListItem/ListItem';
 
 const AllGoals = () => {
     return (
         <div className="goals-container">
-            <h2>AllGoals</h2>
-            <p>This is the AllGoals section.</p>
+            <ListItem itemData="Complete a daily task" />
         </div>
     );
 };

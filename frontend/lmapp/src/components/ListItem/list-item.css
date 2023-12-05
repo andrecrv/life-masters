@@ -1,0 +1,9 @@
+/* ListItem styles */
+
+.item-container {
+    width: 98%;
+    height: 40px;
+    margin-top: 12px;
+    background: #5c5c5c;
+    border-radius: 20px;
+}
