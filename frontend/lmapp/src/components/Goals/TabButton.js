@@ -3,10 +3,12 @@
 import React from 'react';
 import '../../styles/Goals/tabButton.css';
 
-const TabButton = ({ text, onClick }) => {
+const TabButton = ({ text, onClick, active }) => {
+
+    const styling = active ? 'tab active' : 'tab';
 
     return (
-        <button className="tab" onClick={onClick}>{text}</button>
+        <button className={styling} onClick={onClick}>{text}</button>
     );
 };
 

@@ -1,0 +1,20 @@
+/* goalsLayout.css */
+
+/* TAB HEADERS */
+.goals-tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.tabs-row {
+    width: 94%;
+}
+
+.plus-button {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    height: auto;
+}

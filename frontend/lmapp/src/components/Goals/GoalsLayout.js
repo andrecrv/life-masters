@@ -6,20 +6,21 @@ import TabButton from './TabButton';
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
 import CreateGoal from './CreateGoal';
+import '../../styles/Goals/goalsLayout.css';
 
 const GoalsLayout = () => {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState('All');
   const [selectedGoal, setSelectGoal] = useState(null);
 
   const renderView = () => {
     switch (activeTab) {
-      case 'all':
+      case 'All':
         return <AllGoals />;
-      case 'pending':
+      case 'Pending':
         return <PendingGoals />;
-      case 'completed':
+      case 'Completed':
         return <CompletedGoals />;
-      case 'create':
+      case 'Create':
         return <CreateGoal />;
       default:
         return null;
@@ -29,10 +30,14 @@ const GoalsLayout = () => {
   return (
     <div className="goals-body-container">
       <div className="goals-tabs">
-        <TabButton text="All" onClick={() => setActiveTab('all')} />
-        <TabButton text="Pending" onClick={() => setActiveTab('pending')} />
-        <TabButton text="Completed" onClick={() => setActiveTab('completed')} />
-        <MyIcon className="plus-button" icon={AddIcon} backgroundColor='white' color='green' onClick={() => setActiveTab('create')} />
+        <div className="tabs-row">
+          <TabButton text="All" onClick={() => setActiveTab('All')} active={activeTab === 'All'} />
+          <TabButton text="Pending" onClick={() => setActiveTab('Pending')} active={activeTab === 'Pending'} />
+          <TabButton text="Completed" onClick={() => setActiveTab('Completed')} active={activeTab === 'Completed'} />
+        </div>
+        <div className="plus-button">
+          <MyIcon icon={AddIcon} size="20px" backgroundColor='lightgreen' color='white' onClick={() => setActiveTab('Create')} />
+        </div>
       </div>
       <div className="goals-body">
         {renderView()}
