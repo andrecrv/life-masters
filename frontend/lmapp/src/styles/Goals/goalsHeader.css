@@ -2,20 +2,14 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 20%;
-    margin: 22px 0 0 22px;
+    height: 7%;
+    padding: 10px 15px;
 }
 
 .header-title {
-    width: 95%;
+    width: auto;
     height: auto;
-    font-size: 34px;
+    font-size: 28px;
     font-weight: bold;
     color: azure;
-}
-
-.plus-button {
-    width: 5%;
-    height: auto;
-    margin-right: 28px;
 }

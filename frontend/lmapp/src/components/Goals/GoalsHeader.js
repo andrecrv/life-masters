@@ -7,8 +7,8 @@ const GoalsHeader = () => {
     return (
         <div className='header-container'>
             <div className="header-title">
-                <MyIcon icon={FlagIcon} backgroundColor='' color='grey' />
-                Goals
+                <MyIcon icon={FlagIcon} size="36px" color="white" />
+                GOALS
             </div>
         </div>
     );
