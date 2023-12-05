@@ -6,17 +6,6 @@
     align-items: center;
     width: 97%;
     height: 460px;
-    /*max-width: 600px;*/
-    background: #3d3d3d;
-    /*border: 1px solid #ddd;*/
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #333;
-}
-
-p {
-    color: #666;
 }
