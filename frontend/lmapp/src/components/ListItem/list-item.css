@@ -13,9 +13,10 @@
 
 .text-container {
     display: flex;
-    width: 78%;
+    width: 82%;
     height: 100%;
     align-items: center;
+    padding: 0 8px;
     color: white;
     font-size: 16px;
     font-weight: 500;
@@ -24,7 +25,7 @@
 
 .check-btn-container {
     display: flex;
-    width: 5%;
+    width: 4%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -33,7 +34,7 @@
 
 .edit-btn-container {
     display: flex;
-    width: 9%;
+    width: 7%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -42,7 +43,7 @@
 
 .delete-btn-container {
     display: flex;
-    width: 9%;
+    width: 7%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -51,16 +52,22 @@
 
 .check-btn {
     border: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+    background: #5e5e5e;
+    cursor: pointer;
+}
+
+.check-btn.active {
+    background: lightgreen;
 }
 
 .edit-btn {
     border: none;
-    width: 72px;
-    height: 32px;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    /*border-radius: 20px;*/
     background: #ff7f44;
     color: white;
     font-size: 14px;
@@ -69,9 +76,9 @@
 
 .del-btn {
     border: none;
-    width: 72px;
-    height: 32px;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
     background: #ff4a44;
     color: white;
     font-size: 14px;
