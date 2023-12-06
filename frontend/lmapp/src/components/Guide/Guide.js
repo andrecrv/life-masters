@@ -1,15 +1,16 @@
 // Guide.js
 
 import React from 'react';
-import '../../styles/Guide/guide.css'
 import DynamicHeader from '../DynamicHeader';
+import GuideLayout from './GuidedLayout';
 import GuideIcon from '@mui/icons-material/CloudUploadSharp';
-
+import '../../styles/Guide/guide.css'
 
 const Guide = () => {
     return (
-        <div className='guide-container'>
+        <div className='main-container'>
             <DynamicHeader icon={GuideIcon} title={"Guide"}/>
+            <GuideLayout />
         </div>
     );
 };
