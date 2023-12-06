@@ -7,7 +7,7 @@ import ListItem from '../ListItem/ListItem';
 const AllGoals = () => {
     return (
         <div className="goals-container">
-            <ListItem itemData="Complete a daily task" />
+            <ListItem text="Complete a daily task" />
         </div>
     );
 };

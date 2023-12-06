@@ -1,9 +1,90 @@
 /* ListItem styles */
 
 .item-container {
+    display: flex;
+    flex-direction: row;
     width: 98%;
     height: 40px;
+    align-items: center;
     margin-top: 12px;
-    background: #5c5c5c;
+    background: #4e4e4e;
     border-radius: 20px;
+}
+
+.text-container {
+    display: flex;
+    width: 82%;
+    height: 100%;
+    align-items: center;
+    padding: 0 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    /*border: 1px dashed #e6e6e6;*/
+}
+
+.check-btn-container {
+    display: flex;
+    width: 4%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px dashed #e6e6e6;*/
+}
+
+.edit-btn-container {
+    display: flex;
+    width: 7%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px dashed #e6e6e6;*/
+}
+
+.delete-btn-container {
+    display: flex;
+    width: 7%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px dashed #e6e6e6;*/
+}
+
+.check-btn {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 0 0 20px;
+    background: #5e5e5e;
+    cursor: pointer;
+}
+
+.check-btn.active {
+    background: lightgreen;
+}
+
+.edit-btn {
+    border: none;
+    width: 100%;
+    height: 100%;
+    /*border-radius: 20px;*/
+    background: #ff7f44;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.del-btn {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    background: #ff4a44;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn {
+    cursor: pointer;
 }

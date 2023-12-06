@@ -13,35 +13,38 @@ import Friends from '../Friends/Friends';
 import Achievements from '../Achievements/Achievements';
 import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
-import { NavigationOutlined } from '@mui/icons-material';
+/*import { NavigationOutlined } from '@mui/icons-material';*/
+import useAuth from '../../hooks/useAuth';
 
 const Menu = ({ buttons, handleView }) => {
     const [activeButton, setActiveButton] = useState(buttons[0].text);
     const navigate = useNavigate();
+    const { logout } = useAuth();
 
     // Map other button texts to their corresponding components
     const componentMapping = {
-        'Overview' : Overview,
-        'Todo List' : TodoList,
-        'Goals' : Goals,
-        'Challenges' : Challenges,
-        'Knowledge' : Knowledge,
-        'Guide' : Guide,
-        'Friends' : Friends,
-        'Achievements' : Achievements,
-        'Settings' : Settings,
-        'Logout' : Logout  
+        'Overview': Overview,
+        'Todo List': TodoList,
+        'Goals': Goals,
+        'Challenges': Challenges,
+        'Knowledge': Knowledge,
+        'Guide': Guide,
+        'Friends': Friends,
+        'Achievements': Achievements,
+        'Settings': Settings,
+        'Logout': Logout
     };
 
     const ActiveComponent = componentMapping[activeButton];
 
     const handleLogout = () => {
+        logout();
         navigate('/signin');
     }
 
     const handleButtonClick = (text) => {
         setActiveButton(text);
-        if(text == 'Logout'){
+        if (text === 'Logout') {
             handleLogout();
         } else {
             handleView(componentMapping[text]);
