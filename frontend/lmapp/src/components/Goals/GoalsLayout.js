@@ -12,10 +12,28 @@ const GoalsLayout = () => {
   const [activeTab, setActiveTab] = useState('All');
   const [selectedGoal, setSelectGoal] = useState(null);
 
+  const itemList = [
+    { text: 'Complete a daily task', status: '', },
+    { text: 'Complete at least 8 tasks in a day', status: '', },
+    { text: 'Complete 20 tasks in a week', status: '', },
+    { text: 'Complete a daily task', status: '', },
+    { text: 'Complete at least 8 tasks in a day', status: '', },
+    { text: 'Complete 20 tasks in a week', status: '', },
+    { text: 'Complete a daily task', status: '', },
+    { text: 'Complete at least 8 tasks in a day', status: '', },
+    { text: 'Complete 20 tasks in a week', status: '', },
+    { text: 'Complete a daily task', status: '', },
+    { text: 'Complete at least 8 tasks in a day', status: '', },
+    { text: 'Complete 20 tasks in a week', status: '', },
+    { text: 'Complete a daily task', status: '', },
+    { text: 'Complete at least 8 tasks in a day', status: '', },
+    { text: 'Complete 20 tasks in a week', status: '', },
+  ];
+
   const renderView = () => {
     switch (activeTab) {
       case 'All':
-        return <AllGoals />;
+        return <AllGoals listData={itemList} />;
       case 'Pending':
         return <PendingGoals />;
       case 'Completed':
@@ -39,7 +57,7 @@ const GoalsLayout = () => {
           <MyIcon icon={AddIcon} size="20px" backgroundColor='lightgreen' color='white' onClick={() => setActiveTab('Create')} />
         </div>
       </div>
-      <div className="goals-body">
+      <div className="goals-list-container">
         {renderView()}
       </div>
     </div>

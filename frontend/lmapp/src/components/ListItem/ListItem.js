@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import './list-item.css';
 
-const ListItem = ({ text }) => {
+const ListItem = ({ item }) => {
 
     const [buttonClass, setButtonClass] = useState('check-btn');
 
@@ -21,7 +21,7 @@ const ListItem = ({ text }) => {
                 />
             </div>
             <div className="text-container">
-                {text}
+                {item.text}
             </div>
             <div className="edit-btn-container">
                 <button className="btn edit-btn" type="button" >Edit</button>
