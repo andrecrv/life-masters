@@ -1,6 +1,6 @@
 # LifeMasters
 
-## Technologies Used:
+## TechStack:
 - React
 - Rest API
 - Java
