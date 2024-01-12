@@ -1,14 +1,26 @@
 // ListItem.js
 
 import React, { useState } from 'react';
+import useList from '../../hooks/useList';
 import './list-item.css';
 
-const ListItem = ({ item }) => {
+const ListItem = ({ key, item }) => {
 
+    const { changeStatus } = useList();
     const [buttonClass, setButtonClass] = useState('check-btn');
+    const [status, setStatus] = useState('pending');
 
     const handleClick = () => {
-        buttonClass === 'check-btn' ? setButtonClass('check-btn active') : setButtonClass('check-btn');
+        if (buttonClass === 'check-btn') {
+            setButtonClass('check-btn active');
+            // change the item's status
+            setStatus('completed');
+            changeStatus(key, status);
+        } else {
+            setButtonClass('check-btn');
+            setStatus('pending');
+            changeStatus(key, status);
+        }
     };
 
     return (

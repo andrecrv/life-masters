@@ -2,12 +2,12 @@
 
 import React from 'react';
 import '../../styles/Goals/goals-view.css';
+import List from '../List/List';
 
-const PendingGoals = () => {
+const PendingGoals = ({ listData }) => {
     return (
         <div className="goals-container">
-            <h2>PendingGoals</h2>
-            <p>This is the PendingGoals section.</p>
+            <List items={listData} />
         </div>
     );
 };

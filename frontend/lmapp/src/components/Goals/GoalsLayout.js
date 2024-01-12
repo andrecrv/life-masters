@@ -6,38 +6,22 @@ import TabButton from './TabButton';
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
 import CreateGoal from './CreateGoal';
+import useList from '../../hooks/useList';
 import '../../styles/Goals/goalsLayout.css';
 
 const GoalsLayout = () => {
   const [activeTab, setActiveTab] = useState('All');
   const [selectedGoal, setSelectGoal] = useState(null);
-
-  const itemList = [
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-  ];
+  const { listData } = useList();
 
   const renderView = () => {
     switch (activeTab) {
       case 'All':
-        return <AllGoals listData={itemList} />;
+        return <AllGoals listData={listData} />;
       case 'Pending':
-        return <PendingGoals />;
+        return <PendingGoals listData={listData} />;
       case 'Completed':
-        return <CompletedGoals />;
+        return <CompletedGoals listData={listData}  />;
       case 'Create':
         return <CreateGoal />;
       default:
