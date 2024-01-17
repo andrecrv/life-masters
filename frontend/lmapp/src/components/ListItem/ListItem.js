@@ -15,11 +15,11 @@ const ListItem = ({ key, item }) => {
             setButtonClass('check-btn active');
             // change the item's status
             setStatus('completed');
-            changeStatus(key, status);
+            //changeStatus(key, status);
         } else {
             setButtonClass('check-btn');
             setStatus('pending');
-            changeStatus(key, status);
+            //changeStatus(key, status);
         }
     };
 

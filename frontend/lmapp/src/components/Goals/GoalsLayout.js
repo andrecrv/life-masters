@@ -19,9 +19,13 @@ const GoalsLayout = () => {
       case 'All':
         return <AllGoals listData={listData} />;
       case 'Pending':
-        return <PendingGoals listData={listData} />;
+        // filter items with a pending status
+        const pendingItems = listData.filter(item => item.status === 'pending');
+        return <PendingGoals listData={pendingItems} />;
       case 'Completed':
-        return <CompletedGoals listData={listData}  />;
+        // filter items with a completed status
+        const completedItems = listData.filter(item => item.status === 'completed');
+        return <CompletedGoals listData={completedItems} />;
       case 'Create':
         return <CreateGoal />;
       default:
