@@ -3,7 +3,7 @@
 import React from 'react';
 import './list-style.css';
 import ListItem from '../ListItem/ListItem';
-import SimpleBar from 'simplebar-react';
+//import SimpleBar from 'simplebar-react';
 
 const List = ({ items }) => {
 

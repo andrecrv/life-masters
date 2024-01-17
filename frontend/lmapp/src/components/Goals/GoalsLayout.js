@@ -6,38 +6,26 @@ import TabButton from './TabButton';
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
 import CreateGoal from './CreateGoal';
+import useList from '../../hooks/useList';
 import '../../styles/Goals/goalsLayout.css';
 
 const GoalsLayout = () => {
   const [activeTab, setActiveTab] = useState('All');
   const [selectedGoal, setSelectGoal] = useState(null);
-
-  const itemList = [
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-    { text: 'Complete a daily task', status: '', },
-    { text: 'Complete at least 8 tasks in a day', status: '', },
-    { text: 'Complete 20 tasks in a week', status: '', },
-  ];
+  const { listData } = useList();
 
   const renderView = () => {
     switch (activeTab) {
       case 'All':
-        return <AllGoals listData={itemList} />;
+        return <AllGoals listData={listData} />;
       case 'Pending':
-        return <PendingGoals />;
+        // filter items with a pending status
+        const pendingItems = listData.filter(item => item.status === 'pending');
+        return <PendingGoals listData={pendingItems} />;
       case 'Completed':
-        return <CompletedGoals />;
+        // filter items with a completed status
+        const completedItems = listData.filter(item => item.status === 'completed');
+        return <CompletedGoals listData={completedItems} />;
       case 'Create':
         return <CreateGoal />;
       default:
