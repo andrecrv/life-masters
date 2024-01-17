@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 const useList = () => {
 
+    // Try to update an item's status from the listData by index
     const changeStatus = (index, itemStatus) => {
         listData[index].status = itemStatus;
         console.log(index + ': ' + itemStatus);
