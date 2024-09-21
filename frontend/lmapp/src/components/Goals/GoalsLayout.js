@@ -1,35 +1,31 @@
 import React, { useState } from "react";
-import AllGoals from './AllGoals';
-import PendingGoals from './PendingGoals';
-import CompletedGoals from './CompletedGoals';
+import List from '../List/List';
 import TabButton from './TabButton';
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
-import CreateGoal from './CreateGoal';
 import useList from '../../hooks/useList';
 import '../../styles/Goals/goalsLayout.css';
 
 const GoalsLayout = () => {
-  const [activeTab, setActiveTab] = useState('All');
-  const [selectedGoal, setSelectGoal] = useState(null);
-  const { listData } = useList();
 
-  const renderView = () => {
+  const { mockList } = useList();
+  const [list, setList] = useState(mockList);
+  const [activeTab, setActiveTab] = useState('All');
+
+  const updateList = (id) => {
+    setList(list.map(goal => {
+      return goal.id === id ? { ...goal, complete: !goal.complete } : { ...goal };
+    }));
+  }
+
+  const getList = () => {
     switch (activeTab) {
-      case 'All':
-        return <AllGoals listData={listData} />;
       case 'Pending':
-        // filter items with a pending status
-        const pendingItems = listData.filter(item => item.status === 'pending');
-        return <PendingGoals listData={pendingItems} />;
+        return list.filter(goal => goal.complete === false);
       case 'Completed':
-        // filter items with a completed status
-        const completedItems = listData.filter(item => item.status === 'completed');
-        return <CompletedGoals listData={completedItems} />;
-      case 'Create':
-        return <CreateGoal />;
+        return list.filter(goal => goal.complete === true);
       default:
-        return null;
+        return list;
     }
   };
 
@@ -46,7 +42,9 @@ const GoalsLayout = () => {
         </div>
       </div>
       <div className="goals-list-container">
-        {renderView()}
+        <div className="goals-container">
+          <List list={getList()} updateList={updateList} />
+        </div>
       </div>
     </div>
   );
