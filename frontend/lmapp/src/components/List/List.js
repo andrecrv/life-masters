@@ -5,7 +5,7 @@ import './list-style.css';
 import ListItem from '../ListItem/ListItem';
 //import SimpleBar from 'simplebar-react';
 
-const List = ({ items }) => {
+const List = ({ list, updateList }) => {
 
     return (
         <div className="list-container">
@@ -15,8 +15,8 @@ const List = ({ items }) => {
                     maxHeight: 300,
                 }} >*/}
 
-            {items.map((item, index) => (
-                <ListItem key={index} item={item} />
+            {list.map(item => (
+                <ListItem key={item.id} id={item.id} text={item.text} isCompleted={item.complete} updateItem={updateList} />
             ))}
 
             {/*</SimpleBar> */}
