@@ -3,19 +3,19 @@
 import React, { /*useState*/ } from 'react';
 import './list-item.css';
 
-const ListItem = ({ id, text, isCompleted, updateItem }) => {
+const ListItem = ({ item, updateItem }) => {
 
   return (
     <div className="item-container">
       <div className="check-btn-container">
         <button
-          className={isCompleted ? "check-btn active" : "check-btn"}
+          className={item.complete ? "check-btn active" : "check-btn"}
           type="checkbox"
-          onClick={() => updateItem(id)}
+          onClick={() => updateItem(item.id)}
         />
       </div>
       <div className="text-container">
-        {text}
+        {item.text}
       </div>
       <div className="edit-btn-container">
         <button className="btn edit-btn" type="button" >Edit</button>
