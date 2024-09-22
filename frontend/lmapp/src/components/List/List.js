@@ -16,7 +16,7 @@ const List = ({ list, updateList }) => {
                 }} >*/}
 
             {list.map(item => (
-                <ListItem key={item.id} id={item.id} text={item.text} isCompleted={item.complete} updateItem={updateList} />
+                <ListItem key={item.id} item={item} updateItem={updateList} />
             ))}
 
             {/*</SimpleBar> */}
