@@ -1,5 +1,6 @@
 import React from 'react';
 import FlagIcon from '@mui/icons-material/Flag';
+
 import DynamicHeader from '../DynamicHeader';
 import '../../styles/Goals/goalsHeader.css';
 

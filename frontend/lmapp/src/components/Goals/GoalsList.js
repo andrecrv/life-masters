@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import List from '../List/List';
-import TabButton from './TabButton';
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
-import useList from '../../hooks/useList';
-import '../../styles/Goals/goalsLayout.css';
 
-const GoalsLayout = () => {
+import List from '../List/List';
+import TabButton from './TabButton';
+import useList from '../../hooks/useList';
+import '../../styles/Goals/goalsList.css';
+
+const GoalsList = () => {
 
   const { mockList } = useList();
   const [goals, setGoals] = useState(mockList);
@@ -79,4 +80,4 @@ const GoalsLayout = () => {
   );
 };
 
-export default GoalsLayout;
+export default GoalsList;

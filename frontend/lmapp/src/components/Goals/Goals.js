@@ -1,16 +1,16 @@
 // Goals.js
 
 import React from 'react';
-import '../../styles/Goals/goals.css';
-import GoalsHeader from './GoalsHeader';
-import GoalsLayout from './GoalsLayout';
 
+import GoalsHeader from './GoalsHeader';
+import GoalsList from './GoalsList';
+import '../../styles/Goals/goals.css';
 
 const Goals = () => {
     return (
         <div className='main-container'>
             <GoalsHeader />
-            <GoalsLayout />
+            <GoalsList />
         </div>
     );
 };
