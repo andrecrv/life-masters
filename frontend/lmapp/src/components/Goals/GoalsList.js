@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import MyIcon from "../Icons/MyIcon";
 import AddIcon from '@mui/icons-material/Add';
 
@@ -39,13 +39,13 @@ const GoalsList = () => {
     setGoals(goals.filter(goal => goal.id !== id));
   }
 
-  const updateList = (id) => {
+  const updateGoal = (id) => {
     setGoals(goals.map(goal => {
       return goal.id === id ? { ...goal, complete: !goal.complete } : { ...goal };
     }));
   }
 
-  const getList = () => {
+  const filteredGoals = useMemo(() => {
     switch (activeTab) {
       case 'Pending':
         return goals.filter(goal => goal.complete === false);
@@ -54,7 +54,8 @@ const GoalsList = () => {
       default:
         return goals;
     }
-  };
+  }, [activeTab, goals]);
+
 
   return (
     <div className="goals-body-container">
@@ -77,7 +78,7 @@ const GoalsList = () => {
       </div>
       <div className="goals-list-container">
         <div className="goals-container">
-          <List list={getList()} updateList={updateList} deleteItem={deleteGoal} />
+          <List list={filteredGoals} updateItem={updateGoal} deleteItem={deleteGoal} />
         </div>
       </div>
     </div>
