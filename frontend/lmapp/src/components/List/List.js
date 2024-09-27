@@ -5,7 +5,7 @@ import './list-style.css';
 import ListItem from '../ListItem/ListItem';
 //import SimpleBar from 'simplebar-react';
 
-const List = ({ list, updateList }) => {
+const List = ({ list, updateList, deleteItem }) => {
 
     return (
         <div className="list-container">
@@ -16,7 +16,7 @@ const List = ({ list, updateList }) => {
                 }} >*/}
 
             {list.map(item => (
-                <ListItem key={item.id} item={item} updateItem={updateList} />
+                <ListItem key={item.id} item={item} updateItem={updateList} deleteItem={deleteItem} />
             ))}
 
             {/*</SimpleBar> */}

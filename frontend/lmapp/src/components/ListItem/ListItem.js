@@ -3,7 +3,7 @@
 import React, { /*useState*/ } from 'react';
 import './list-item.css';
 
-const ListItem = ({ item, updateItem }) => {
+const ListItem = ({ item, updateItem, deleteItem }) => {
 
   return (
     <div className="item-container">
@@ -21,7 +21,7 @@ const ListItem = ({ item, updateItem }) => {
         <button className="btn edit-btn" type="button" >Edit</button>
       </div>
       <div className="delete-btn-container">
-        <button className="btn del-btn" type="button" >Delete</button>
+        <button className="btn del-btn" type="button" onClick={() => deleteItem(item.id)} >Delete</button>
       </div>
     </div>
   );

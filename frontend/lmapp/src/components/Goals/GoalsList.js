@@ -35,6 +35,10 @@ const GoalsList = () => {
     }
   }
 
+  const deleteGoal = (id) => {
+    setGoals(goals.filter(goal => goal.id !== id));
+  }
+
   const updateList = (id) => {
     setGoals(goals.map(goal => {
       return goal.id === id ? { ...goal, complete: !goal.complete } : { ...goal };
@@ -73,7 +77,7 @@ const GoalsList = () => {
       </div>
       <div className="goals-list-container">
         <div className="goals-container">
-          <List list={getList()} updateList={updateList} />
+          <List list={getList()} updateList={updateList} deleteItem={deleteGoal} />
         </div>
       </div>
     </div>
