@@ -23,27 +23,27 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/user/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable int userId) {
-        User user = userService.getUser(userId);
-        if(user == null){
+    @GetMapping("/api/user/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+        User user = userService.getUser(id);
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/api/username/{username}")
+    @GetMapping("/api/user/{username}")
     //@Cacheable(value = "userCache", key = "#username")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username){
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         User user = userService.findUserByUsername(username);
-        if(user == null){
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 
-    @PostMapping("/api/create-user")
+    @PostMapping("/api/user/create")
     //@Cacheable(value = "userCache", key = "#user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
@@ -54,12 +54,12 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/api/{userId}/delete-user")
-    public ResponseEntity<User> deleteUser(@PathVariable int userId) {
-        try{
-            User user = userService.getUser(userId);
-            if(user != null){
-                userService.deleteUser(userId);
+    @DeleteMapping("/api/user/{id}/delete")
+    public ResponseEntity<User> deleteUser(@PathVariable Integer id) {
+        try {
+            User user = userService.getUser(id);
+            if (user != null) {
+                userService.deleteUser(id);
                 return new ResponseEntity<>(user, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,13 +69,13 @@ public class UserController {
         }
     }
 
-    @PutMapping("/api/{userId}/update-user")
-    public ResponseEntity<User> updateUser(@PathVariable int userId, @RequestBody User user) {
+    @PutMapping("/api/user/{id}/update")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user) {
         try {
-            if(userService.getUser(userId) != null) {
-                User newUser = userService.getUser(userId);
-                userService.updateUser(userId, newUser);
-                return new ResponseEntity<>(newUser, HttpStatus.OK);
+            User existingUser = userService.getUser(id);
+            if (existingUser != null) {
+                User updatedUser = userService.updateUser(id, user);
+                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -83,8 +83,4 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-
-
 }

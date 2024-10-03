@@ -18,8 +18,8 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task getTaskById(int taskId) {
-        return taskRepository.findById(taskId).orElse(null);
+    public Task getTaskById(Integer id) {
+        return taskRepository.findById(id).orElse(null);
     }
 
     public List<Task> getTasksByUserId(User user) {
@@ -38,22 +38,23 @@ public class TaskService {
         return taskRepository.findByTaskTypeAndUser_Id(taskType, user.getId());
     }
 
-    public Task createTask (User user, Task task){
-        Task mockTask = new Task(user, task.getTaskDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
+    public Task createTask(User user, Task task) {
+        Task mockTask = new Task(user, task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
         Task newTask = taskRepository.save(mockTask);
         return newTask;
     }
 
-    public void deleteTask(int taskId) {
-        taskRepository.deleteById(taskId);
+    public void deleteTask(Integer id) {
+        taskRepository.deleteById(id);
     }
 
-    public Task updateTask(int taskId, Task task){
-        Task existingTask = getTaskById(taskId);
-        if(existingTask == null) {
+    public Task updateTask(Integer id, Task task) {
+        Task existingTask = getTaskById(id);
+
+        if (existingTask == null) {
             return null;
         }
-        existingTask.setTaskDescription(task.getTaskDescription());
+        existingTask.setDescription(task.getDescription());
         existingTask.setStatus(task.getStatus());
         existingTask.setPriority(task.getPriority());
         existingTask.setTaskType(task.getTaskType());

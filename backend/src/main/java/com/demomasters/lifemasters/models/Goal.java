@@ -10,14 +10,14 @@ public class Goal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "goal_id")
-    private int goalId;
+    @Column(name = "id")
+    private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "goal_description")
-    private String goalDescription;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "status")
     private String status;
@@ -43,9 +43,9 @@ public class Goal {
 
     }
 
-    public Goal(User user, String goalDescription, String status, String difficulty, String goalType, int exp, Date createAtDate, Date dueDate) {
+    public Goal(User user, String description, String status, String difficulty, String goalType, int exp, Date createAtDate, Date dueDate) {
         this.user = user;
-        this.goalDescription = goalDescription;
+        this.description = description;
         this.status = status;
         this.difficulty = difficulty;
         this.goalType = goalType;
@@ -56,12 +56,12 @@ public class Goal {
 
     /* GETTERS AND SETTERS */
 
-    public int getGoalId() {
-        return goalId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGoalId(int goalId) {
-        this.goalId = goalId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -72,12 +72,12 @@ public class Goal {
         this.user = user;
     }
 
-    public String getGoalDescription() {
-        return goalDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setGoalDescription(String goalDescription) {
-        this.goalDescription = goalDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -132,10 +132,10 @@ public class Goal {
 
     @Override
     public String toString() {
-        return "Goal{" +
-                "goalId=" + goalId +
+        return "Goal {" +
+                "goalId=" + id +
                 ", user=" + user +
-                ", goalDescription='" + goalDescription + '\'' +
+                ", goalDescription='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", goalType='" + goalType + '\'' +

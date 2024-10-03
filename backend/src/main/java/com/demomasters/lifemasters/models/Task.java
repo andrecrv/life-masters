@@ -1,6 +1,7 @@
 package com.demomasters.lifemasters.models;
 
 import jakarta.persistence.*;
+
 import java.sql.Date;
 
 @Entity
@@ -9,14 +10,14 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id")
-    private int taskId;
+    @Column(name = "id")
+    private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @Column(name = "task_description")
-    private String taskDescription;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "status")
     private String status;
@@ -43,9 +44,9 @@ public class Task {
 
     }
 
-    public Task(User user, String taskDescription, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+    public Task(User user, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
         this.user = user;
-        this.taskDescription = taskDescription;
+        this.description = description;
         this.status = status;
         this.priority = priority;
         this.taskType = taskType;
@@ -56,12 +57,12 @@ public class Task {
 
     /* GETTERS AND SETTERS */
 
-    public int getTaskId() {
-        return taskId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -72,12 +73,12 @@ public class Task {
         this.user = user;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -132,10 +133,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "taskId=" + taskId +
+        return "Task {" +
+                "id=" + id +
                 ", user=" + user +
-                ", taskDescription='" + taskDescription + '\'' +
+                ", taskDescription='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +
                 ", taskType='" + taskType + '\'' +

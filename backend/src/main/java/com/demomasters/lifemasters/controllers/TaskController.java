@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,47 +23,48 @@ public class TaskController {
     private UserService userService;
 
     @GetMapping("/api/tasks")
-    public ResponseEntity<List<Task>> getTasks(){
+    public ResponseEntity<List<Task>> getTasks() {
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/task/{taskId}")
-    public ResponseEntity<Task> getTaskById(@PathVariable int taskId){
-        Task task= taskService.getTaskById(taskId);
-        if(task == null){
+    @GetMapping("/api/task/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable Integer id) {
+        Task task = taskService.getTaskById(id);
+        if (task == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
-    @GetMapping("/api/tasks/{userId}/list")
-    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable int userId){
-        User user = userService.getUser(userId);
-        if(user == null){
+
+    @GetMapping("/api/tasks/user/{id}")
+    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable Integer id) {
+        User user = userService.getUser(id);
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         List<Task> tasks = taskService.getTasksByUserId(user);
-        if(tasks.isEmpty()){
+        if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/{userId}/status/{status}")
-    public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable int userId, @PathVariable String status) {
+    @GetMapping("/api/tasks/user/{userId}/status/{status}")
+    public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable Integer userId, @PathVariable String status) {
         User user = userService.getUser(userId);
-        if(user == null){
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         List<Task> tasks = taskService.getTasksByStatus(user, status);
 
-        if(tasks.isEmpty()){
+        if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/{userId}/priority/{priority}")
-    public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable int userId, @PathVariable String priority) {
+    @GetMapping("/api/tasks/user/{userId}/priority/{priority}")
+    public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable Integer userId, @PathVariable String priority) {
         User user = userService.getUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +77,8 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/{userId}/type/{taskType}")
-    public ResponseEntity<List<Task>> getTasksByType(@PathVariable int userId, @PathVariable String taskType) {
+    @GetMapping("/api/tasks/user/{userId}/type/{taskType}")
+    public ResponseEntity<List<Task>> getTasksByType(@PathVariable Integer userId, @PathVariable String taskType) {
         User user = userService.getUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -89,8 +91,8 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @PostMapping("/api/tasks/{userId}/create-task")
-    public ResponseEntity<Task> createTask(@RequestBody Task task, @PathVariable int userId) {
+    @PostMapping("/api/tasks/user/{userId}/create-task")
+    public ResponseEntity<Task> createTask(@RequestBody Task task, @PathVariable Integer userId) {
         try {
             User user = userService.getUser(userId);
             Task createdTask = taskService.createTask(user, task);
@@ -100,13 +102,13 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/api/tasks/delete-task/{taskId}")
-    public ResponseEntity<Task> deleteTask(@PathVariable int taskId){
+    @DeleteMapping("/api/tasks/delete-task/{id}")
+    public ResponseEntity<Task> deleteTask(@PathVariable Integer id) {
         try {
-            if(taskService.getTaskById(taskId) != null) {
-                Task task = taskService.getTaskById(taskId);
-                taskService.deleteTask(taskId);
-                return new ResponseEntity<>(task, HttpStatus.OK);
+            Task existingTask = taskService.getTaskById(id);
+            if (existingTask != null) {
+                taskService.deleteTask(existingTask.getId());
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -115,12 +117,13 @@ public class TaskController {
         }
     }
 
-    @PutMapping("/api/tasks/update-task/{taskId}")
-    public ResponseEntity<Task> updateTask(@PathVariable int taskId, @RequestBody Task task){
+    @PutMapping("/api/tasks/update-task/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
         try {
-            if(taskService.getTaskById(taskId) != null) {
-                Task newTask = taskService.updateTask(taskId, task);
-                return new ResponseEntity<>(newTask, HttpStatus.OK);
+            Task existingTask = taskService.getTaskById(id);
+            if (existingTask != null) {
+                Task updatedTask = taskService.updateTask(id, task);
+                return new ResponseEntity<>(updatedTask, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

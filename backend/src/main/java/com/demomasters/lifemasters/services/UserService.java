@@ -13,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(int id) {
+    public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -31,13 +31,14 @@ public class UserService {
         return newUser;
     }
 
-    public void deleteUser(int id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 
-    public User updateUser(int userId, User user) {
-        User existingUser = userRepository.findById(userId).orElse(null);
-        if(existingUser == null){
+    public User updateUser(Integer id, User user) {
+        User existingUser = userRepository.findById(id).orElse(null);
+
+        if (existingUser == null) {
             return null;
         }
 

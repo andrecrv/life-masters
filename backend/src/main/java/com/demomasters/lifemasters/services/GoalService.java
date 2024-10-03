@@ -18,8 +18,8 @@ public class GoalService {
         return goalRepository.findAll();
     }
 
-    public Goal getGoalById(int goalId) {
-        return goalRepository.findById(goalId).orElse(null);
+    public Goal getGoalById(Integer id) {
+        return goalRepository.findById(id).orElse(null);
     }
 
     public List<Goal> getGoalByUserId(User user) {
@@ -39,21 +39,22 @@ public class GoalService {
     }
 
     public Goal createGoal(User user, Goal goal) {
-        Goal mockGoal = new Goal(user, goal.getGoalDescription(), goal.getStatus(), goal.getDifficulty(), goal.getGoalType(), goal.getExp(), goal.getCreateAtDate(), goal.getDueDate());
+        Goal mockGoal = new Goal(user, goal.getDescription(), goal.getStatus(), goal.getDifficulty(), goal.getGoalType(), goal.getExp(), goal.getCreateAtDate(), goal.getDueDate());
         Goal newGoal = goalRepository.save(mockGoal);
         return newGoal;
     }
 
-    public void deleteGoal(int goalId) {
-        goalRepository.deleteById(goalId);
+    public void deleteGoal(Integer id) {
+        goalRepository.deleteById(id);
     }
 
-    public Goal updateGoal(int goalId, Goal goal) {
-        Goal existingGoal = getGoalById(goalId);
-        if(existingGoal == null) {
+    public Goal updateGoal(Integer id, Goal goal) {
+        Goal existingGoal = getGoalById(id);
+
+        if (existingGoal == null) {
             return null;
         }
-        existingGoal.setGoalDescription(goal.getGoalDescription());
+        existingGoal.setDescription(goal.getDescription());
         existingGoal.setStatus(goal.getStatus());
         existingGoal.setDifficulty(goal.getDifficulty());
         existingGoal.setGoalType(goal.getGoalType());
