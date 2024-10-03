@@ -8,15 +8,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int id;
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "username")
     private String username;
-    @Column(name = "passwd")
+    @Column(name = "password")
     private String password;
     @Column(name = "email")
     private String email;
-    @Column(name = "lvl")
+    @Column(name = "level")
     private int level;
     @Column(name = "title")
     private String title;
@@ -27,21 +27,21 @@ public class User {
 
     }
 
-    public User(String username, String passwd, String email, int lvl, String title) {
+    public User(String username, String password, String email, int level, String title) {
         this.username = username;
-        this.password = passwd;
+        this.password = password;
         this.email = email;
-        this.level = lvl;
+        this.level = level;
         this.title = title;
     }
 
     /* GETTERS AND SETTERS */
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -89,8 +89,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + id +
+        return "User {" +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
