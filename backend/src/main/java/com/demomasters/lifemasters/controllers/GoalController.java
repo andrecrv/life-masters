@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
+@RequestMapping("/api/goals")
 public class GoalController {
 
     @Autowired
@@ -22,12 +22,12 @@ public class GoalController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/api/goals")
+    @GetMapping
     public ResponseEntity<List<Goal>> getGoals() {
         return new ResponseEntity<List<Goal>>(goalService.getAllGoals(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/goal/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Goal> getGoalById(@PathVariable Integer id) {
         Goal goal = goalService.getGoalById(id);
         if (goal == null) {
@@ -36,7 +36,7 @@ public class GoalController {
         return new ResponseEntity<>(goal, HttpStatus.OK);
     }
 
-    @GetMapping("/api/goals/user/{userId}/")
+    @GetMapping("/{userId}")
     public ResponseEntity<List<Goal>> getGoalsByUserId(@PathVariable Integer userId) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -49,7 +49,7 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/api/goals/user/{userId}/status/{status}")
+    @GetMapping("/{userId}/status/{status}")
     public ResponseEntity<List<Goal>> getGoalsByStatus(@PathVariable Integer userId, @PathVariable String status) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -62,7 +62,7 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/api/goals/user/{userId}/difficulty/{difficulty}")
+    @GetMapping("/{userId}/difficulty/{difficulty}")
     public ResponseEntity<List<Goal>> getGoalsByDifficulty(@PathVariable Integer userId, @PathVariable String difficulty) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -75,7 +75,7 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/api/goals/user/{userId}/type/{goalType}")
+    @GetMapping("/{userId}/type/{goalType}")
     public ResponseEntity<List<Goal>> getGoalsByType(@PathVariable Integer userId, @PathVariable String goalType) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -88,8 +88,8 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @PostMapping("/api/goals/user/{userId}/create-goal")
-    public ResponseEntity<Goal> createGoal(@RequestBody Goal goal, @PathVariable Integer userId) {
+    @PostMapping("/{userId}")
+    public ResponseEntity<Goal> createGoal(@PathVariable Integer userId, @RequestBody Goal goal) {
         try {
             User user = userService.getUser(userId);
             Goal createdGoal = goalService.createGoal(user, goal);
@@ -99,13 +99,13 @@ public class GoalController {
         }
     }
 
-    @DeleteMapping("/api/goals/delete-goal/{id}")
-    public ResponseEntity<Goal> deleteGoal(@PathVariable Integer id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Goal> updateGoal(@PathVariable Integer id, @RequestBody Goal goal) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {
-                goalService.deleteGoal(existingGoal.getId());
-                return new ResponseEntity<>(HttpStatus.OK);
+                Goal updatedGoal = goalService.updateGoal(id, goal);
+                return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -114,13 +114,13 @@ public class GoalController {
         }
     }
 
-    @PutMapping("/api/goals/update-goal/{id}")
-    public ResponseEntity<Goal> updateGoal(@PathVariable Integer id, @RequestBody Goal goal) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Goal> deleteGoal(@PathVariable Integer id) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {
-                Goal updatedGoal = goalService.updateGoal(id, goal);
-                return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
+                goalService.deleteGoal(existingGoal.getId());
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

@@ -12,18 +12,18 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
-@RequestMapping("/")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/api/users")
+    @GetMapping
     public ResponseEntity<List<User>> getUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Integer id) {
         User user = userService.getUser(id);
         if (user == null) {
@@ -32,7 +32,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/api/user/{username}")
+    @GetMapping("/{username}")
     //@Cacheable(value = "userCache", key = "#username")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         User user = userService.findUserByUsername(username);
@@ -43,7 +43,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/api/user/create")
+    @PostMapping
     //@Cacheable(value = "userCache", key = "#user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
@@ -54,13 +54,13 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/api/user/{id}/delete")
-    public ResponseEntity<User> deleteUser(@PathVariable Integer id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user) {
         try {
-            User user = userService.getUser(id);
-            if (user != null) {
-                userService.deleteUser(id);
-                return new ResponseEntity<>(user, HttpStatus.OK);
+            User existingUser = userService.getUser(id);
+            if (existingUser != null) {
+                User updatedUser = userService.updateUser(id, user);
+                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -69,13 +69,13 @@ public class UserController {
         }
     }
 
-    @PutMapping("/api/user/{id}/update")
-    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable Integer id) {
         try {
-            User existingUser = userService.getUser(id);
-            if (existingUser != null) {
-                User updatedUser = userService.updateUser(id, user);
-                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            User user = userService.getUser(id);
+            if (user != null) {
+                userService.deleteUser(id);
+                return new ResponseEntity<>(user, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
