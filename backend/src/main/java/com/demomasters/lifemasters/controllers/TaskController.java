@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
+@RequestMapping("/api/tasks")
 public class TaskController {
 
     @Autowired
@@ -22,12 +22,12 @@ public class TaskController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/api/tasks")
+    @GetMapping
     public ResponseEntity<List<Task>> getTasks() {
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/task/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Integer id) {
         Task task = taskService.getTaskById(id);
         if (task == null) {
@@ -36,9 +36,9 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/user/{id}")
-    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable Integer id) {
-        User user = userService.getUser(id);
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable Integer userId) {
+        User user = userService.getUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -49,7 +49,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/user/{userId}/status/{status}")
+    @GetMapping("/{userId}/status/{status}")
     public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable Integer userId, @PathVariable String status) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -63,7 +63,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/user/{userId}/priority/{priority}")
+    @GetMapping("/{userId}/priority/{priority}")
     public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable Integer userId, @PathVariable String priority) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -77,7 +77,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/api/tasks/user/{userId}/type/{taskType}")
+    @GetMapping("/{userId}/type/{taskType}")
     public ResponseEntity<List<Task>> getTasksByType(@PathVariable Integer userId, @PathVariable String taskType) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -91,8 +91,8 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @PostMapping("/api/tasks/user/{userId}/create-task")
-    public ResponseEntity<Task> createTask(@RequestBody Task task, @PathVariable Integer userId) {
+    @PostMapping("/{userId}")
+    public ResponseEntity<Task> createTask(@PathVariable Integer userId, @RequestBody Task task) {
         try {
             User user = userService.getUser(userId);
             Task createdTask = taskService.createTask(user, task);
@@ -102,13 +102,13 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/api/tasks/delete-task/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable Integer id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
         try {
             Task existingTask = taskService.getTaskById(id);
             if (existingTask != null) {
-                taskService.deleteTask(existingTask.getId());
-                return new ResponseEntity<>(HttpStatus.OK);
+                Task updatedTask = taskService.updateTask(id, task);
+                return new ResponseEntity<>(updatedTask, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -117,13 +117,13 @@ public class TaskController {
         }
     }
 
-    @PutMapping("/api/tasks/update-task/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Task> deleteTask(@PathVariable Integer id) {
         try {
             Task existingTask = taskService.getTaskById(id);
             if (existingTask != null) {
-                Task updatedTask = taskService.updateTask(id, task);
-                return new ResponseEntity<>(updatedTask, HttpStatus.OK);
+                taskService.deleteTask(existingTask.getId());
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
