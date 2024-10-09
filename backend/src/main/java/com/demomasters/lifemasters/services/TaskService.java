@@ -22,30 +22,38 @@ public class TaskService {
         return taskRepository.findById(id).orElse(null);
     }
 
-    public List<Task> getTasksByUserId(User user) {
-        return taskRepository.findByUser(user);
+    public List<Task> getTasksByUserId(Integer userId) {
+        return taskRepository.findByUserId(userId);
     }
 
-    public List<Task> getTasksByStatus(User user, String status) {
-        return taskRepository.findByStatusAndUser_Id(status, user.getId());
+    public List<Task> getTasksByStatus(String status) {
+        return taskRepository.findByStatus(status);
     }
 
-    public List<Task> getTasksByPriority(User user, String priority) {
-        return taskRepository.findByPriorityAndUser_Id(priority, user.getId());
+    public List<Task> getTasksByPriority(String priority) {
+        return taskRepository.findByPriority(priority);
     }
 
-    public List<Task> getTasksByType(User user, String taskType) {
-        return taskRepository.findByTaskTypeAndUser_Id(taskType, user.getId());
+    public List<Task> getTasksByType(String taskType) {
+        return taskRepository.findByTaskType(taskType);
+    }
+
+    public List<Task> getTasksByUserIdAndStatus(Integer userId, String status) {
+        return taskRepository.findByUserAndStatus(userId, status);
+    }
+
+    public List<Task> getTasksByUserIdAndPriority(Integer userId, String priority) {
+        return taskRepository.findByUserAndPriority(userId, priority);
+    }
+
+    public List<Task> getTasksByUserIdAndType(Integer userId, String taskType) {
+        return taskRepository.findByUserAndTaskType(userId, taskType);
     }
 
     public Task createTask(User user, Task task) {
         Task mockTask = new Task(user, task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
         Task newTask = taskRepository.save(mockTask);
         return newTask;
-    }
-
-    public void deleteTask(Integer id) {
-        taskRepository.deleteById(id);
     }
 
     public Task updateTask(Integer id, Task task) {
@@ -63,5 +71,9 @@ public class TaskService {
         existingTask.setDueDate(task.getDueDate());
 
         return taskRepository.save(existingTask);
+    }
+
+    public void deleteTask(Integer id) {
+        taskRepository.deleteById(id);
     }
 }

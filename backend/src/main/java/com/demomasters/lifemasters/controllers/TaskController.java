@@ -1,9 +1,7 @@
 package com.demomasters.lifemasters.controllers;
 
 import com.demomasters.lifemasters.models.Task;
-import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.TaskService;
-import com.demomasters.lifemasters.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +17,8 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping
-    public ResponseEntity<List<Task>> getTasks() {
+    public ResponseEntity<List<Task>> getAllTasks() {
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
     }
 
@@ -36,66 +31,38 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable Integer userId) {
-        User user = userService.getUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByUserId(user);
+    @GetMapping
+    public ResponseEntity<List<Task>> getTasksByStatus(@RequestParam String status) {
+        List<Task> tasks = taskService.getTasksByStatus(status);
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}/status/{status}")
-    public ResponseEntity<List<Task>> getTasksByStatus(@PathVariable Integer userId, @PathVariable String status) {
-        User user = userService.getUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByStatus(user, status);
-
+    @GetMapping
+    public ResponseEntity<List<Task>> getTasksByPriority(@RequestParam String priority) {
+        List<Task> tasks = taskService.getTasksByPriority(priority);
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}/priority/{priority}")
-    public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable Integer userId, @PathVariable String priority) {
-        User user = userService.getUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByPriority(user, priority);
-
+    @GetMapping
+    public ResponseEntity<List<Task>> getTasksByType(@RequestParam String taskType) {
+        List<Task> tasks = taskService.getTasksByType(taskType);
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}/type/{taskType}")
-    public ResponseEntity<List<Task>> getTasksByType(@PathVariable Integer userId, @PathVariable String taskType) {
-        User user = userService.getUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByType(user, taskType);
-
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
-    }
-
-    @PostMapping("/{userId}")
-    public ResponseEntity<Task> createTask(@PathVariable Integer userId, @RequestBody Task task) {
+    /* Not used for now
+    @PostMapping
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
         try {
-            User user = userService.getUser(userId);
-            Task createdTask = taskService.createTask(user, task);
+            Task createdTask = taskService.createTask(task);
             return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -131,4 +98,6 @@ public class TaskController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+     */
 }
