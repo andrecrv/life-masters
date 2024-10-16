@@ -10,11 +10,17 @@ import java.util.List;
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
-    List<Goal> findByUser(User user);
+    List<Goal> findByUserId(Integer userId);
 
-    List<Goal> findByStatusAndUser_Id(String status, int userId);
+    List<Goal> findByStatus(String status);
 
-    List<Goal> findByDifficultyAndUser_Id(String difficulty, int userId);
+    List<Goal> findByDifficulty(String difficulty);
 
-    List<Goal> findByGoalTypeAndUser_Id(String goalType, int userId);
+    List<Goal> findByGoalType(String goalType);
+
+    List<Goal> findByUserAndStatus(Integer userId, String status);
+
+    List<Goal> findByUserAndDifficulty(Integer userId, String difficulty);
+
+    List<Goal> findByUserAndGoalType(Integer userId, String goalType);
 }
