@@ -133,7 +133,7 @@ public class Goal {
     @Override
     public String toString() {
         return "Goal {" +
-                "goalId=" + id +
+                "id=" + id +
                 ", user=" + user +
                 ", goalDescription='" + description + '\'' +
                 ", status='" + status + '\'' +

@@ -22,30 +22,38 @@ public class GoalService {
         return goalRepository.findById(id).orElse(null);
     }
 
-    public List<Goal> getGoalByUserId(User user) {
-        return goalRepository.findByUser(user);
+    public List<Goal> getGoalsByUserId(Integer userId) {
+        return goalRepository.findByUserId(userId);
     }
 
-    public List<Goal> getGoalByStatus(User user, String status) {
-        return goalRepository.findByStatusAndUser_Id(status, user.getId());
+    public List<Goal> getGoalsByStatus(String status) {
+        return goalRepository.findByStatus(status);
     }
 
-    public List<Goal> getGoalsByDifficulty(User user, String difficulty) {
-        return goalRepository.findByDifficultyAndUser_Id(difficulty, user.getId());
+    public List<Goal> getGoalsByDifficulty(String difficulty) {
+        return goalRepository.findByDifficulty(difficulty);
     }
 
-    public List<Goal> getGoalsByType(User user, String goalType) {
-        return goalRepository.findByGoalTypeAndUser_Id(goalType, user.getId());
+    public List<Goal> getGoalsByType(String goalType) {
+        return goalRepository.findByGoalType(goalType);
+    }
+
+    public List<Goal> getGoalsByUserIdAndStatus(Integer userId, String status) {
+        return goalRepository.findByUserAndStatus(userId, status);
+    }
+
+    public List<Goal> getGoalsByUserIdAndDifficulty(Integer userId, String difficulty) {
+        return goalRepository.findByUserAndDifficulty(userId, difficulty);
+    }
+
+    public List<Goal> getGoalsByUserIdAndType(Integer userId, String goalType) {
+        return goalRepository.findByUserAndGoalType(userId, goalType);
     }
 
     public Goal createGoal(User user, Goal goal) {
         Goal mockGoal = new Goal(user, goal.getDescription(), goal.getStatus(), goal.getDifficulty(), goal.getGoalType(), goal.getExp(), goal.getCreateAtDate(), goal.getDueDate());
         Goal newGoal = goalRepository.save(mockGoal);
         return newGoal;
-    }
-
-    public void deleteGoal(Integer id) {
-        goalRepository.deleteById(id);
     }
 
     public Goal updateGoal(Integer id, Goal goal) {
@@ -63,5 +71,9 @@ public class GoalService {
         existingGoal.setDueDate(goal.getDueDate());
 
         return goalRepository.save(existingGoal);
+    }
+
+    public void deleteGoal(Integer id) {
+        goalRepository.deleteById(id);
     }
 }
