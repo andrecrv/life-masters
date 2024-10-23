@@ -14,7 +14,7 @@ public class GoalService {
     @Autowired
     private GoalRepository goalRepository;
 
-    public List<Goal> getAllGoals() {
+    public List<Goal> getGoals() {
         return goalRepository.findAll();
     }
 
@@ -39,15 +39,15 @@ public class GoalService {
     }
 
     public List<Goal> getGoalsByUserIdAndStatus(Integer userId, String status) {
-        return goalRepository.findByUserAndStatus(userId, status);
+        return goalRepository.findByUserIdAndStatus(userId, status);
     }
 
     public List<Goal> getGoalsByUserIdAndDifficulty(Integer userId, String difficulty) {
-        return goalRepository.findByUserAndDifficulty(userId, difficulty);
+        return goalRepository.findByUserIdAndDifficulty(userId, difficulty);
     }
 
     public List<Goal> getGoalsByUserIdAndType(Integer userId, String goalType) {
-        return goalRepository.findByUserAndGoalType(userId, goalType);
+        return goalRepository.findByUserIdAndGoalType(userId, goalType);
     }
 
     public Goal createGoal(User user, Goal goal) {

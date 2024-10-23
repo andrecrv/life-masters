@@ -18,8 +18,8 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
-        return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
+    public ResponseEntity<List<Task>> getTasks() {
+        return new ResponseEntity<>(taskService.getTasks(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -31,7 +31,7 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/status")
     public ResponseEntity<List<Task>> getTasksByStatus(@RequestParam String status) {
         List<Task> tasks = taskService.getTasksByStatus(status);
         if (tasks.isEmpty()) {
@@ -40,7 +40,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/priority")
     public ResponseEntity<List<Task>> getTasksByPriority(@RequestParam String priority) {
         List<Task> tasks = taskService.getTasksByPriority(priority);
         if (tasks.isEmpty()) {
@@ -49,7 +49,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/type")
     public ResponseEntity<List<Task>> getTasksByType(@RequestParam String taskType) {
         List<Task> tasks = taskService.getTasksByType(taskType);
         if (tasks.isEmpty()) {

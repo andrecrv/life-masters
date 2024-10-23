@@ -32,9 +32,9 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/username")
     //@Cacheable(value = "userCache", key = "#username")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+    public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
         User user = userService.findUserByUsername(username);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
