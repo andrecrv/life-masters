@@ -1,7 +1,7 @@
---TABLE OPS
---SELECT * FROM <table-name>; --view data
---DROP TABLE <table-name>; --delete table
---TRUNCATE TABLE <table-name>; --clear data
+-- TABLE OPS
+-- SELECT * FROM <table-name>; --view data
+-- DROP TABLE <table-name>; --delete table
+-- TRUNCATE TABLE <table-name>; --clear data
 
 -- USERS
 INSERT INTO users (username, password, email, level, title)
