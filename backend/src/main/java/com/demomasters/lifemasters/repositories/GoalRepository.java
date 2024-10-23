@@ -1,7 +1,6 @@
 package com.demomasters.lifemasters.repositories;
 
 import com.demomasters.lifemasters.models.Goal;
-import com.demomasters.lifemasters.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,9 +17,9 @@ public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
     List<Goal> findByGoalType(String goalType);
 
-    List<Goal> findByUserAndStatus(Integer userId, String status);
+    List<Goal> findByUserIdAndStatus(Integer userId, String status);
 
-    List<Goal> findByUserAndDifficulty(Integer userId, String difficulty);
+    List<Goal> findByUserIdAndDifficulty(Integer userId, String difficulty);
 
-    List<Goal> findByUserAndGoalType(Integer userId, String goalType);
+    List<Goal> findByUserIdAndGoalType(Integer userId, String goalType);
 }

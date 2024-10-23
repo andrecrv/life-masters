@@ -1,9 +1,7 @@
 package com.demomasters.lifemasters.controllers;
 
 import com.demomasters.lifemasters.models.Goal;
-import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.GoalService;
-import com.demomasters.lifemasters.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +18,8 @@ public class GoalController {
     private GoalService goalService;
 
     @GetMapping
-    public ResponseEntity<List<Goal>> getAllGoals() {
-        return new ResponseEntity<List<Goal>>(goalService.getAllGoals(), HttpStatus.OK);
+    public ResponseEntity<List<Goal>> getGoals() {
+        return new ResponseEntity<List<Goal>>(goalService.getGoals(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -33,7 +31,7 @@ public class GoalController {
         return new ResponseEntity<>(goal, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/status")
     public ResponseEntity<List<Goal>> getGoalsByStatus(@RequestParam String status) {
         List<Goal> goals = goalService.getGoalsByStatus(status);
         if (goals.isEmpty()) {
@@ -42,7 +40,7 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/difficulty")
     public ResponseEntity<List<Goal>> getGoalsByDifficulty(@RequestParam String difficulty) {
         List<Goal> goals = goalService.getGoalsByDifficulty(difficulty);
         if (goals.isEmpty()) {
@@ -51,7 +49,7 @@ public class GoalController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/type")
     public ResponseEntity<List<Goal>> getGoalsByType(@RequestParam String goalType) {
         List<Goal> goals = goalService.getGoalsByType(goalType);
         if (goals.isEmpty()) {

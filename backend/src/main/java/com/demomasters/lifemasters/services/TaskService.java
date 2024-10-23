@@ -14,7 +14,7 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public List<Task> getAllTasks() {
+    public List<Task> getTasks() {
         return taskRepository.findAll();
     }
 
@@ -39,15 +39,15 @@ public class TaskService {
     }
 
     public List<Task> getTasksByUserIdAndStatus(Integer userId, String status) {
-        return taskRepository.findByUserAndStatus(userId, status);
+        return taskRepository.findByUserIdAndStatus(userId, status);
     }
 
     public List<Task> getTasksByUserIdAndPriority(Integer userId, String priority) {
-        return taskRepository.findByUserAndPriority(userId, priority);
+        return taskRepository.findByUserIdAndPriority(userId, priority);
     }
 
     public List<Task> getTasksByUserIdAndType(Integer userId, String taskType) {
-        return taskRepository.findByUserAndTaskType(userId, taskType);
+        return taskRepository.findByUserIdAndTaskType(userId, taskType);
     }
 
     public Task createTask(User user, Task task) {
