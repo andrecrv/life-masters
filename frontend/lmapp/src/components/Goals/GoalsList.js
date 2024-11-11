@@ -45,6 +45,12 @@ const GoalsList = () => {
     }));
   }
 
+  const editGoal = (id, itemText) => {
+    setGoals(goals.map(goal => {
+      return goal.id === id ? { ...goal, text: itemText } : { ...goal };
+    }));
+  }
+
   const filteredGoals = useMemo(() => {
     switch (activeTab) {
       case 'Pending':
@@ -78,7 +84,7 @@ const GoalsList = () => {
       </div>
       <div className="goals-list-container">
         <div className="goals-container">
-          <List list={filteredGoals} updateItem={updateGoal} deleteItem={deleteGoal} />
+          <List list={filteredGoals} updateItem={updateGoal} editItem={editGoal} deleteItem={deleteGoal} />
         </div>
       </div>
     </div>
