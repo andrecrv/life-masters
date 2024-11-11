@@ -74,6 +74,28 @@
     font-weight: bold;
 }
 
+.save-btn {
+    border: none;
+    width: 100%;
+    height: 100%;
+    /*border-radius: 20px;*/
+    background: lightgreen;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cancel-btn {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    background: #ff8944;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .del-btn {
     border: none;
     width: 100%;
