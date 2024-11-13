@@ -3,22 +3,21 @@
 /* TAB HEADERS */
 .goals-tabs {
     display: flex;
-    flex-direction: row;
+    gap: 1em;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     margin-top: 8px;
 }
 
 .tabs-row {
-    width: 90%;
+    width: 80%;
     margin-left: 20px;
 }
 
 .plus-button {
-    display: flex;
-    width: auto;
     justify-content: center;
-    height: auto;
+    margin-right: 1.5em;
 }
 
 

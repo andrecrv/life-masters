@@ -1,14 +1,11 @@
-// MyIcon.js
-import React from 'react';
+// ActionButton.js
 import IconButton from '@mui/material/IconButton';
 
-const MyIcon = ({ icon: IconComponent, color = 'defaultColor', size, backgroundColor = 'defaultBackgroundColor', onClick }) => {
+const ActionButton = ({ icon: IconComponent, color = 'defaultColor', size, backgroundColor = 'defaultBackgroundColor', onClick }) => {
 
   const buttonStyle = {
     backgroundColor: backgroundColor,
-    color: color,
-    marginRight: '15px',
-    marginBottom: '6px',
+    color: color
   };
 
   return (
@@ -18,4 +15,4 @@ const MyIcon = ({ icon: IconComponent, color = 'defaultColor', size, backgroundC
   );
 };
 
-export default MyIcon;
+export default ActionButton;
