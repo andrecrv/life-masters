@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MyIcon from './Icons/MyIcon';
+import ActionButton from './common/ActionButton';
 
 const DynamicHeader = ({ icon: Icon, title, iconSize = '36px', iconColor = 'white' }) => {
     return (
         <div className='header-container'>
             <div className="header-title">
-                <MyIcon icon={Icon} size={iconSize} color={iconColor} />
+                <ActionButton icon={Icon} size={iconSize} color={iconColor} />
                 {title}
             </div>
         </div>
