@@ -56,6 +56,8 @@
 }
 
 /* Global input styling */
+/* Commented as this can't be overridden by other custom styles
+
 input {
   width: 235px;
   height: 20px;
@@ -69,16 +71,19 @@ input {
 }
 
 /* highlight input field, when selected */
+/*
 input:focus {
   outline: none;
   /*outline-color: #1AFFC8;*/
-}
+/*}*/
 
+/*
 input::placeholder {
   font-weight: normal;
   opacity: 0.8;
   color: #B2FEE9;
 }
+*/
 
 .forgot-password a {
   font-size: 0.7em;

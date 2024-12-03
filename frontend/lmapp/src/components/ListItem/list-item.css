@@ -2,111 +2,115 @@
 
 .item-container {
     display: flex;
-    flex-direction: row;
-    width: 98%;
-    height: 40px;
-    align-items: center;
-    margin: 12px 10px;
-    background: #4e4e4e;
-    border-radius: 20px;
+    height: 10%;
+    margin: 0.8em;
+    padding: 0;
+    /*background: #4e4e4e;*/
+    /*border: 2px dashed red;*/
+    /*border-radius: 4px;*/
 }
 
-.text-container {
+.checkbox-container {
     display: flex;
-    width: 82%;
-    height: 100%;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 1.2em;
+    border-radius: 4px 0 0 4px;
+    background: #5b5b5b;
+    /*border: 1px dashed #d0ff00;*/
+}
+
+.checkbox-container-active {
+    display: flex;
+    align-items: center;
+    padding: 0 1.2em;
+    border-radius: 4px 0 0 4px;
+    background: #76ff8f;
+    /*border: 1px dashed #d0ff00;*/
+}
+
+.checkbox {
+    /*flex: 1;*/
+    height: 28%;
+    border: none;
+    background: #b1b1b1;
+    cursor: pointer;
+    border: none;
+}
+
+.checkbox:hover {
+    background: #ccc;
+}
+
+.checkbox.active {
+    background: #63ae71;
+}
+
+.item-input-container {
+    flex: 1;
+    display: flex;
+    background: #3d3d3d;
+    /*border: 1px dashed #00b7ff;*/
+}
+
+.item-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    color: white;
+}
+
+.item-input {
+    flex: 1;
+    padding: 1em;
+    border: none;
+    background: #222;
     color: white;
     font-size: 16px;
-    font-weight: 500;
-    /*border: 1px dashed #e6e6e6;*/
 }
 
-.check-btn-container {
-    display: flex;
-    width: 4%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    /*border: 1px dashed #e6e6e6;*/
+.item-input:disabled {
+    background: #3d3d3d;
+    color: white;
+}
+
+.item-input:focus {
+    /* No default style */
+    outline: none;
+
 }
 
 .edit-btn-container {
+    /*flex: 1;*/
     display: flex;
-    width: 7%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
     /*border: 1px dashed #e6e6e6;*/
 }
 
 .delete-btn-container {
+    /*flex: 1;*/
     display: flex;
-    width: 7%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+    border-radius: 0 4px 4px 0;
     /*border: 1px dashed #e6e6e6;*/
-}
-
-.check-btn {
-    border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px 0 0 20px;
-    background: #5e5e5e;
-    cursor: pointer;
-}
-
-.check-btn.active {
-    background: lightgreen;
 }
 
 .edit-btn {
     border: none;
-    width: 100%;
-    height: 100%;
-    /*border-radius: 20px;*/
-    background: #ff7f44;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
+    background: #ffa360;
 }
 
 .save-btn {
     border: none;
-    width: 100%;
-    height: 100%;
-    /*border-radius: 20px;*/
-    background: lightgreen;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
+    background: #62ff84;
 }
 
 .cancel-btn {
     border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 0 20px 20px 0;
-    background: #ff8944;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
+    border-radius: 0 4px 4px 0;
+    background: #ff7c54;
 }
 
 .del-btn {
     border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 0 20px 20px 0;
-    background: #ff4a44;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.btn {
-    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    background: #ff3434;
 }
