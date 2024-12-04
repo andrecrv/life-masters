@@ -57,9 +57,9 @@ const GoalsList = () => {
 
 
   return (
-    <div className="goals-body-container">
-      <div className="goals-tabs">
-        <div className="tabs-row">
+    <>
+      <div className="goals-toolbar">
+        <div className="filter-tabs">
           <TabButton text="All" onClick={() => setActiveTab('All')} active={activeTab === 'All'} />
           <TabButton text="Pending" onClick={() => setActiveTab('Pending')} active={activeTab === 'Pending'} />
           <TabButton text="Completed" onClick={() => setActiveTab('Completed')} active={activeTab === 'Completed'} />
@@ -71,7 +71,7 @@ const GoalsList = () => {
           <List list={filteredGoals} updateItem={updateGoal} editItem={editGoal} deleteItem={deleteGoal} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

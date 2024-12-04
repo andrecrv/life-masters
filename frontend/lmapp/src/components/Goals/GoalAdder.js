@@ -18,27 +18,27 @@ const GoalAdder = ({ addGoal }) => {
     }
 
     return (
-        <>
-            <div>
+        <div className="add-goal-container">
+            <div className="add-input-container">
                 <input
                     type="text"
-                    /*className="input-login"*/
-                    placeholder="insert text here for a new goal"
+                    className="add-input"
+                    placeholder="Add a new goal..."
                     name="add-goal-textbox"
                     value={text}
                     onChange={handleChange}
                 />
             </div>
-            <div className="plus-button">
+            <div className="add-button-container">
                 <ActionButton
                     icon={AddIcon}
                     size="20px"
-                    backgroundColor='lightgreen'
+                    backgroundColor='#42ff91'
                     color='white'
                     onClick={handleGoal}
                 />
             </div>
-        </>
+        </div>
     );
 };
 
