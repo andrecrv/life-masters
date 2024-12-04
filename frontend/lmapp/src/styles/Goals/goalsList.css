@@ -1,6 +1,6 @@
 /* goalsList.css */
 
-/* TAB HEADERS */
+/* LIST TOOLBAR */
 .goals-toolbar {
     display: flex;
     /*gap: 14em;*/
@@ -24,7 +24,7 @@
     /*justify-self: flex-end;*/
     display: flex;
     gap: 1em;
-    padding-right: 1em;
+    padding-right: 1.4em;
 }
 
 .add-input-container {
@@ -60,14 +60,19 @@
 
 /* LIST */
 .goals-list-container {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /*border: 1px dashed red;*/
 }
 
 .goals-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 97%;
-    height: 500px;
+    flex: 1;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: flex-start;*/
+    margin: 0.4em 0.6em;
+    height: 92%;
+    overflow: hidden;
+    /*border: 1px dashed green;*/
 }

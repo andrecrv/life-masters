@@ -1,8 +1,11 @@
 /* Goals View */
 
 .main-container {
-    width: 95%;
-    height: 95%;
-    background: #464646;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    /*width: 95%;*/
+    /*height: 95%;*/
+    background: #2e2e2e;
+    border-radius: 10px;
+    /*border: 2px dashed darkorange;*/
 }
