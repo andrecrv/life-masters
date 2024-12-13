@@ -52,7 +52,7 @@
   align-items: space-between;
 }
 
-/* Global input styling in -> loginPage.css
+/* Global input styling in -> loginPage.css */
 .input-register {
   width: 235px;
   height: 20px;
@@ -60,7 +60,12 @@
   padding: 8px 15px;
   border-radius: 20px;
   border: 2px solid rgba(29, 255, 193, 0.45);
-  background: #FFF;
+  /*background: #FFF;*/
+}
+
+.input-register:focus {
+  outline: none;
+  /*outline-color: #1AFFC8;*/
 }
 
 .input-register::placeholder {
@@ -68,7 +73,6 @@
   opacity: 1;
   color: #B2FEE9;
 }
-*/
 
 .register-button {
   width: 175px;

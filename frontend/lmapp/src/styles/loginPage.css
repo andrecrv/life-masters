@@ -56,34 +56,29 @@
 }
 
 /* Global input styling */
-/* Commented as this can't be overridden by other custom styles
 
-input {
+.input-login {
   width: 235px;
   height: 20px;
   margin: 6px 0;
   padding: 8px 15px;
   border-radius: 20px;
   border: 2px solid rgba(29, 255, 193, 0.45);
-  background: #FFF;
-  font-weight: normal;
-  color: #696969;
+  /*background: #FFF;*/
+  /*font-weight: normal;*/
+  /*color: #696969;*/
 }
 
-/* highlight input field, when selected */
-/*
-input:focus {
+.input-login:focus {
   outline: none;
   /*outline-color: #1AFFC8;*/
-/*}*/
+}
 
-/*
-input::placeholder {
+.input-login::placeholder {
   font-weight: normal;
   opacity: 0.8;
   color: #B2FEE9;
 }
-*/
 
 .forgot-password a {
   font-size: 0.7em;
