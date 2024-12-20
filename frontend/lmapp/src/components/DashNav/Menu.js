@@ -1,6 +1,8 @@
 // Menu.js
 
 import React, { useState } from 'react';
+/*import { NavigationOutlined } from '@mui/icons-material';*/
+
 import { useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 import Overview from '../Overview/Overview';
@@ -13,7 +15,6 @@ import Friends from '../Friends/Friends';
 import Achievements from '../Achievements/Achievements';
 import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
-/*import { NavigationOutlined } from '@mui/icons-material';*/
 import useAuth from '../../hooks/useAuth';
 
 const Menu = ({ buttons, handleView }) => {
