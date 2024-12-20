@@ -12,7 +12,7 @@
 }
 
 .active,
-.tab:focus {
+.tab.active:hover {
     color: white;
 }
 
