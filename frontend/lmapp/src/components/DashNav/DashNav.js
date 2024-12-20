@@ -1,11 +1,12 @@
 // DashNav.js -> Dashboard Navigation
 
 import React from 'react';
+
+import Menu from './Menu';
+import UserProfile from './UserProfile';
 //import fetchData from '../utils/api';
 //import useAuth from '../hooks/useAuth';
 import '../../styles/DashNav/dashNav.css';
-import Menu from './Menu';
-import UserProfile from './UserProfile';
 
 // Retrieving user data from localStorage
 const storedUserData = localStorage.getItem('userData');
