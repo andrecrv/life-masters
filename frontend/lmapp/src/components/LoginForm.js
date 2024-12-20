@@ -59,7 +59,7 @@ const LoginForm = () => {
       <div className="login-form">
         <div className="login-logo">
           <img src="logo192.png" alt="Logo" className="login-img" />
-          <h1 className="app-title">Life Masters</h1>
+          <h1 className="app-title">LifeMasters</h1>
         </div>
         {/*LOGIN FORM FIELDS*/}
         <form className="form-group-login">
