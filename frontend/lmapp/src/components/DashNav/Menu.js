@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 // import Overview from '../Overview/Overview';
-import TodoList from '../ToDoList/TodoList';
+import Tasks from '../Tasks/Tasks';
 import Goals from '../Goals/Goals';
 // import Challenges from '../Challenges/Challenges';
 // import Knowledge from '../Knowledge/Knowledge';
@@ -25,7 +25,7 @@ const Menu = ({ buttons, handleView }) => {
     // Map other button texts to their corresponding components
     const componentMapping = {
         // 'Overview': Overview,
-        'Tasks': TodoList,
+        'Tasks': Tasks,
         'Goals': Goals,
         // 'Challenges': Challenges,
         // 'Knowledge': Knowledge,
