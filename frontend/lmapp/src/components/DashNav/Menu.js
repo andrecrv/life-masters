@@ -25,7 +25,7 @@ const Menu = ({ buttons, handleView }) => {
     // Map other button texts to their corresponding components
     const componentMapping = {
         'Overview': Overview,
-        'Todo List': TodoList,
+        'Tasks': TodoList,
         'Goals': Goals,
         'Challenges': Challenges,
         'Knowledge': Knowledge,

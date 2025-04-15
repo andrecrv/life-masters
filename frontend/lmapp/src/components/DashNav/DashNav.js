@@ -26,7 +26,7 @@ const DashNav = ({ handleView }) => {
 
     const buttonList = [
         { text: 'Overview' },
-        { text: 'Todo List' },
+        { text: 'Tasks' },
         { text: 'Goals' },
         { text: 'Challenges' },
         { text: 'Knowledge' },
