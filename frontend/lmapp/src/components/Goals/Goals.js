@@ -2,15 +2,16 @@
 
 import React from 'react';
 
-import GoalsHeader from './GoalsHeader';
 import GoalsList from './GoalsList';
+import useList from '../../hooks/useList';
 import '../../styles/Goals/goals.css';
 
 const Goals = () => {
+    const { mockList } = useList();
+
     return (
         <div className='main-container'>
-            <GoalsHeader />
-            <GoalsList />
+            <GoalsList data={mockList} />
         </div>
     );
 };

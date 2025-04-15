@@ -1,16 +1,16 @@
 import { useState, useMemo } from "react";
 
+import FlagIcon from '@mui/icons-material/Flag';
+
+import DynamicHeader from "../DynamicHeader";
 import List from '../List/List';
 import TabButton from './TabButton';
 import GoalAdder from "./GoalAdder";
-import useList from '../../hooks/useList';
 import '../../styles/Goals/goalsList.css';
+import '../../styles/Goals/goalsHeader.css';
 
-
-const GoalsList = () => {
-
-  const { mockList } = useList();
-  const [goals, setGoals] = useState(mockList);
+const GoalsList = ({ data }) => {
+  const [goals, setGoals] = useState(data);
   const [activeTab, setActiveTab] = useState('All');
 
   const addGoal = (text) => {
@@ -58,6 +58,11 @@ const GoalsList = () => {
 
   return (
     <>
+      <div className='header-container'>
+        <div className="header-title">
+          <DynamicHeader icon={FlagIcon} title={"Goals"} />
+        </div>
+      </div>
       <div className="goals-toolbar">
         <div className="filter-tabs">
           <TabButton text="All" onClick={() => setActiveTab('All')} active={activeTab === 'All'} />
