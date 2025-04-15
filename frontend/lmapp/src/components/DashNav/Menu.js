@@ -5,15 +5,15 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
-import Overview from '../Overview/Overview';
+// import Overview from '../Overview/Overview';
 import TodoList from '../ToDoList/TodoList';
 import Goals from '../Goals/Goals';
-import Challenges from '../Challenges/Challenges';
-import Knowledge from '../Knowledge/Knowledge';
-import Guide from '../Guide/Guide';
-import Friends from '../Friends/Friends';
-import Achievements from '../Achievements/Achievements';
-import Settings from '../Settings/Settings';
+// import Challenges from '../Challenges/Challenges';
+// import Knowledge from '../Knowledge/Knowledge';
+// import Guide from '../Guide/Guide';
+// import Friends from '../Friends/Friends';
+// import Achievements from '../Achievements/Achievements';
+// import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
 import useAuth from '../../hooks/useAuth';
 
@@ -24,19 +24,19 @@ const Menu = ({ buttons, handleView }) => {
 
     // Map other button texts to their corresponding components
     const componentMapping = {
-        'Overview': Overview,
+        // 'Overview': Overview,
         'Tasks': TodoList,
         'Goals': Goals,
-        'Challenges': Challenges,
-        'Knowledge': Knowledge,
-        'Guide': Guide,
-        'Friends': Friends,
-        'Achievements': Achievements,
-        'Settings': Settings,
+        // 'Challenges': Challenges,
+        // 'Knowledge': Knowledge,
+        // 'Guide': Guide,
+        // 'Friends': Friends,
+        // 'Achievements': Achievements,
+        // 'Settings': Settings,
         'Logout': Logout
     };
 
-    const ActiveComponent = componentMapping[activeButton];
+    // const ActiveComponent = componentMapping[activeButton];
 
     const handleLogout = () => {
         logout();
@@ -62,7 +62,7 @@ const Menu = ({ buttons, handleView }) => {
                     onClick={() => handleButtonClick(button.text)}
                 />
             ))}
-            {ActiveComponent ? <ActiveComponent /> : <Overview />}
+            {/* {ActiveComponent ? <ActiveComponent /> : <TodoList />} */}
         </div>
     );
 };

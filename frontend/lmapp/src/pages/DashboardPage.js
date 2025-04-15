@@ -5,11 +5,11 @@ import React, { useState } from 'react';
 import '../styles/dashboardPage.css';
 import DashNav from '../components/DashNav/DashNav';
 import DashView from '../components/DashView';
-import Overview from '../components/Overview/Overview';
+import TodoList from '../components/ToDoList/TodoList';
 
 function DashboardPage() {
 
-    const [view, setView] = useState(<Overview />);
+    const [view, setView] = useState(<TodoList />);
 
     const updateView = (newView) => {
         setView(newView);

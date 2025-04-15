@@ -25,15 +25,15 @@ const DashNav = ({ handleView }) => {
     const user = userData ? userData : userDao;
 
     const buttonList = [
-        { text: 'Overview' },
+        // { text: 'Overview' },
         { text: 'Tasks' },
         { text: 'Goals' },
-        { text: 'Challenges' },
-        { text: 'Knowledge' },
-        { text: 'Guide' },
-        { text: 'Friends' },
-        { text: 'Achievements' },
-        { text: 'Settings' },
+        // { text: 'Challenges' },
+        // { text: 'Knowledge' },
+        // { text: 'Guide' },
+        // { text: 'Friends' },
+        // { text: 'Achievements' },
+        // { text: 'Settings' },
         { text: 'Logout' },
     ];
 
