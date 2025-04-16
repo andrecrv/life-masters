@@ -10,7 +10,7 @@ import Tasks from '../Tasks/Tasks';
 import Goals from '../Goals/Goals';
 // import Challenges from '../Challenges/Challenges';
 // import Knowledge from '../Knowledge/Knowledge';
-// import Guide from '../Guide/Guide';
+import Guide from '../Guide/Guide';
 // import Friends from '../Friends/Friends';
 // import Achievements from '../Achievements/Achievements';
 // import Settings from '../Settings/Settings';
@@ -29,7 +29,7 @@ const Menu = ({ buttons, handleView }) => {
         'Goals': Goals,
         // 'Challenges': Challenges,
         // 'Knowledge': Knowledge,
-        // 'Guide': Guide,
+        'Guide': Guide,
         // 'Friends': Friends,
         // 'Achievements': Achievements,
         // 'Settings': Settings,

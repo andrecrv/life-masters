@@ -1,5 +1,3 @@
-// DashboardPage.js
-
 import React, { useState } from 'react';
 
 import '../styles/dashboardPage.css';
@@ -8,7 +6,6 @@ import DashView from '../components/DashView';
 import Tasks from '../components/Tasks/Tasks';
 
 function DashboardPage() {
-
     const [view, setView] = useState(<Tasks />);
 
     const updateView = (newView) => {

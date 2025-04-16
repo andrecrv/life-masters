@@ -30,7 +30,7 @@ const DashNav = ({ handleView }) => {
         { text: 'Goals' },
         // { text: 'Challenges' },
         // { text: 'Knowledge' },
-        // { text: 'Guide' },
+        { text: 'Guide' },
         // { text: 'Friends' },
         // { text: 'Achievements' },
         // { text: 'Settings' },
