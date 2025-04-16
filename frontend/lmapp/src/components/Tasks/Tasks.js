@@ -1,13 +1,15 @@
 import React from 'react';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
-// import useList from '../../hooks/useList';
+import ListView from '../ListView/ListView';
+import useMockData from '../../hooks/useMockData';
 
 const Tasks = () => {
-    // const { mockList } = useList();
+    const { mockTasks } = useMockData();
 
     return (
         <div className='main-container'>
-            {/* <GoalsList /> */}
+            <ListView data={mockTasks} headerIcon={AssignmentIcon} header="Tasks" />
         </div>
     );
 };
