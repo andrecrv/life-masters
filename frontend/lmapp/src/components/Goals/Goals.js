@@ -1,8 +1,9 @@
 // Goals.js
 
 import React from 'react';
+import FlagIcon from '@mui/icons-material/Flag';
 
-import GoalsList from './GoalsList';
+import ListView from '../ListView/ListView';
 import useList from '../../hooks/useList';
 import '../../styles/Goals/goals.css';
 
@@ -11,7 +12,7 @@ const Goals = () => {
 
     return (
         <div className='main-container'>
-            <GoalsList data={mockList} />
+            <ListView data={mockList} headerIcon={FlagIcon} header="Goals" />
         </div>
     );
 };

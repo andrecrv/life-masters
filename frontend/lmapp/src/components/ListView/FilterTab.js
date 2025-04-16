@@ -1,9 +1,7 @@
-// TableHeader.js
-
 import React from 'react';
-import '../../styles/Goals/tabButton.css';
+import '../../styles/ListView/filter-tab.css';
 
-const TabButton = ({ text, onClick, active }) => {
+const FilterTab = ({ text, onClick, active }) => {
 
     const styling = active ? 'tab active' : 'tab';
 
@@ -12,4 +10,4 @@ const TabButton = ({ text, onClick, active }) => {
     );
 };
 
-export default TabButton;
+export default FilterTab;

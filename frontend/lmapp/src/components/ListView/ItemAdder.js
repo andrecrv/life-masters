@@ -1,11 +1,9 @@
-// Add Goal Controller
-
 import { useState } from 'react';
-import ActionButton from "../common/ActionButton";
 import AddIcon from '@mui/icons-material/Add';
 
-const GoalAdder = ({ addGoal }) => {
+import ActionButton from "../common/ActionButton";
 
+const ItemAdder = ({ addItem }) => {
     const [text, setText] = useState('');
 
     const handleChange = (e) => {
@@ -13,18 +11,18 @@ const GoalAdder = ({ addGoal }) => {
     }
 
     const handleGoal = () => {
-        addGoal(text);
+        addItem(text);
         setText('');
     }
 
     return (
-        <div className="add-goal-container">
+        <div className="add-item-container">
             <div className="add-input-container">
                 <input
                     type="text"
                     className="add-input"
-                    placeholder="Add a new goal..."
-                    name="add-goal-textbox"
+                    placeholder="Add a new item..."
+                    name="add-item-textbox"
                     value={text}
                     onChange={handleChange}
                 />
@@ -42,4 +40,4 @@ const GoalAdder = ({ addGoal }) => {
     );
 };
 
-export default GoalAdder;
+export default ItemAdder;
