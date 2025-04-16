@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import DynamicHeader from "../DynamicHeader";
 import List from '../List/List';
@@ -10,6 +10,11 @@ import '../../styles/ListView/list-header.css';
 const ListView = ({ data, headerIcon, header  }) => {
     const [items, setItems] = useState(data);
     const [activeTab, setActiveTab] = useState('All');
+
+    // Update items when data prop changes
+    useEffect(() => {
+        setItems(data);
+    }, [data]);
 
     const addItem = (text) => {
         // create a new item object
