@@ -7,13 +7,14 @@ import ItemAdder from "./ItemAdder";
 import '../../styles/ListView/list-view.css';
 import '../../styles/ListView/list-header.css';
 
-const ListView = ({ data, headerIcon, header  }) => {
+const ListView = ({ data, headerIcon, header }) => {
     const [items, setItems] = useState(data);
     const [activeTab, setActiveTab] = useState('All');
 
     // Update items when data prop changes
     useEffect(() => {
-        setItems(data);
+        const sortedData = [...data].reverse();
+        setItems(sortedData);
     }, [data]);
 
     const addItem = (text) => {
@@ -26,7 +27,7 @@ const ListView = ({ data, headerIcon, header  }) => {
 
         if (text !== "") {
             // add new item to the list (array)
-            setItems([...items, newItem]);
+            setItems([newItem, ...items]);
             //console.log('item added');
         }
     }
