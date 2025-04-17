@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import '../styles/dashboardPage.css';
 import DashNav from '../components/DashNav/DashNav';
 import DashView from '../components/DashView';
 import Tasks from '../components/Tasks/Tasks';
+import '../styles/dashboardPage.css';
 
 function DashboardPage() {
     const [view, setView] = useState(<Tasks />);

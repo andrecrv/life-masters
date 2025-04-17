@@ -33,18 +33,15 @@ const ListItem = ({ item, updateItem, editItem, deleteItem }) => {
     setText(e.target.value);
   }
 
+  const handleCheckbox = () => {
+    updateItem(item.id);
+  }
+
   return (
     <div className="item-container">
-      <div className={item.complete ? "checkbox-container-active" : "checkbox-container"}>
-        {/*<input
-          type="checkbox"
-          className="checkbox"
-          /*className={item.complete ? "check-btn active" : "check-btn"}*/
-          /*onClick={() => updateItem(item.id)}
-        />*/}
+      <div className={item.complete ? "checkbox-container-active" : "checkbox-container"} onClick={handleCheckbox}>
         <button
           className={item.complete ? "checkbox active" : "checkbox"}
-          onClick={() => updateItem(item.id)}
         />
       </div>
       <div className="item-input-container">

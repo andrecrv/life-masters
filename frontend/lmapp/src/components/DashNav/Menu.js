@@ -1,5 +1,3 @@
-// Menu.js
-
 import React, { useState } from 'react';
 /*import { NavigationOutlined } from '@mui/icons-material';*/
 
@@ -36,8 +34,6 @@ const Menu = ({ buttons, handleView }) => {
         'Logout': Logout
     };
 
-    // const ActiveComponent = componentMapping[activeButton];
-
     const handleLogout = () => {
         logout();
         navigate('/signin');
@@ -63,7 +59,6 @@ const Menu = ({ buttons, handleView }) => {
                     onClick={() => handleButtonClick(button.text)}
                 />
             ))}
-            {/* {ActiveComponent ? <ActiveComponent /> : <TodoList />} */}
         </div>
     );
 };

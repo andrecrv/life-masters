@@ -4,12 +4,10 @@ import ActionButton from './common/ActionButton';
 
 const DynamicHeader = ({ icon: Icon, title, iconSize = '36px', iconColor = 'white' }) => {
     return (
-        <div className='header-container'>
-            <div className="header-title">
-                <ActionButton icon={Icon} size={iconSize} color={iconColor} />
-                {title}
-            </div>
-        </div>
+        <>
+            <span><ActionButton icon={Icon} size={iconSize} color={iconColor} /></span>
+            <span>{title}</span>
+        </>
     );
 };
 
