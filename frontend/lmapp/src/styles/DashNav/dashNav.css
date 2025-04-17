@@ -55,19 +55,35 @@
 
 /* MENU */
 .menu-container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*height: 100%;*/
     /*background: rebeccapurple;*/
 }
 
 .menu-btn {
-    width: 100%;
-    height: 7%;
+    display: flex;
     border: none;
     background: #2e2e2e;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
     cursor: pointer;
+    /*border: 1px solid blueviolet;*/
+}
+
+.menu-btn span {
+    display: flex;
+    align-items: center;
+    padding: 0.8em;
+    color: white;
+    /*border: 1px dashed orangered;*/
+}
+
+.menu-btn .label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 /* The active button remains unchanged on hover */

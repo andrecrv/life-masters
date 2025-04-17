@@ -57,6 +57,7 @@ const Menu = ({ buttons, handleView }) => {
             {buttons.map((button) => (
                 <MenuButton
                     key={button.text}
+                    icon={button.icon}
                     text={button.text}
                     active={activeButton === button.text}
                     onClick={() => handleButtonClick(button.text)}

@@ -1,6 +1,9 @@
-// DashNav.js -> Dashboard Navigation
-
 import React from 'react';
+import Assignment from '@mui/icons-material/Assignment';
+import Flag from '@mui/icons-material/Flag';
+import Info from '@mui/icons-material/Info';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 
 import Menu from './Menu';
 import UserProfile from './UserProfile';
@@ -26,15 +29,15 @@ const DashNav = ({ handleView }) => {
 
     const buttonList = [
         // { text: 'Overview' },
-        { text: 'Tasks' },
-        { text: 'Goals' },
+        { text: 'Tasks', icon: <Assignment /> },
+        { text: 'Goals', icon: <Flag /> },
         // { text: 'Challenges' },
         // { text: 'Knowledge' },
-        { text: 'Guide' },
+        { text: 'Guide', icon: <Info /> },
         // { text: 'Friends' },
         // { text: 'Achievements' },
         // { text: 'Settings' },
-        { text: 'Logout' },
+        { text: 'Logout', icon: <Logout /> },
     ];
 
     return (

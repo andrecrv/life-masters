@@ -3,13 +3,14 @@
 import React from 'react';
 import '../../styles/DashNav/dashNav.css';
 
-const MenuButton = (props) => {
+const MenuButton = ({ text, icon, active, onClick }) => {
 
-    const btnClassName = props.active ? "menu-btn active" : "menu-btn";
+    const btnClassName = active ? "menu-btn active" : "menu-btn";
 
     return (
-        <button type="button" className={btnClassName} onClick={props.onClick} >
-            {props.text}
+        <button type="button" className={btnClassName} onClick={onClick} >
+            {icon && <span>{icon}</span>}
+            <span className="label">{text}</span>
         </button>
     );
 }
