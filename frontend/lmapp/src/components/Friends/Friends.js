@@ -1,7 +1,4 @@
-// Friends.js
-
-import React from 'react';
-import '../../styles/Friends/friends.css';
+import './Friends.css';
 
 const Friends = () => {
     return (

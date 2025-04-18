@@ -1,7 +1,4 @@
-// Profile.js
-
-import React from 'react';
-import '../../styles/Profile/profile.css';
+import './Profile.css';
 
 const Profile = () => {
     return (

@@ -1,7 +1,4 @@
-// Overview.js
-
-import React from 'react';
-import '../../styles/Overview/overview.css';
+import './Overview.css';
 
 const Overview = () => {
     return (
