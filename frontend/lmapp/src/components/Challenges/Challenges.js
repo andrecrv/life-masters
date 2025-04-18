@@ -1,7 +1,4 @@
-// Challenges.js
-
-import React from 'react';
-import '../../styles/Challenges/challenges.css';
+import './Challenges.css';
 
 const Challenges = () => {
     return (

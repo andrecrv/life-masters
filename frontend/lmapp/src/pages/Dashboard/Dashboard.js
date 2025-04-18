@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import DashNav from '../components/DashNav/DashNav';
-import DashView from '../components/DashView';
-import Tasks from '../components/Tasks/Tasks';
-import '../styles/dashboardPage.css';
+import DashNav from '../../components/DashLayout/DashNav';
+import DashView from '../../components/DashLayout/DashView';
+import Tasks from '../../components/Tasks/Tasks';
+import './Dashboard.css';
 
-function DashboardPage() {
+function Dashboard() {
     const [view, setView] = useState(<Tasks />);
 
     const updateView = (newView) => {
@@ -21,4 +21,4 @@ function DashboardPage() {
     );
 }
 
-export default DashboardPage;
+export default Dashboard;

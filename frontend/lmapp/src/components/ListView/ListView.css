@@ -1,4 +1,20 @@
-/* LIST TOOLBAR */
+.header-container {
+    display: flex;
+    padding: 1em 0 0 1.2em;
+    /*border: 1px dashed red;*/
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: azure;
+}
+
+.header-title span {
+    padding-right: 0.4em;
+}
 
 .list-toolbar {
     display: flex;

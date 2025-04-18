@@ -1,6 +1,3 @@
-// StartAccount.js
-
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Retrieving user data from localStorage

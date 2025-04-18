@@ -1,7 +1,4 @@
-// Knowledge.js
-
-import React from 'react';
-import '../../styles/Knowledge/knowledge.css';
+import './Knowledge.css';
 
 const Knowledge = () => {
     return (

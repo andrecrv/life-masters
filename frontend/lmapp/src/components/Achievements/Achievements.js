@@ -1,7 +1,4 @@
-// Achievements.js
-
-import React from 'react';
-import '../../styles/Achievements/achievements.css';
+import './Achievements.css';
 
 const Achievements = () => {
     return (

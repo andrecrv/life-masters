@@ -1,16 +1,14 @@
-// ListItem.js
-
 import { useState } from 'react';
-import ActionButton from '../common/ActionButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-import './list-item.css';
+import ActionButton from '../common/ActionButton';
+import './EditableItem.css';
 
 
-const ListItem = ({ item, updateItem, editItem, deleteItem }) => {
+const EditableItem = ({ item, updateItem, editItem, deleteItem }) => {
 
   const [text, setText] = useState(item.text);
   const [editable, setEditable] = useState(false);
@@ -108,4 +106,4 @@ const ListItem = ({ item, updateItem, editItem, deleteItem }) => {
   );
 };
 
-export default ListItem;
+export default EditableItem;

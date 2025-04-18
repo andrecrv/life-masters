@@ -1,4 +1,3 @@
-import React from 'react';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
 import ListView from '../ListView/ListView';

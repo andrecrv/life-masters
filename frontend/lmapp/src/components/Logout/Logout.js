@@ -1,7 +1,4 @@
-// Logout.js
-
-import React from 'react';
-import '../../styles/Logout/logout.css';
+import './Logout.css';
 
 const Logout = () => {
 };

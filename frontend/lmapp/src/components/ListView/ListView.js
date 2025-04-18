@@ -1,11 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
 
-import DynamicHeader from "../DynamicHeader";
+import DynamicHeader from "../common/DynamicHeader";
 import List from '../List/List';
 import FilterTab from "./FilterTab";
 import ItemAdder from "./ItemAdder";
-import '../../styles/ListView/list-view.css';
-import '../../styles/ListView/list-header.css';
+import './ListView.css';
 
 const ListView = ({ data, headerIcon, header }) => {
     const [items, setItems] = useState(data);

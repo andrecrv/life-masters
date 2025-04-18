@@ -1,10 +1,8 @@
-// LoginForm.js
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchData from '../utils/api';
-import useAuth from '../hooks/useAuth';
-import '../styles/loginPage.css'
+
+import fetchData from '../../utils/api';
+import useAuth from '../../hooks/useAuth';
 
 const LoginForm = () => {
 
@@ -30,7 +28,7 @@ const LoginForm = () => {
     // Fetch user
     const response = await fetchData(`api/username/${username}`);
     console.log('Response: ' + JSON.stringify(response));
-    
+
     if (response !== null) {
       if (password === response.password) {
         alert('Authentication Successful');
@@ -41,7 +39,7 @@ const LoginForm = () => {
         //setUserData(response);
         navigate('/start');
       } else {
-        
+
         alert('Password Incorrect');
       }
     } else {
