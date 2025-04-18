@@ -1,6 +1,6 @@
 import GuideIcon from '@mui/icons-material/CloudUploadSharp';
 
-import DynamicHeader from '../DynamicHeader';
+import DynamicHeader from '../common/DynamicHeader';
 import GuideLayout from './GuideLayout';
 import './Guide.css'
 

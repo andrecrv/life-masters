@@ -1,6 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import ActionButton from './common/ActionButton';
+import ActionButton from './ActionButton';
 
 const DynamicHeader = ({ icon: Icon, title, iconSize = '36px', iconColor = 'white' }) => {
     return (

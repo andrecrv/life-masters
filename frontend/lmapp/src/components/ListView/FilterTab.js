@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/ListView/filter-tab.css';
+import './FilterTab.css';
 
 const FilterTab = ({ text, onClick, active }) => {
 
