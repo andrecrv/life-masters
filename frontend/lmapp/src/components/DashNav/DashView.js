@@ -1,7 +1,3 @@
-// PageView.js - Display todos, overview,...
-
-import React from 'react';
-
 const DashView = ({ view }) => {
 
     return (

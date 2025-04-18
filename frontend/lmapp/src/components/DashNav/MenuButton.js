@@ -1,7 +1,4 @@
-// MenuButton.js
-
-import React from 'react';
-import '../../styles/DashNav/dashNav.css';
+import './DashNav.css'; // modulate style here
 
 const MenuButton = ({ text, icon, active, onClick }) => {
 

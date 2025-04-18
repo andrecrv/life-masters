@@ -1,4 +1,3 @@
-import React from 'react';
 import Assignment from '@mui/icons-material/Assignment';
 import Flag from '@mui/icons-material/Flag';
 import Info from '@mui/icons-material/Info';
@@ -9,7 +8,7 @@ import Menu from './Menu';
 import UserProfile from './UserProfile';
 //import fetchData from '../utils/api';
 //import useAuth from '../hooks/useAuth';
-import '../../styles/DashNav/dashNav.css';
+import './DashNav.css';
 
 // Retrieving user data from localStorage
 const storedUserData = localStorage.getItem('userData');
