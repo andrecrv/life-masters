@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 /*import { NavigationOutlined } from '@mui/icons-material';*/
 
-import MenuButton from './MenuButton';
+import NavButton from './NavButton';
 // import Overview from '../Overview/Overview';
 import Tasks from '../Tasks/Tasks';
 import Goals from '../Goals/Goals';
@@ -15,7 +15,7 @@ import Guide from '../Guide/Guide';
 import Logout from '../Logout/Logout';
 import useAuth from '../../hooks/useAuth';
 
-const Menu = ({ buttons, handleView }) => {
+const Nav = ({ buttons, handleView }) => {
     const [activeButton, setActiveButton] = useState(buttons[0].text);
     const navigate = useNavigate();
     const { logout } = useAuth();
@@ -49,9 +49,9 @@ const Menu = ({ buttons, handleView }) => {
     };
 
     return (
-        <div className="menu-container">
+        <div className="nav-container">
             {buttons.map((button) => (
-                <MenuButton
+                <NavButton
                     key={button.text}
                     icon={button.icon}
                     text={button.text}
@@ -63,4 +63,4 @@ const Menu = ({ buttons, handleView }) => {
     );
 };
 
-export default Menu;
+export default Nav;

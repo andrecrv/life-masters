@@ -4,7 +4,7 @@ import Info from '@mui/icons-material/Info';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
-import Menu from './Menu';
+import Nav from './Nav';
 import UserProfile from './UserProfile';
 //import fetchData from '../utils/api';
 //import useAuth from '../hooks/useAuth';
@@ -42,7 +42,7 @@ const DashNav = ({ handleView }) => {
     return (
         <div className="nav">
             <UserProfile user={user} icon={userIcon} />
-            <Menu buttons={buttonList} handleView={handleView} />
+            <Nav buttons={buttonList} handleView={handleView} />
         </div>
     );
 }
