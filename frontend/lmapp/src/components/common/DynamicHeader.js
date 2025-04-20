@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import ActionButton from './ActionButton';
+import styles from './DynamicHeader.module.scss';
 
 const DynamicHeader = ({ icon: Icon, title, iconSize = '36px', iconColor = 'white' }) => {
     return (
-        <>
-            <span><ActionButton icon={Icon} size={iconSize} color={iconColor} /></span>
-            <span>{title}</span>
-        </>
+        <div className={styles.header}>
+            <div className={styles.header__title}>
+                <span><ActionButton icon={Icon} size={iconSize} color={iconColor} /></span>
+                <span>{title}</span>
+            </div>
+        </div>
     );
 };
 

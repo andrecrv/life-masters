@@ -2,8 +2,6 @@
     display: flex;
     border: none;
     background: #2e2e2e;
-    cursor: pointer;
-    /*border: 1px solid blueviolet;*/
 
     &__label {
         flex: 1;
@@ -19,7 +17,6 @@
         align-items: center;
         padding: 0.8em;
         color: white;
-        /*border: 1px dashed orangered;*/
     }
 
     /* The active button remains unchanged on hover */

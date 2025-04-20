@@ -1,0 +1,32 @@
+.itemAdder {
+    flex: 1;
+    /*justify-self: flex-end;*/
+    display: flex;
+    gap: 1em;
+    padding-right: 1.4em;
+
+    &__textbox {
+        flex: 1;
+        display: flex;
+
+        &__input {
+            flex: 1;
+            border: none;
+            border-radius: 4px;
+            padding: 0 1em;
+            background: #242424;
+            color: white;
+            font-size: 14px;
+
+            &:focus {
+                background: #1f1f1f;
+                outline: none;
+            }
+        }
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+    }
+}

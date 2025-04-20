@@ -1,9 +1,8 @@
-import React from 'react';
-import './FilterTab.css';
+import styles from './FilterTab.module.scss';
 
 const FilterTab = ({ text, onClick, active }) => {
 
-    const styling = active ? 'tab active' : 'tab';
+    const styling = `${styles.filterTab} ${active && styles.active}`;
 
     return (
         <button className={styling} onClick={onClick}>{text}</button>

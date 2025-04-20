@@ -1,13 +1,12 @@
-// PageView.js - Display todos, overview,...
-
-import React from 'react';
+import styles from './DashView.module.scss';
 
 const DashView = ({ view }) => {
 
     return (
-        <div className="view-container">
-            {/* Display the views here */}
-            {view}
+        <div className={styles.dashView}>
+            <div className={styles.dashView__card}>
+                {view}
+            </div>
         </div>
     );
 };

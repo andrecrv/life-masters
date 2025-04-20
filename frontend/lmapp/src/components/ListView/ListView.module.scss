@@ -1,0 +1,35 @@
+.listToolbar {
+    display: flex;
+    /*gap: 14em;*/
+    /*justify-content: space-between;*/
+    margin: 1em 0 0.4em 0;
+    /*border: 1px dashed red;*/
+
+    &__filterTabs {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        /*justify-self: flex-start;*/
+        gap: 0.4em;
+        padding-left: 1em;
+        /*border: 1px dashed violet;*/
+    }
+}
+
+.list {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /*border: 1px dashed red;*/
+
+    &__itemList {
+        flex: 1;
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: flex-start;*/
+        margin: 0.4em 0.6em;
+        height: 92%;
+        overflow: hidden;
+        /*border: 1px dashed green;*/
+    }
+}

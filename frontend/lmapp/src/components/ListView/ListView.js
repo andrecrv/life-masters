@@ -1,12 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
 
-import DynamicHeader from "../common/DynamicHeader";
 import List from '../List/List';
 import FilterTab from "./FilterTab";
 import ItemAdder from "./ItemAdder";
-import './ListView.css';
+import styles from './ListView.module.scss';
 
-const ListView = ({ data, headerIcon, header }) => {
+const ListView = ({ data }) => {
     const [items, setItems] = useState(data);
     const [activeTab, setActiveTab] = useState('All');
 
@@ -58,24 +57,18 @@ const ListView = ({ data, headerIcon, header }) => {
         }
     }, [activeTab, items]);
 
-
     return (
         <>
-            <div className='header-container'>
-                <div className="header-title">
-                    <DynamicHeader icon={headerIcon} title={header} />
-                </div>
-            </div>
-            <div className="list-toolbar">
-                <div className="filter-tabs">
+            <div className={styles.listToolbar}>
+                <div className={styles.listToolbar__filterTabs}>
                     <FilterTab text="All" onClick={() => setActiveTab('All')} active={activeTab === 'All'} />
                     <FilterTab text="Pending" onClick={() => setActiveTab('Pending')} active={activeTab === 'Pending'} />
                     <FilterTab text="Completed" onClick={() => setActiveTab('Completed')} active={activeTab === 'Completed'} />
                 </div>
                 <ItemAdder addItem={addItem} />
             </div>
-            <div className="items-list-container">
-                <div className="items-container">
+            <div className={styles.list}>
+                <div className={styles.list__itemList}>
                     <List list={filteredItems} updateItem={updateItem} editItem={editItem} deleteItem={deleteItem} />
                 </div>
             </div>

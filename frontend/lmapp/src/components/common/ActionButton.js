@@ -1,4 +1,3 @@
-// ActionButton.js
 import IconButton from '@mui/material/IconButton';
 
 const ActionButton = ({ icon: IconComponent, color = 'defaultColor', size, backgroundColor = 'defaultBackgroundColor', onClick }) => {

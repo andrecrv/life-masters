@@ -1,0 +1,13 @@
+.dashView {
+    flex: 1;
+    display: flex;
+
+    &__card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin: 1em;
+        background: #2e2e2e;
+        border-radius: 10px;
+    }
+}

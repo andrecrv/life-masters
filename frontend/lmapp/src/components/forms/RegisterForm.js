@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import fetchData from '../../utils/api';
+import styles from './RegisterForm.module.scss';
 
 function RegisterForm() {
-
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -50,60 +50,60 @@ function RegisterForm() {
   };
 
   return (
-    <div className="register-card">
-      <div className="register-form">
-        <div className="register-logo">
-          <img src="logo192.png" alt="Logo" className="register-img" />
-          <h1 className="form-title">Fill out some info</h1>
-        </div>
-        <form className="form-group-register">
-          <input
-            type="text"
-            id="username"
-            className="input-register"
-            name="username"
-            placeholder="username"
-            value={formData.username || ''}
-            onChange={(e) => handleInput(e.target.name, e.target.value)}
-          />
-          <input
-            type="email"
-            id="email"
-            className="input-register"
-            name="email"
-            placeholder="email"
-            value={formData.email || ''}
-            onChange={(e) => handleInput(e.target.name, e.target.value)}
-          />
-          <input
-            type="password"
-            id="password"
-            className="input-register"
-            name="password"
-            placeholder="password"
-            value={formData.password || ''}
-            onChange={(e) => handleInput(e.target.name, e.target.value)}
-          />
-          <input
-            type="password"
-            id="confirmPassword"
-            className="input-register"
-            name="confirmPassword"
-            placeholder="confirm password"
-            value={formData.confirmPassword || ''}
-            onChange={(e) => handleInput(e.target.name, e.target.value)}
-          />
-          <button type="button" className="register-button" onClick={handleRegistration}>
-            Create Account
-          </button>
-        </form>
-        <div className="already-have-account">
-          Already have an account?{' '}
-          <a className="underline" onClick={goToLoginPage}>
-            Sign In
-          </a>
-        </div>
+    <div className={styles.registerCard}>
+      {/* <div className="register-form"> */}
+      <div className={styles.appLogo}>
+        <img className={styles.appLogo__icon} src="logo192.png" alt="Logo" />
+        <h1 className={styles.appLogo__text}>Fill out some info</h1>
       </div>
+      <form className={styles.form}>
+        <input
+          type="text"
+          id="username"
+          className={styles.form__input}
+          name="username"
+          placeholder="username"
+          value={formData.username || ''}
+          onChange={(e) => handleInput(e.target.name, e.target.value)}
+        />
+        <input
+          type="email"
+          id="email"
+          className={styles.form__input}
+          name="email"
+          placeholder="email"
+          value={formData.email || ''}
+          onChange={(e) => handleInput(e.target.name, e.target.value)}
+        />
+        <input
+          type="password"
+          id="password"
+          className={styles.form__input}
+          name="password"
+          placeholder="password"
+          value={formData.password || ''}
+          onChange={(e) => handleInput(e.target.name, e.target.value)}
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          className={styles.form__input}
+          name="confirmPassword"
+          placeholder="confirm password"
+          value={formData.confirmPassword || ''}
+          onChange={(e) => handleInput(e.target.name, e.target.value)}
+        />
+        <button type="submit" className={styles.form__button} onClick={handleRegistration}>
+          Create Account
+        </button>
+      </form>
+      <div className={styles.loginLink}>
+        Already have an account?{' '}
+        <a onClick={goToLoginPage}>
+          Sign In
+        </a>
+      </div>
+      {/* </div> */}
     </div>
   );
 }

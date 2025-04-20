@@ -1,4 +1,4 @@
-import './Logout.css';
+import './Logout.module.scss';
 
 const Logout = () => {
 };

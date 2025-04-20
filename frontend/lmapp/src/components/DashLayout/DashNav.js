@@ -8,7 +8,7 @@ import Nav from './Nav';
 import UserProfile from './UserProfile';
 //import fetchData from '../utils/api';
 //import useAuth from '../hooks/useAuth';
-import './DashNav.css';
+import styles from './DashNav.module.scss';
 
 // Retrieving user data from localStorage
 const storedUserData = localStorage.getItem('userData');
@@ -40,7 +40,7 @@ const DashNav = ({ handleView }) => {
     ];
 
     return (
-        <div className="nav">
+        <div className={styles.dashNav}>
             <UserProfile user={user} icon={userIcon} />
             <Nav buttons={buttonList} handleView={handleView} />
         </div>
