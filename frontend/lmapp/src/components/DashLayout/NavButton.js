@@ -2,12 +2,16 @@ import styles from './NavButton.module.scss';
 
 const NavButton = ({ text, icon, active, onClick }) => {
 
-    const buttonStyle = active ? `${styles.navButton} ${styles.active}` : `${styles.navButton}`;
+    const buttonStyle = `${styles.navButton} ${active && styles.active}`;
 
     return (
-        <button type="button" className={buttonStyle} onClick={onClick} >
+        <button
+            type="button"
+            className={buttonStyle}
+            onClick={onClick}
+        >
             {icon && <span>{icon}</span>}
-            <span className={styles['navButton__label']}>{text}</span>
+            <span className={styles.navButton__label}>{text}</span>
         </button>
     );
 }

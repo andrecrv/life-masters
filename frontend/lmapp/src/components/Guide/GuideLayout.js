@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 import Introduction from './Introduction';
-import Buttons from "./Buttons";
-import './GuideLayout.css';
-
+import Sections from "./Sections";
+import styles from './GuideLayout.module.scss';
 
 const GuideLayout = () => {
     const [activeComponent, setActiveComponent] = useState(null);
@@ -26,8 +25,8 @@ const GuideLayout = () => {
     };
 
     return (
-        <div className="guide-body-container">
-            <Buttons setActiveComponent={setActiveComponent} />
+        <div className={styles.guide}>
+            <Sections setActiveComponent={setActiveComponent} />
             {renderView()}
         </div>
     );

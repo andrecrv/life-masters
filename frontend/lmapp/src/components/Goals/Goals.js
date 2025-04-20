@@ -1,16 +1,17 @@
-import FlagIcon from '@mui/icons-material/Flag';
+import Flag from '@mui/icons-material/Flag';
 
+import DynamicHeader from '../common/DynamicHeader';
 import ListView from '../ListView/ListView';
 import useMockData from '../../hooks/useMockData';
-import './Goals.css';
 
 const Goals = () => {
     const { mockGoals } = useMockData();
 
     return (
-        <div className='main-container'>
-            <ListView data={mockGoals} headerIcon={FlagIcon} header="Goals" />
-        </div>
+        <>
+            <DynamicHeader icon={Flag} title={"Goals"} />
+            <ListView data={mockGoals} />
+        </>
     );
 };
 

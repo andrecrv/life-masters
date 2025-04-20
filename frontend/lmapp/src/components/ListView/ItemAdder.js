@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 
 import ActionButton from "../common/ActionButton";
+import styles from './ItemAdder.module.scss';
 
 const ItemAdder = ({ addItem }) => {
     const [text, setText] = useState('');
@@ -16,18 +17,18 @@ const ItemAdder = ({ addItem }) => {
     }
 
     return (
-        <div className="add-item-container">
-            <div className="add-input-container">
+        <div className={styles.itemAdder}>
+            <div className={styles.itemAdder__textbox}>
                 <input
                     type="text"
-                    className="add-input"
+                    className={styles.itemAdder__textbox__input}
                     placeholder="Add a new item..."
                     name="add-item-textbox"
                     value={text}
                     onChange={handleChange}
                 />
             </div>
-            <div className="add-button-container">
+            <div className={`${styles['itemAdder__button']}`}>
                 <ActionButton
                     icon={AddIcon}
                     size="20px"

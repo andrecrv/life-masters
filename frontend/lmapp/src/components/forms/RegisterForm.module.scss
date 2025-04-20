@@ -1,0 +1,76 @@
+/* Styling for the card component */
+.registerCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 26vw;
+  height: 60vh;
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+  text-align: center;
+  background: #2e2e2e;
+  border-radius: 20px;
+
+  .appLogo {
+    margin-top: 15px;
+
+    &__icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    &__text {
+      font-size: 1em;
+      color: white;
+    }
+  }
+
+  .form {
+    margin-bottom: 1em;
+    align-self: center;
+    text-align: center;
+    align-items: space-between;
+
+    &__input {
+      width: 235px;
+      height: 20px;
+      margin: 6px 0;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 2px solid #7e1aff;
+      background: #2c2c2c;
+      color: white;
+
+      &::placeholder {
+        color: #3b3b3b;
+      }
+    }
+
+    &__button {
+      width: 175px;
+      height: 35px;
+      margin-top: 18px;
+      flex-shrink: 0;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      background: #7e1aff;
+
+      &:hover {
+        background: #872bff;
+      }
+    }
+  }
+
+  .loginLink {
+    font-size: 0.75em;
+    margin-top: 0px;
+    margin-bottom: 1em;
+    color: white;
+
+    a {
+      text-decoration: underline;
+      color: white;
+    }
+  }
+}

@@ -1,13 +1,7 @@
-import StartAccount from '../../components/StartAccount';
-import './Welcome.css'
+import WelcomeUser from '../../components/WelcomeUser/WelcomeUser';
 
 function Welcome() {
-  return (
-    <div className="app-start">
-        {/*CALLING THE CARD COMPONENT*/}
-      <StartAccount />
-    </div>
-  );
+  return <WelcomeUser />
 }
 
 export default Welcome;

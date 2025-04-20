@@ -1,15 +1,14 @@
-import GuideIcon from '@mui/icons-material/CloudUploadSharp';
+import Info from '@mui/icons-material/Info';
 
 import DynamicHeader from '../common/DynamicHeader';
 import GuideLayout from './GuideLayout';
-import './Guide.css'
 
 const Guide = () => {
     return (
-        <div className='main-container'>
-            <DynamicHeader icon={GuideIcon} title={"Guide"} />
+        <>
+            <DynamicHeader icon={Info} title={"Guide"} />
             <GuideLayout />
-        </div>
+        </>
     );
 };
 

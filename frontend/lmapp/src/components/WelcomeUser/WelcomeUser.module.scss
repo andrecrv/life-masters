@@ -1,0 +1,62 @@
+.welcomePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.welcomeCard {
+  max-width: 600px;
+  min-width: 400px;
+  min-height: 200px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: linear-gradient(to top, #000, #7FFCC0);
+  border-radius: 10px;
+
+  &__icon {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: -160px;
+    width: 110px;
+    height: 110px;
+    border-radius: 60px;
+    background: #000;
+  }
+
+  .userInfo {
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 220px;
+
+    &__username {
+      color: gold
+    }
+
+    p {
+      color: #fff;
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 20px;
+      /* Adjust the font size as needed */
+      margin: 5px 0;
+    }
+  }
+}
+
+.startButton {
+  width: 160px;
+  height: 40px;
+  flex-shrink: 0;
+  background: linear-gradient(271deg, #1AFFC8 -3.44%, #00FF85 100%);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-left: 120px;
+
+  &:hover {
+    background: #000;
+  }
+}

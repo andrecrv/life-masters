@@ -1,8 +1,8 @@
-import './Overview.css';
+import './Overview.module.scss';
 
 const Overview = () => {
     return (
-        <div className="overview-container">
+        <div className="overview">
             <h2>Overview</h2>
             <p>This is the Overview section.</p>
         </div>

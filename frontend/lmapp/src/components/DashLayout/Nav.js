@@ -14,6 +14,7 @@ import Guide from '../Guide/Guide';
 // import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
 import useAuth from '../../hooks/useAuth';
+import styles from './Nav.module.scss';
 
 const Nav = ({ buttons, handleView }) => {
     const [activeButton, setActiveButton] = useState(buttons[0].text);
@@ -49,7 +50,7 @@ const Nav = ({ buttons, handleView }) => {
     };
 
     return (
-        <div className="nav-container">
+        <div className={styles.nav}>
             {buttons.map((button) => (
                 <NavButton
                     key={button.text}

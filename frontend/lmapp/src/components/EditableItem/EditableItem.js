@@ -5,11 +5,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
 import ActionButton from '../common/ActionButton';
-import './EditableItem.css';
+import styles from './EditableItem.module.scss';
 
 
 const EditableItem = ({ item, updateItem, editItem, deleteItem }) => {
-
   const [text, setText] = useState(item.text);
   const [editable, setEditable] = useState(false);
 
@@ -34,75 +33,60 @@ const EditableItem = ({ item, updateItem, editItem, deleteItem }) => {
   const handleCheckbox = () => {
     updateItem(item.id);
   }
-
+  /*item.complete ? `${styles['item__toggle--active']}` : `${styles['item__toggle']}`}*/
   return (
-    <div className="item-container">
-      <div className={item.complete ? "checkbox-container-active" : "checkbox-container"} onClick={handleCheckbox}>
-        <button
-          className={item.complete ? "checkbox active" : "checkbox"}
+    <div className={styles.item}>
+      <div className={`${styles.item__toggle} ${item.complete && styles['item__toggle--active']}`} onClick={handleCheckbox}>
+        <button className={`${styles.item__toggle__checkbox} ${item.complete && styles['item__toggle__checkbox--active']}`}
         />
       </div>
-      <div className="item-input-container">
+      <div className={styles.item__textbox}>
         {editable ?
           <input
             type='text'
             name='item-input'
-            className='item-input'
+            className={styles.item__textbox__input}
             value={text}
             onChange={changeText}
           />
           :
-          <div className="item-text">
+          <div className={styles.item__textbox__label}>
             {item.text}
           </div>
         }
       </div>
-      <div className="edit-btn-container">
+      <div className={styles.item__firstButton}>
         {/* If item is editable (true), then render Save button, else render Edit button */}
-        {editable ?
-          <button name='save' className="save-btn" type="button" onClick={saveEdit} >
-            <ActionButton
-              name='save'
-              icon={CheckIcon}
-              size="1em"
-              backgroundColor="none"
-              color="white"
-            />
-          </button>
-          :
-          <button name='edit' className="edit-btn" type="button" onClick={editMode} >
-            <ActionButton
-              icon={EditIcon}
-              size="1em"
-              backgroundColor="none"
-              color="white"
-            />
-          </button>
-        }
+        <button
+          name={editable ? 'save-button' : 'edit-button'}
+          className={editable ? styles['item__firstButton--save'] : styles['item__firstButton--edit']}
+          type="button"
+          onClick={editable ? saveEdit : editMode}
+        >
+          <ActionButton
+            icon={editable ? CheckIcon : EditIcon}
+            size="1em"
+            backgroundColor="none"
+            color="white"
+          />
+        </button>
       </div>
-      <div className="delete-btn-container">
-        {editable ?
-          <button name='cancel' className="cancel-btn" type="button" onClick={cancelEdit} >
-            <ActionButton
-              name='cancel'
-              icon={CloseIcon}
-              size="1em"
-              backgroundColor="none"
-              color="white"
-            />
-          </button>
-          :
-          <button name='delete' className="del-btn" type="button" onClick={() => deleteItem(item.id)} >
-            <ActionButton
-              icon={DeleteIcon}
-              size="1em"
-              backgroundColor="none"
-              color="white"
-            />
-          </button>
-        }
+      <div className={styles.item__secondButton}>
+        <button
+          name={editable ? 'cancel-button' : 'delete-button'}
+          className={editable ? styles['item__secondButton--cancel'] : styles['item__secondButton--delete']}
+          type="button"
+          onClick={editable ? cancelEdit : () => deleteItem(item.id)}
+        >
+          <ActionButton
+            icon={editable ? CloseIcon : DeleteIcon}
+            size="1em"
+            backgroundColor="none"
+            color="white"
+          />
+        </button>
       </div>
-    </div>
+    </div >
   );
 };
 

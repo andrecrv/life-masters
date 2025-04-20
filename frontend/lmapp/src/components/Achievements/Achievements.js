@@ -1,8 +1,8 @@
-import './Achievements.css';
+import './Achievements.module.scss';
 
 const Achievements = () => {
     return (
-        <div className="achievements-container">
+        <div className="achievements">
             <h2>Achievements</h2>
             <p>This is the Achievements section.</p>
         </div>
