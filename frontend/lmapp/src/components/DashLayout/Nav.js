@@ -11,8 +11,6 @@ import Goals from '../Goals/Goals';
 import Guide from '../Guide/Guide';
 // import Friends from '../Friends/Friends';
 // import Achievements from '../Achievements/Achievements';
-// import Settings from '../Settings/Settings';
-import Logout from '../Logout/Logout';
 import useAuth from '../../hooks/useAuth';
 import styles from './Nav.module.scss';
 
@@ -31,22 +29,11 @@ const Nav = ({ buttons, handleView }) => {
         'Guide': Guide,
         // 'Friends': Friends,
         // 'Achievements': Achievements,
-        // 'Settings': Settings,
-        'Logout': Logout
     };
-
-    const handleLogout = () => {
-        logout();
-        navigate('/signin');
-    }
 
     const handleButtonClick = (text) => {
         setActiveButton(text);
-        if (text === 'Logout') {
-            handleLogout();
-        } else {
-            handleView(componentMapping[text]);
-        }
+        handleView(componentMapping[text]);
     };
 
     return (

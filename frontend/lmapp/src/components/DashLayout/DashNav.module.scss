@@ -1,6 +1,24 @@
 .dashNav {
+    display: flex;
+    flex-direction: column;
     /*position: fixed;*/
     width: 13vw;
     height: 100vh;
     background: #2e2e2e;
+
+    &__utils {
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        gap: 1em;
+        padding: 1em;
+
+        &__button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // border: 1px dashed yellow;
+        }
+    }
 }
