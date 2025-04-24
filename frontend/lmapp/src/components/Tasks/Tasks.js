@@ -10,7 +10,7 @@ const Tasks = () => {
     return (
         <>
             <DynamicHeader icon={Assignment} title={"Tasks"} />
-            <ListView data={mockTasks} />
+            <ListView data={mockTasks} itemType="task" />
         </>
     );
 };

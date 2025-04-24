@@ -5,7 +5,7 @@ import FilterTab from "./FilterTab";
 import ItemAdder from "./ItemAdder";
 import styles from './ListView.module.scss';
 
-const ListView = ({ data }) => {
+const ListView = ({ data, itemType }) => {
     const [items, setItems] = useState(data);
     const [activeTab, setActiveTab] = useState('All');
 
@@ -67,10 +67,8 @@ const ListView = ({ data }) => {
                 </div>
                 <ItemAdder addItem={addItem} />
             </div>
-            <div className={styles.list}>
-                <div className={styles.list__itemList}>
-                    <List list={filteredItems} updateItem={updateItem} editItem={editItem} deleteItem={deleteItem} />
-                </div>
+            <div className={styles.listContainer}>
+                <List items={filteredItems} itemType={itemType} updateItem={updateItem} editItem={editItem} deleteItem={deleteItem} />
             </div>
         </>
     );

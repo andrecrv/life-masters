@@ -1,14 +1,13 @@
 .item {
     display: flex;
-    height: 10%;
-    margin: 0.8em;
-    padding: 0;
+    // border: 1px dashed darksalmon;
 
     &__toggle {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        // align-items: center;
+        // justify-content: center;
         aspect-ratio: 1/1; // Maintain same width/height ratio
+        padding: 0.95em;
         border-radius: 4px 0 0 4px;
         background: #5b5b5b;
         cursor: pointer;
@@ -18,7 +17,8 @@
         }
 
         &__checkbox {
-            width: 30%;
+            flex: 1;
+            // width: 30%;
             aspect-ratio: 1/1;
             background: #b1b1b1;
             border: none;
@@ -34,13 +34,13 @@
     }
 
     &__textbox {
-        flex: 10;
+        flex: 1;
         display: flex;
         background: #3d3d3d;
 
         &__input {
             flex: 1;
-            padding: 1em;
+            padding: 0.8em 1em;
             border: none;
             background: #222;
             color: white;
@@ -60,13 +60,14 @@
         &__label {
             flex: 1;
             display: flex;
-            align-items: center;
-            padding: 0 1em;
+            // align-items: center;
+            padding: 0.8em 1em;
             color: white;
         }
     }
 
     &__firstButton {
+        // flex: 1;
         display: flex;
 
         &--edit {
@@ -81,6 +82,7 @@
     }
 
     &__secondButton {
+        // flex: 1;
         display: flex;
         // border-radius: 0 4px 4px 0;
 

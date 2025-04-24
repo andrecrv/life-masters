@@ -10,7 +10,7 @@ const Goals = () => {
     return (
         <>
             <DynamicHeader icon={Flag} title={"Goals"} />
-            <ListView data={mockGoals} />
+            <ListView data={mockGoals} itemType="goal" />
         </>
     );
 };
