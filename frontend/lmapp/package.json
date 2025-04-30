@@ -1,12 +1,13 @@
 {
   "name": "lmapp",
   "version": "0.1.0",
+  "main": "main.js",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.19",
-    "@mui/material": "^5.14.19",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^5.17.1",
+    "@mui/material": "^5.17.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -23,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dev": "concurrently \"npm start\" \"npm run electron\""
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,8 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
+    "electron": "^35.0.0",
     "sass": "^1.86.3"
   }
 }
