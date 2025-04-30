@@ -13,7 +13,7 @@ const App = () => {
       <div className="app">
         <Routes>
           <Route path='/' element={<Navigate replace to='/signin' />} />
-          <Route path='/signin' index element={<Login />} />
+          <Route path='/signin' element={<Login />} />
           <Route path='/signup' element={<Register />} />
           <Route path='/welcome' element={<Welcome />} />
           <Route path='/dashboard' element={<Dashboard />} />
