@@ -6,9 +6,10 @@
 -- USERS
 INSERT INTO users (username, password, email, level, title)
 VALUES
-    ('andrc', '1234', 'andc@devco.com', 1, 'Fancy Feet'),
-    ('hugof', '1234', 'hfaria@devco.com', 1, 'Maverick'),
-    ('thethird', '333', 'de.third@devco.com', 1, 'Maverick');
+    ('testing', '123', 'test@devco.com', 1, 'Initiate'),
+    ('andrc', '123', 'andc@devco.com', 2, 'Task Tinkerer'),
+    ('hugof', '123', 'hfaria@devco.com', 5, 'Productivity Apprentice'),
+    ('thethird', '333', 'de.third@devco.com', 10, 'LifeMaster');
 
 -- TASKS user 1
 INSERT INTO tasks (user_id, description, priority, task_type, exp, created_at, due_date, status)

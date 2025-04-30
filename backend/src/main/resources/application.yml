@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: lifemasters
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pgdb
+    username: pguser
+    password: pgpass
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+  sql:
+    init:
+      mode: always
