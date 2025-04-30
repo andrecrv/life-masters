@@ -98,10 +98,8 @@ function RegisterForm() {
         </button>
       </form>
       <div className={styles.loginLink}>
-        Already have an account?{' '}
-        <a onClick={goToLoginPage}>
-          Sign In
-        </a>
+        <span>Already have an account?&nbsp;</span>
+        <a onClick={goToLoginPage}>Sign In</a>
       </div>
       {/* </div> */}
     </div>

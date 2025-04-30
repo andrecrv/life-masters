@@ -89,10 +89,8 @@ const LoginForm = () => {
       </form>
       <div className={styles.registerLink}>
         {/*NEW ACCOUNT REDIRECT*/}
-        New to Life Masters?{' '}
-        <a onClick={goToRegisterPage}>
-          Sign Up
-        </a>
+        <span>New to Life Masters?&nbsp;</span>
+        <a onClick={goToRegisterPage}>Sign Up</a>
       </div>
     </div >
   );
