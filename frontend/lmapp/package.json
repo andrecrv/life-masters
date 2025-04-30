@@ -26,7 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "wait-on http://localhost:3000 && electron .",
-    "dev": "concurrently \"npm start\" \"npm run electron\""
+    "dev": "concurrently \"npm start\" \"npm run electron\"",
+    "dev:clean": "concurrently \"npm run start -- -c\" \"npm run electron\""
   },
   "eslintConfig": {
     "extends": [
