@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron .",
+    "electron": "wait-on http://localhost:3000 && electron .",
     "dev": "concurrently \"npm start\" \"npm run electron\""
   },
   "eslintConfig": {
@@ -49,6 +49,7 @@
   "devDependencies": {
     "concurrently": "^9.1.2",
     "electron": "^35.0.0",
-    "sass": "^1.86.3"
+    "sass": "^1.86.3",
+    "wait-on": "^8.0.3"
   }
 }
