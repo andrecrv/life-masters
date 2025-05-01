@@ -5,7 +5,7 @@ LifeMasters is a gamified task and habit management app that helps users track p
 
 ## 🧰 Tech Stack  
 
-**Frontend:** React, JavaScript, SCSS, Electron 
+**Frontend:** React, JavaScript, SCSS, Electron  
 **Backend:** Java, Spring Boot  
 **Database:** PostgreSQL (containerized with Docker)  
 
