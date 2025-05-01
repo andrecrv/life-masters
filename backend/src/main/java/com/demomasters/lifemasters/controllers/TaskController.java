@@ -31,7 +31,7 @@ public class TaskController {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
-    @GetMapping("/status")
+    @GetMapping(params = "status")
     public ResponseEntity<List<Task>> getTasksByStatus(@RequestParam String status) {
         List<Task> tasks = taskService.getTasksByStatus(status);
         if (tasks.isEmpty()) {
@@ -40,7 +40,7 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/priority")
+    @GetMapping(params = "priority")
     public ResponseEntity<List<Task>> getTasksByPriority(@RequestParam String priority) {
         List<Task> tasks = taskService.getTasksByPriority(priority);
         if (tasks.isEmpty()) {
@@ -49,9 +49,9 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/type")
+    @GetMapping(params = "taskType")
     public ResponseEntity<List<Task>> getTasksByType(@RequestParam String taskType) {
-        List<Task> tasks = taskService.getTasksByType(taskType);
+        List<Task> tasks = taskService.getTasksByTaskType(taskType);
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

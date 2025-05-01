@@ -36,7 +36,7 @@ public class UserTasksController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/status")
+    @GetMapping(params = "status")
     public ResponseEntity<List<Task>> getUserTasksByStatus(@PathVariable Integer userId, @RequestParam String status) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -50,7 +50,7 @@ public class UserTasksController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/priority")
+    @GetMapping(params = "priority")
     public ResponseEntity<List<Task>> getUserTasksByPriority(@PathVariable Integer userId, @RequestParam String priority) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -64,9 +64,9 @@ public class UserTasksController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping("/type")
+    @GetMapping(params = "taskType")
     public ResponseEntity<List<Task>> getUserTasksByType(@PathVariable Integer userId, @RequestParam String taskType) {
-        List<Task> tasks = taskService.getTasksByUserIdAndType(userId, taskType);
+        List<Task> tasks = taskService.getTasksByUserIdAndTaskType(userId, taskType);
 
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

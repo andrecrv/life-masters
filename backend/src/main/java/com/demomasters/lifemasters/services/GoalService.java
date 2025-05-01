@@ -34,7 +34,7 @@ public class GoalService {
         return goalRepository.findByDifficulty(difficulty);
     }
 
-    public List<Goal> getGoalsByType(String goalType) {
+    public List<Goal> getGoalsByGoalType(String goalType) {
         return goalRepository.findByGoalType(goalType);
     }
 
@@ -46,7 +46,7 @@ public class GoalService {
         return goalRepository.findByUserIdAndDifficulty(userId, difficulty);
     }
 
-    public List<Goal> getGoalsByUserIdAndType(Integer userId, String goalType) {
+    public List<Goal> getGoalsByUserIdAndGoalType(Integer userId, String goalType) {
         return goalRepository.findByUserIdAndGoalType(userId, goalType);
     }
 

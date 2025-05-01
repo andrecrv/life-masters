@@ -34,7 +34,7 @@ public class TaskService {
         return taskRepository.findByPriority(priority);
     }
 
-    public List<Task> getTasksByType(String taskType) {
+    public List<Task> getTasksByTaskType(String taskType) {
         return taskRepository.findByTaskType(taskType);
     }
 
@@ -46,7 +46,7 @@ public class TaskService {
         return taskRepository.findByUserIdAndPriority(userId, priority);
     }
 
-    public List<Task> getTasksByUserIdAndType(Integer userId, String taskType) {
+    public List<Task> getTasksByUserIdAndTaskType(Integer userId, String taskType) {
         return taskRepository.findByUserIdAndTaskType(userId, taskType);
     }
 

@@ -36,7 +36,7 @@ public class UserGoalsController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/status")
+    @GetMapping(params = "status")
     public ResponseEntity<List<Goal>> getUserGoalsByStatus(@PathVariable Integer userId, @RequestParam String status) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -50,7 +50,7 @@ public class UserGoalsController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/difficulty")
+    @GetMapping(params = "difficulty")
     public ResponseEntity<List<Goal>> getUserGoalsByDifficulty(@PathVariable Integer userId, @RequestParam String difficulty) {
         User user = userService.getUser(userId);
         if (user == null) {
@@ -64,9 +64,9 @@ public class UserGoalsController {
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
-    @GetMapping("/type")
-    public ResponseEntity<List<Goal>> getUserGoalsByType(@PathVariable Integer userId, @RequestParam String goalType) {
-        List<Goal> goals = goalService.getGoalsByUserIdAndType(userId, goalType);
+    @GetMapping(params = "goalType")
+    public ResponseEntity<List<Goal>> getUserGoalsByGoalType(@PathVariable Integer userId, @RequestParam String goalType) {
+        List<Goal> goals = goalService.getGoalsByUserIdAndGoalType(userId, goalType);
 
         if (goals.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
