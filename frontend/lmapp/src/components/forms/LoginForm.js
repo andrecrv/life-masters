@@ -23,10 +23,10 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, password: password } = formData;
+    const { username, password } = formData;
 
     // Fetch user
-    const response = await fetchData(`api/username/${username}`);
+    const response = await fetchData(`api/users?username=${username}`);
     console.log('Response: ' + JSON.stringify(response));
 
     if (response !== null) {

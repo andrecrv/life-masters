@@ -1,7 +1,7 @@
 // Fetch API
 
-const BASE_URL = 'http://localhost:9002';
-const AUTH_USER = btoa('user:$2a$10$1iHtzX.r3uVfjgK.iVkuFee39NtkD//gKL9oYSnC9xZGRA8RGX.Bu') // user credentials
+const BASE_URL = 'http://localhost:8080';
+const AUTH_USER = btoa('pguser:pgpass') // user credentials
 
 const fetchData = async (endpoint, method = 'GET', data = null) => {
     const url = `${BASE_URL}/${endpoint}`;

@@ -58,8 +58,8 @@ public class SecurityConfig implements WebMvcConfigurer {
     public UserDetailsService userDetailsService() {
         // Modify server user credentials
         UserDetails user = User.builder()
-                .username("user")
-                .password("$2a$10$1iHtzX.r3uVfjgK.iVkuFee39NtkD//gKL9oYSnC9xZGRA8RGX.Bu")
+                .username("pguser")
+                .password("pgpass")
                 .roles("USER")
                 .build();
         //System.out.println("# Encrypted Password: " + passwordEncoder().encode("password"));

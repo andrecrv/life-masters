@@ -32,7 +32,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/username")
+    @GetMapping(params = "username")
     //@Cacheable(value = "userCache", key = "#username")
     public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
         User user = userService.findUserByUsername(username);
