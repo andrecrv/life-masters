@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 /*import { NavigationOutlined } from '@mui/icons-material';*/
 
 import NavButton from './NavButton';
@@ -11,13 +10,10 @@ import Goals from '../Goals/Goals';
 import Guide from '../Guide/Guide';
 // import Friends from '../Friends/Friends';
 // import Achievements from '../Achievements/Achievements';
-import useAuth from '../../hooks/useAuth';
 import styles from './Nav.module.scss';
 
 const Nav = ({ buttons, handleView }) => {
     const [activeButton, setActiveButton] = useState(buttons[0].text);
-    const navigate = useNavigate();
-    const { logout } = useAuth();
 
     // Map other button texts to their corresponding components
     const componentMapping = {
