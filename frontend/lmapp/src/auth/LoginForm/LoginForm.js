@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useAuth } from '../../context/AuthContext';
 import fetchData from '../../utils/api';
-import useAuth from '../../hooks/useAuth';
 import styles from './LoginForm.module.scss';
 
 const LoginForm = () => {
@@ -29,23 +29,13 @@ const LoginForm = () => {
     const response = await fetchData(`api/users?username=${username}`);
     console.log('Response: ' + JSON.stringify(response));
 
-    if (response !== null) {
-      if (password === response.password) {
-        alert('Authentication Successful');
-
-        // Call the login function to set the user upon login
-        login(response);
-
-        //setUserData(response);
-        navigate('/welcome');
-      } else {
-
-        alert('Password Incorrect');
-      }
+    if (response && response.password === password) {
+      // alert('Authentication Successful');
+      login(response);
+      navigate('/welcome');
     } else {
-      alert('Username does not exist!');
+      alert('Invalid username or password!');
     }
-
   };
 
   const goToRegisterPage = () => {
