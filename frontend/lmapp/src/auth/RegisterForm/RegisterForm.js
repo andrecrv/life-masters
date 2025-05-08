@@ -31,15 +31,6 @@ function RegisterForm() {
       // Add other fields as needed
     };
 
-    /*
-    const userDto = {
-      username: "userdto-fetchapi",
-      email: "user.fetchapi@gmail.com",
-      passwd: "userpwdapi",
-      // Add other fields as needed
-    };
-    */
-
     // Fetch request
     fetchData('api/users', 'POST', userDto);
     navigate('/signin');
