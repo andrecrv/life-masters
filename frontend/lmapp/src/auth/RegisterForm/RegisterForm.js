@@ -41,7 +41,7 @@ function RegisterForm() {
     */
 
     // Fetch request
-    fetchData('api/create-user', 'POST', userDto);
+    fetchData('api/users', 'POST', userDto);
     navigate('/signin');
   };
 
@@ -51,7 +51,6 @@ function RegisterForm() {
 
   return (
     <div className={styles.registerCard}>
-      {/* <div className="register-form"> */}
       <div className={styles.appLogo}>
         <img className={styles.appLogo__icon} src="logo192.png" alt="Logo" />
         <h1 className={styles.appLogo__text}>Fill out some info</h1>
@@ -101,7 +100,6 @@ function RegisterForm() {
         <span>Already have an account?&nbsp;</span>
         <a onClick={goToLoginPage}>Sign In</a>
       </div>
-      {/* </div> */}
     </div>
   );
 }
