@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.services;
 
+import com.demomasters.lifemasters.exceptions.DuplicateUserException;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,21 @@ public class UserService {
         return userRepository.findUserByUsername(username);
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
     public User createUser(User user) {
-        User mockUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), 1, "Newbie");
-        User newUser = userRepository.save(mockUser);
-        return newUser;
+        if (findUserByUsername(user.getUsername()) != null) {
+            throw new DuplicateUserException("Username already exists");
+        }
+
+        if (findUserByEmail(user.getEmail()) != null) {
+            throw new DuplicateUserException("Email already exists");
+        }
+
+        User newUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), 1, "Newbie");
+        return userRepository.save(newUser);
     }
 
     public void deleteUser(Integer id) {

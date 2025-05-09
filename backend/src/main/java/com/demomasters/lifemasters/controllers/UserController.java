@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.exceptions.DuplicateUserException;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +46,14 @@ public class UserController {
 
     @PostMapping
     //@Cacheable(value = "userCache", key = "#user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
             User newUser = userService.createUser(user);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        } catch (DuplicateUserException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
