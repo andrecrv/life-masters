@@ -42,3 +42,5 @@ Core features like auth, dashboard, and interactive task/goal items are in place
 - **Project Setup**: For detailed instructions on setting up the project locally, check the [Setup Guide](docs/setup-guide.md).  
 
 - **SCSS Guidelines**: For best practices and conventions on writing maintainable SCSS, refer to our [SCSS Guidelines](docs/scss-guidelines.md).  
+
+- **API Endpoints**: For an overview of available backend routes, refer to our [API Endpoints](docs/api-endpoints.md).  
