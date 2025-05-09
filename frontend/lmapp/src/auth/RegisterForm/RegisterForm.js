@@ -22,7 +22,8 @@ function RegisterForm() {
     }));
   };
 
-  const handleRegistration = async () => {
+  const handleRegistration = async (e) => {
+    e.preventDefault();
     // Creates a UserDTO with the current formData state
     const userDto = {
       username: formData.username,
@@ -31,18 +32,15 @@ function RegisterForm() {
       // Add other fields as needed
     };
 
-    /*
-    const userDto = {
-      username: "userdto-fetchapi",
-      email: "user.fetchapi@gmail.com",
-      passwd: "userpwdapi",
-      // Add other fields as needed
-    };
-    */
-
     // Fetch request
-    fetchData('api/create-user', 'POST', userDto);
-    navigate('/signin');
+    const response = await fetchData('api/users', 'POST', userDto);
+
+    if (response.error) {
+      alert(response.message);
+    } else {
+      alert("User created successfully!")
+      goToLoginPage();
+    }
   };
 
   const goToLoginPage = () => {
@@ -51,7 +49,6 @@ function RegisterForm() {
 
   return (
     <div className={styles.registerCard}>
-      {/* <div className="register-form"> */}
       <div className={styles.appLogo}>
         <img className={styles.appLogo__icon} src="logo192.png" alt="Logo" />
         <h1 className={styles.appLogo__text}>Fill out some info</h1>
@@ -101,7 +98,6 @@ function RegisterForm() {
         <span>Already have an account?&nbsp;</span>
         <a onClick={goToLoginPage}>Sign In</a>
       </div>
-      {/* </div> */}
     </div>
   );
 }

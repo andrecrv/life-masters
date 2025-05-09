@@ -1,7 +1,10 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.dtos.UserDTO;
+import com.demomasters.lifemasters.exceptions.DuplicateUserException;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -45,13 +48,9 @@ public class UserController {
 
     @PostMapping
     //@Cacheable(value = "userCache", key = "#user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        try {
-            User newUser = userService.createUser(user);
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) {
+        User createdUser = userService.createUser(userDTO);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

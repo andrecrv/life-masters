@@ -23,7 +23,7 @@ const fetchData = async (endpoint, method = 'GET', data = null) => {
         const result = await response.json();
 
         if (!response.ok) {
-            console.log("Something went wrong");
+            console.log(result);
         }
 
         return result;
