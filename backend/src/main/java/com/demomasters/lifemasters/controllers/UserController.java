@@ -46,15 +46,9 @@ public class UserController {
 
     @PostMapping
     //@Cacheable(value = "userCache", key = "#user")
-    public ResponseEntity<?> createUser(@RequestBody User user) {
-        try {
-            User newUser = userService.createUser(user);
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-        } catch (DuplicateUserException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User newUser = userService.createUser(user);
+        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
