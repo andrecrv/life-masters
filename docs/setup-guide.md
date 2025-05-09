@@ -21,6 +21,22 @@ This starts the Docker containers in detached mode (-d) based on the configurati
 
 Once the database is up, you can start the Spring Boot server.  
 
+### 🔍 Optional: Access the PostgreSQL Database via CLI  
+
+To manually inspect the database (e.g. check seeded data, debug queries), you can connect to the PostgreSQL container using the following command:  
+
+```bash
+docker exec -it postgres-db psql -U pguser -d pgdb
+```  
+
+Make sure the container is running. If not, start it with:  
+
+```bash
+docker start postgres-db
+```  
+
+Use `docker ps` to confirm the container is active.
+
 ## 💻 Frontend Setup (Electron + npm)
 
 1. Navigate to the app directory:  
