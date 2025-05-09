@@ -22,7 +22,8 @@ function RegisterForm() {
     }));
   };
 
-  const handleRegistration = async () => {
+  const handleRegistration = async (e) => {
+    e.preventDefault();
     // Creates a UserDTO with the current formData state
     const userDto = {
       username: formData.username,
@@ -32,8 +33,14 @@ function RegisterForm() {
     };
 
     // Fetch request
-    fetchData('api/users', 'POST', userDto);
-    navigate('/signin');
+    const response = await fetchData('api/users', 'POST', userDto);
+
+    if (response.error) {
+      alert(response.message);
+    } else {
+      alert("User created successfully!")
+      goToLoginPage();
+    }
   };
 
   const goToLoginPage = () => {
