@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.services;
 
+import com.demomasters.lifemasters.converters.UserConverter;
 import com.demomasters.lifemasters.dtos.UserDTO;
 import com.demomasters.lifemasters.exceptions.DuplicateUserException;
 import com.demomasters.lifemasters.exceptions.UserNotFoundException;
@@ -16,26 +17,30 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User findUser(Integer id) {
-        return userRepository.findById(id)
+    public UserDTO findUser(Integer id) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
+        return UserConverter.toDTO(user);
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getUsers() {
+        List<User> users = userRepository.findAll();
+        return UserConverter.toDTOList(users);
     }
 
-    public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username)
+    public UserDTO findUserByUsername(String username) {
+        User user = userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User with username '" + username + "' not found"));
+        return UserConverter.toDTO(user);
     }
 
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email)
+    public UserDTO findUserByEmail(String email) {
+        User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User with email '" + email + "' not found"));
+        return UserConverter.toDTO(user);
     }
 
-    public User createUser(UserDTO userDTO) {
+    public UserDTO createUser(UserDTO userDTO) {
         if (findUserByUsername(userDTO.getUsername()) != null) {
             throw new DuplicateUserException("Username already exists");
         }
@@ -44,30 +49,33 @@ public class UserService {
             throw new DuplicateUserException("Email already exists");
         }
 
-        User newUser = new User(userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(), 1, "Newbie");
-        return userRepository.save(newUser);
+        User newUser = UserConverter.toEntity(userDTO);
+        newUser.setLevel(1);
+        newUser.setTitle("Initiate");
+
+        User createdUser = userRepository.save(newUser);
+        return UserConverter.toDTO(createdUser);
     }
 
-    public User updateUser(Integer id, UserDTO userDTO) {
-        User existingUser = findUser(id);
+    public UserDTO updateUser(Integer id, UserDTO userDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
 
+        // TODO: Add validations
         if (userDTO.getUsername() != null && !userDTO.getUsername().isBlank()) {
-            existingUser.setUsername(userDTO.getUsername());
+            user.setUsername(userDTO.getUsername());
         }
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isBlank()) {
-            existingUser.setPassword(userDTO.getPassword());
+            user.setPassword(userDTO.getPassword());
         }
 
         if (userDTO.getEmail() != null && !userDTO.getEmail().isBlank()) {
-            existingUser.setEmail(userDTO.getEmail());
+            user.setEmail(userDTO.getEmail());
         }
 
-//        if (userDTO.getTitle() != null && !userDTO.getTitle().isBlank()) {
-//            existingUser.setTitle(userDTO.getTitle());
-//        }
-
-        return userRepository.save(existingUser);
+        User updatedUser = userRepository.save(user);
+        return UserConverter.toDTO(updatedUser);
     }
 
     public void deleteUser(Integer id) {
