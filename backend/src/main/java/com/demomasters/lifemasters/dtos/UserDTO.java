@@ -15,6 +15,10 @@ public class UserDTO {
     @Email(message = "Email must be valid")
     private String email;
 
+    private int level;
+
+    private String title;
+
     public String getUsername() {
         return username;
     }
@@ -37,5 +41,21 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

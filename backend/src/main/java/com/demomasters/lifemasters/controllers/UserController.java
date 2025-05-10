@@ -1,12 +1,10 @@
 package com.demomasters.lifemasters.controllers;
 
 import com.demomasters.lifemasters.dtos.UserDTO;
-import com.demomasters.lifemasters.exceptions.DuplicateUserException;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +26,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Integer id) {
-        User user = userService.getUser(id);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        User user = userService.findUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -39,12 +34,8 @@ public class UserController {
     //@Cacheable(value = "userCache", key = "#username")
     public ResponseEntity<User> getUserByUsername(@RequestParam String username) {
         User user = userService.findUserByUsername(username);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
 
     @PostMapping
     //@Cacheable(value = "userCache", key = "#user")
@@ -53,33 +44,16 @@ public class UserController {
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User user) {
-        try {
-            User existingUser = userService.getUser(id);
-            if (existingUser != null) {
-                User updatedUser = userService.updateUser(id, user);
-                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    // Patch for partial update
+    @PatchMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
+        User updatedUser = userService.updateUser(id, userDTO);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Integer id) {
-        try {
-            User user = userService.getUser(id);
-            if (user != null) {
-                userService.deleteUser(id);
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

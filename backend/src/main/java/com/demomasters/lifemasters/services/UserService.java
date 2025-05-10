@@ -2,6 +2,7 @@ package com.demomasters.lifemasters.services;
 
 import com.demomasters.lifemasters.dtos.UserDTO;
 import com.demomasters.lifemasters.exceptions.DuplicateUserException;
+import com.demomasters.lifemasters.exceptions.UserNotFoundException;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(Integer id) {
-        return userRepository.findById(id).orElse(null);
+    public User findUser(Integer id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
     }
 
     public List<User> getUsers() {
@@ -24,11 +26,13 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User with username '" + username + "' not found"));
     }
 
     public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User with email '" + email + "' not found"));
     }
 
     public User createUser(UserDTO userDTO) {
@@ -44,23 +48,32 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    public void deleteUser(Integer id) {
-        userRepository.deleteById(id);
-    }
+    public User updateUser(Integer id, UserDTO userDTO) {
+        User existingUser = findUser(id);
 
-    public User updateUser(Integer id, User user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-
-        if (existingUser == null) {
-            return null;
+        if (userDTO.getUsername() != null && !userDTO.getUsername().isBlank()) {
+            existingUser.setUsername(userDTO.getUsername());
         }
 
-        existingUser.setUsername(user.getUsername());
-        existingUser.setPassword(user.getPassword());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setLevel(user.getLevel());
-        existingUser.setTitle(user.getTitle());
+        if (userDTO.getPassword() != null && !userDTO.getPassword().isBlank()) {
+            existingUser.setPassword(userDTO.getPassword());
+        }
+
+        if (userDTO.getEmail() != null && !userDTO.getEmail().isBlank()) {
+            existingUser.setEmail(userDTO.getEmail());
+        }
+
+//        if (userDTO.getTitle() != null && !userDTO.getTitle().isBlank()) {
+//            existingUser.setTitle(userDTO.getTitle());
+//        }
 
         return userRepository.save(existingUser);
+    }
+
+    public void deleteUser(Integer id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User with ID " + id + " not found");
+        }
+        userRepository.deleteById(id);
     }
 }
