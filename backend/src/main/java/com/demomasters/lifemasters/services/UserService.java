@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(Integer id) {
+    public User findUser(Integer id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
     }
@@ -26,11 +26,13 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User with username '" + username + "' not found"));
     }
 
     public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User with email '" + email + "' not found"));
     }
 
     public User createUser(UserDTO userDTO) {
@@ -47,7 +49,7 @@ public class UserService {
     }
 
     public User updateUser(Integer id, UserDTO userDTO) {
-        User existingUser = getUser(id);
+        User existingUser = findUser(id);
 
         if (userDTO.getUsername() != null && !userDTO.getUsername().isBlank()) {
             existingUser.setUsername(userDTO.getUsername());
@@ -69,6 +71,9 @@ public class UserService {
     }
 
     public void deleteUser(Integer id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User with ID " + id + " not found");
+        }
         userRepository.deleteById(id);
     }
 }
