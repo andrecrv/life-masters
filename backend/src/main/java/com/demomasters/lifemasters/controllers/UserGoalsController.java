@@ -25,7 +25,7 @@ public class UserGoalsController {
     @GetMapping
     public ResponseEntity<List<Goal>> getUserGoals(@PathVariable Integer userId) {
         // Probably searching for a user not needed
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -38,7 +38,7 @@ public class UserGoalsController {
 
     @GetMapping(params = "status")
     public ResponseEntity<List<Goal>> getUserGoalsByStatus(@PathVariable Integer userId, @RequestParam String status) {
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -52,7 +52,7 @@ public class UserGoalsController {
 
     @GetMapping(params = "difficulty")
     public ResponseEntity<List<Goal>> getUserGoalsByDifficulty(@PathVariable Integer userId, @RequestParam String difficulty) {
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -77,7 +77,7 @@ public class UserGoalsController {
     @PostMapping
     public ResponseEntity<Goal> createGoal(@PathVariable Integer userId, @RequestBody Goal goal) {
         try {
-            User user = userService.getUser(userId);
+            User user = userService.findUser(userId);
             Goal createdGoal = goalService.createGoal(user, goal);
             return new ResponseEntity<>(createdGoal, HttpStatus.CREATED);
         } catch (Exception e) {

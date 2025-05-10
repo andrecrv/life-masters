@@ -25,7 +25,7 @@ public class UserTasksController {
     @GetMapping
     public ResponseEntity<List<Task>> getUserTasks(@PathVariable Integer userId) {
         // Probably searching for a user not needed
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -38,7 +38,7 @@ public class UserTasksController {
 
     @GetMapping(params = "status")
     public ResponseEntity<List<Task>> getUserTasksByStatus(@PathVariable Integer userId, @RequestParam String status) {
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -52,7 +52,7 @@ public class UserTasksController {
 
     @GetMapping(params = "priority")
     public ResponseEntity<List<Task>> getUserTasksByPriority(@PathVariable Integer userId, @RequestParam String priority) {
-        User user = userService.getUser(userId);
+        User user = userService.findUser(userId);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -77,7 +77,7 @@ public class UserTasksController {
     @PostMapping
     public ResponseEntity<Task> createTask(@PathVariable Integer userId, @RequestBody Task task) {
         try {
-            User user = userService.getUser(userId);
+            User user = userService.findUser(userId);
             Task createdTask = taskService.createTask(user, task);
             return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
         } catch (Exception e) {
