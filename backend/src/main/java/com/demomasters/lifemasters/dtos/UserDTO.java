@@ -19,6 +19,14 @@ public class UserDTO {
 
     private String title;
 
+    public UserDTO(String username, String password, String email, int level, String title) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.level = level;
+        this.title = title;
+    }
+
     public String getUsername() {
         return username;
     }
