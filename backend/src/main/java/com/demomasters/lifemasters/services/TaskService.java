@@ -24,13 +24,13 @@ public class TaskService {
         return TaskConverter.toDTOList(tasks);
     }
 
-    public TaskDTO getTaskById(Integer id) {
+    public TaskDTO getTaskById(int id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
         return TaskConverter.toDTO(task);
     }
 
-    public List<TaskDTO> getTasksByUserId(Integer userId) {
+    public List<TaskDTO> getTasksByUserId(int userId) {
         List<Task> tasks = taskRepository.findByUserId(userId);
         return TaskConverter.toDTOList(tasks);
     }
@@ -50,22 +50,22 @@ public class TaskService {
         return TaskConverter.toDTOList(tasks);
     }
 
-    public List<TaskDTO> getTasksByUserIdAndStatus(Integer userId, String status) {
+    public List<TaskDTO> getTasksByUserIdAndStatus(int userId, String status) {
         List<Task> tasks = taskRepository.findByUserIdAndStatus(userId, status);
         return TaskConverter.toDTOList(tasks);
     }
 
-    public List<TaskDTO> getTasksByUserIdAndPriority(Integer userId, String priority) {
+    public List<TaskDTO> getTasksByUserIdAndPriority(int userId, String priority) {
         List<Task> tasks = taskRepository.findByUserIdAndPriority(userId, priority);
         return TaskConverter.toDTOList(tasks);
     }
 
-    public List<TaskDTO> getTasksByUserIdAndTaskType(Integer userId, String taskType) {
+    public List<TaskDTO> getTasksByUserIdAndTaskType(int userId, String taskType) {
         List<Task> tasks = taskRepository.findByUserIdAndTaskType(userId, taskType);
         return TaskConverter.toDTOList(tasks);
     }
 
-    public TaskDTO createTask(Integer userId, TaskDTO taskDTO) {
+    public TaskDTO createTask(int userId, TaskDTO taskDTO) {
         // TODO: Add validations
         Task newTask = TaskConverter.toEntity(taskDTO);
 
@@ -77,7 +77,7 @@ public class TaskService {
         return TaskConverter.toDTO(createdTask);
     }
 
-    public TaskDTO updateTask(Integer id, TaskDTO taskDTO) {
+    public TaskDTO updateTask(int id, TaskDTO taskDTO) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
 
@@ -102,11 +102,11 @@ public class TaskService {
         return TaskConverter.toDTO(updatedTask);
     }
 
-    public void deleteTask(Integer userId, Integer id) {
+    public void deleteTask(int userId, int id) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
 
-        if (!task.getUser().getId().equals(userId)) {
+        if (task.getUser().getId() != userId) {
             throw new UnauthorizedAccessException("User " + userId + " does not own this task");
         }
 

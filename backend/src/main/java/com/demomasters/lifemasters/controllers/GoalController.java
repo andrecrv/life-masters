@@ -24,7 +24,7 @@ public class GoalController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GoalDTO> getGoalById(@PathVariable Integer id) {
+    public ResponseEntity<GoalDTO> getGoalById(@PathVariable int id) {
         GoalDTO goalDTO = goalService.getGoalById(id);
         return new ResponseEntity<>(goalDTO, HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class GoalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Goal> updateGoal(@PathVariable Integer id, @RequestBody Goal goal) {
+    public ResponseEntity<Goal> updateGoal(@PathVariable int id, @RequestBody Goal goal) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {
@@ -74,7 +74,7 @@ public class GoalController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Goal> deleteGoal(@PathVariable Integer id) {
+    public ResponseEntity<Goal> deleteGoal(@PathVariable int id) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {

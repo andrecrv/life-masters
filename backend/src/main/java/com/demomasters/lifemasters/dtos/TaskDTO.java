@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class TaskDTO {
 
-    private Integer id;
+    private int id;
 
-    private Integer userId;
+    private int userId;
 
     private String description;
 
@@ -22,7 +22,7 @@ public class TaskDTO {
 
     private Date dueDate;
 
-    public TaskDTO(Integer id, Integer userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+    public TaskDTO(int id, int userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
         this.id = id;
         this.userId = userId;
         this.description = description;
@@ -38,7 +38,7 @@ public class TaskDTO {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,7 +46,7 @@ public class TaskDTO {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -86,7 +86,7 @@ public class TaskDTO {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 

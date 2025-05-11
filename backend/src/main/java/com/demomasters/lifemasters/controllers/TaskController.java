@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDTO> getTaskById(@PathVariable Integer id) {
+    public ResponseEntity<TaskDTO> getTaskById(@PathVariable int id) {
         TaskDTO taskDTO = taskService.getTaskById(id);
         return new ResponseEntity<>(taskDTO, HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
+    public ResponseEntity<Task> updateTask(@PathVariable int id, @RequestBody Task task) {
         try {
             Task existingTask = taskService.getTaskById(id);
             if (existingTask != null) {
@@ -74,7 +74,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable Integer id) {
+    public ResponseEntity<Task> deleteTask(@PathVariable int id) {
         try {
             Task existingTask = taskService.getTaskById(id);
             if (existingTask != null) {

@@ -11,7 +11,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private int id;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -58,11 +58,11 @@ public class Task {
 
     /* GETTERS AND SETTERS */
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -106,11 +106,11 @@ public class Task {
         this.taskType = taskType;
     }
 
-    public Integer getExp() {
+    public int getExp() {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 

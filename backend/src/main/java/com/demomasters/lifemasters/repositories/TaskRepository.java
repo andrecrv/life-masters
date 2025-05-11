@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    List<Task> findByUserId(Integer userId);
+    List<Task> findByUserId(int userId);
 
     List<Task> findByStatus(String status);
 
@@ -17,9 +17,9 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     List<Task> findByTaskType(String taskType);
 
-    List<Task> findByUserIdAndStatus(Integer userId, String status);
+    List<Task> findByUserIdAndStatus(int userId, String status);
 
-    List<Task> findByUserIdAndPriority(Integer userId, String priority);
+    List<Task> findByUserIdAndPriority(int userId, String priority);
 
-    List<Task> findByUserIdAndTaskType(Integer userId, String taskType);
+    List<Task> findByUserIdAndTaskType(int userId, String taskType);
 }

@@ -24,44 +24,44 @@ public class UserGoalsController {
     private GoalService goalService;
 
     @GetMapping
-    public ResponseEntity<List<GoalDTO>> getUserGoals(@PathVariable Integer userId) {
+    public ResponseEntity<List<GoalDTO>> getUserGoals(@PathVariable int userId) {
         List<GoalDTO> goalDTOs = goalService.getGoalsByUserId(userId);
         return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<GoalDTO>> getUserGoalsByStatus(@PathVariable Integer userId, @RequestParam String status) {
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByStatus(@PathVariable int userId, @RequestParam String status) {
         List<GoalDTO> goals = goalService.getGoalsByUserIdAndStatus(userId, status);
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
     @GetMapping(params = "difficulty")
-    public ResponseEntity<List<GoalDTO>> getUserGoalsByDifficulty(@PathVariable Integer userId, @RequestParam String difficulty) {
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByDifficulty(@PathVariable int userId, @RequestParam String difficulty) {
         List<GoalDTO> goalDTOs = goalService.getGoalsByUserIdAndDifficulty(userId, difficulty);
         return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "goalType")
-    public ResponseEntity<List<GoalDTO>> getUserGoalsByGoalType(@PathVariable Integer userId, @RequestParam String goalType) {
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByGoalType(@PathVariable int userId, @RequestParam String goalType) {
         List<GoalDTO> goalDTOs = goalService.getGoalsByUserIdAndGoalType(userId, goalType);
         return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<GoalDTO> createGoal(@PathVariable Integer userId, @RequestBody GoalDTO goalDTO) {
+    public ResponseEntity<GoalDTO> createGoal(@PathVariable int userId, @RequestBody GoalDTO goalDTO) {
         GoalDTO createdGoal = goalService.createGoal(userId, goalDTO);
         return new ResponseEntity<>(createdGoal, HttpStatus.CREATED);
 
     }
 
     @PatchMapping("/{goalId}")
-    public ResponseEntity<GoalDTO> updateGoal(@PathVariable Integer userId, @PathVariable Integer goalId, @RequestBody GoalDTO goalDTO) {
+    public ResponseEntity<GoalDTO> updateGoal(@PathVariable int userId, @PathVariable int goalId, @RequestBody GoalDTO goalDTO) {
         GoalDTO updatedGoal = goalService.updateGoal(goalId, goalDTO);
         return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
     }
 
     @DeleteMapping("/{goalId}")
-    public ResponseEntity<Void> deleteGoal(@PathVariable Integer userId, @PathVariable Integer goalId) {
+    public ResponseEntity<Void> deleteGoal(@PathVariable int userId, @PathVariable int goalId) {
         goalService.deleteGoal(userId, goalId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

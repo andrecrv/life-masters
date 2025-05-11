@@ -11,7 +11,7 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -30,7 +30,7 @@ public class Goal {
     private String goalType;
 
     @Column(name = "exp")
-    private Integer exp;
+    private int exp;
 
     @Column(name = "created_at")
     private Date createAtDate;
@@ -41,7 +41,7 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(User user, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
+    public Goal(User user, String description, String status, String difficulty, String goalType, int exp, Date createAtDate, Date dueDate) {
         this.user = user;
         this.description = description;
         this.status = status;
@@ -52,11 +52,11 @@ public class Goal {
         this.dueDate = dueDate;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -100,11 +100,11 @@ public class Goal {
         this.goalType = goalType;
     }
 
-    public Integer getExp() {
+    public int getExp() {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 

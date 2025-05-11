@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
-    List<Goal> findByUserId(Integer userId);
+    List<Goal> findByUserId(int userId);
 
     List<Goal> findByStatus(String status);
 
@@ -17,9 +17,9 @@ public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
     List<Goal> findByGoalType(String goalType);
 
-    List<Goal> findByUserIdAndStatus(Integer userId, String status);
+    List<Goal> findByUserIdAndStatus(int userId, String status);
 
-    List<Goal> findByUserIdAndDifficulty(Integer userId, String difficulty);
+    List<Goal> findByUserIdAndDifficulty(int userId, String difficulty);
 
-    List<Goal> findByUserIdAndGoalType(Integer userId, String goalType);
+    List<Goal> findByUserIdAndGoalType(int userId, String goalType);
 }

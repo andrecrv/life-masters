@@ -25,13 +25,13 @@ public class GoalService {
         return GoalConverter.toDTOList(goals);
     }
 
-    public GoalDTO getGoalById(Integer id) {
+    public GoalDTO getGoalById(int id) {
         Goal goal = goalRepository.findById(id)
                 .orElseThrow(() -> new GoalNotFoundException("Goal with ID " + id + " not found"));
         return GoalConverter.toDTO(goal);
     }
 
-    public List<GoalDTO> getGoalsByUserId(Integer userId) {
+    public List<GoalDTO> getGoalsByUserId(int userId) {
         List<Goal> goals = goalRepository.findByUserId(userId);
         return GoalConverter.toDTOList(goals);
     }
@@ -51,22 +51,22 @@ public class GoalService {
         return GoalConverter.toDTOList(goals);
     }
 
-    public List<GoalDTO> getGoalsByUserIdAndStatus(Integer userId, String status) {
+    public List<GoalDTO> getGoalsByUserIdAndStatus(int userId, String status) {
         List<Goal> goals = goalRepository.findByUserIdAndStatus(userId, status);
         return GoalConverter.toDTOList(goals);
     }
 
-    public List<GoalDTO> getGoalsByUserIdAndDifficulty(Integer userId, String difficulty) {
+    public List<GoalDTO> getGoalsByUserIdAndDifficulty(int userId, String difficulty) {
         List<Goal> goals = goalRepository.findByUserIdAndDifficulty(userId, difficulty);
         return GoalConverter.toDTOList(goals);
     }
 
-    public List<GoalDTO> getGoalsByUserIdAndGoalType(Integer userId, String goalType) {
+    public List<GoalDTO> getGoalsByUserIdAndGoalType(int userId, String goalType) {
         List<Goal> goals = goalRepository.findByUserIdAndGoalType(userId, goalType);
         return GoalConverter.toDTOList(goals);
     }
 
-    public GoalDTO createGoal(Integer userId, GoalDTO goalDTO) {
+    public GoalDTO createGoal(int userId, GoalDTO goalDTO) {
         // TODO: Add validations
         Goal newGoal = GoalConverter.toEntity(goalDTO);
 
@@ -78,7 +78,7 @@ public class GoalService {
         return GoalConverter.toDTO(createdGoal);
     }
 
-    public GoalDTO updateGoal(Integer id, GoalDTO goalDTO) {
+    public GoalDTO updateGoal(int id, GoalDTO goalDTO) {
         Goal goal = goalRepository.findById(id)
                 .orElseThrow(() -> new GoalNotFoundException("Goal with ID " + id + " not found"));
 
@@ -103,11 +103,11 @@ public class GoalService {
         return GoalConverter.toDTO(updatedGoal);
     }
 
-    public void deleteGoal(Integer userId, Integer id) {
+    public void deleteGoal(int userId, int id) {
         Goal goal = goalRepository.findById(id)
                 .orElseThrow(() -> new GoalNotFoundException("Goal with ID " + id + " not found"));
 
-        if (!goal.getUser().getId().equals(userId)) {
+        if (goal.getUser().getId() != userId) {
             throw new UnauthorizedAccessException("User " + userId + " does not own this task");
         }
 

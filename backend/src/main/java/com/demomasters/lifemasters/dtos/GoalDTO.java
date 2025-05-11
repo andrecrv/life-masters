@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class GoalDTO {
 
-    private Integer id;
+    private int id;
 
-    private Integer userId;
+    private int userId;
 
     private String description;
 
@@ -16,13 +16,13 @@ public class GoalDTO {
 
     private String goalType;
 
-    private Integer exp;
+    private int exp;
 
     private Date createAtDate;
 
     private Date dueDate;
 
-    public GoalDTO(Integer id, Integer userId, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
+    public GoalDTO(int id, int userId, String description, String status, String difficulty, String goalType, int exp, Date createAtDate, Date dueDate) {
         this.id = id;
         this.userId = userId;
         this.description = description;
@@ -34,19 +34,19 @@ public class GoalDTO {
         this.dueDate = dueDate;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -82,11 +82,11 @@ public class GoalDTO {
         this.goalType = goalType;
     }
 
-    public Integer getExp() {
+    public int getExp() {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(int exp) {
         this.exp = exp;
     }
 
