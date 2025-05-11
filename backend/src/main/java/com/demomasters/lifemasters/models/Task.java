@@ -14,7 +14,7 @@ public class Task {
     private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private int userId;
+    private Integer userId;
 
     @Column(name = "description")
     private String description;
@@ -65,11 +65,11 @@ public class Task {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -105,11 +105,11 @@ public class Task {
         this.taskType = taskType;
     }
 
-    public int getExp() {
+    public Integer getExp() {
         return exp;
     }
 
-    public void setExp(int exp) {
+    public void setExp(Integer exp) {
         this.exp = exp;
     }
 

@@ -42,7 +42,7 @@ public class TaskController {
     }
 
     @GetMapping(params = "taskType")
-    public ResponseEntity<List<TaskDTO>> getTasksByType(@RequestParam String taskType) {
+    public ResponseEntity<List<TaskDTO>> getTasksByTaskType(@RequestParam String taskType) {
         List<TaskDTO> taskDTOs = taskService.getTasksByTaskType(taskType);
         return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }

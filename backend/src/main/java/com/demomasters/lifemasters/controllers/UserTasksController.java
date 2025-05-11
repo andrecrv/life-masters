@@ -54,7 +54,7 @@ public class UserTasksController {
     }
 
     @PatchMapping("/{taskId}")
-    public ResponseEntity<TaskDTO> updateTask(@PathVariable Integer taskId, @RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<TaskDTO> updateTask(@PathVariable Integer userId, @PathVariable Integer taskId, @RequestBody TaskDTO taskDTO) {
         TaskDTO updatedTask = taskService.updateTask(taskId, taskDTO);
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }

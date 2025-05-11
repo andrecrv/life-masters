@@ -103,7 +103,7 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
 
-        if (task.getUserId() != userId) {
+        if (!task.getUserId().equals(userId)) {
             throw new UnauthorizedAccessException("User " + userId + " does not own this task");
         }
 
