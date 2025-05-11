@@ -14,7 +14,7 @@ public class Task {
     private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private int userId;
 
     @Column(name = "description")
     private String description;
@@ -44,8 +44,8 @@ public class Task {
 
     }
 
-    public Task(User user, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
-        this.user = user;
+    public Task(int userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+        this.userId = userId;
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -65,12 +65,12 @@ public class Task {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
@@ -135,7 +135,7 @@ public class Task {
     public String toString() {
         return "Task {" +
                 "id=" + id +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", taskDescription='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +
