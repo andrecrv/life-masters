@@ -12,9 +12,10 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Integer userId;
+    private User user;
 
     @Column(name = "description")
     private String description;
@@ -40,8 +41,8 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(Integer userId, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
-        this.userId = userId;
+    public Goal(User user, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
+        this.user = user;
         this.description = description;
         this.status = status;
         this.difficulty = difficulty;
@@ -59,12 +60,12 @@ public class Goal {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {
@@ -129,7 +130,7 @@ public class Goal {
     public String toString() {
         return "Goal {" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", goalDescription='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", difficulty='" + difficulty + '\'' +

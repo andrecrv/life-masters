@@ -12,9 +12,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Integer userId;
+    private User user;
 
     @Column(name = "description")
     private String description;
@@ -44,8 +45,8 @@ public class Task {
 
     }
 
-    public Task(Integer userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
-        this.userId = userId;
+    public Task(User user, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+        this.user = user;
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -65,12 +66,12 @@ public class Task {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDescription() {
@@ -135,7 +136,7 @@ public class Task {
     public String toString() {
         return "Task {" +
                 "id=" + id +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", taskDescription='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +

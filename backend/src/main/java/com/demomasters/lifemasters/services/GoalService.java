@@ -7,6 +7,7 @@ import com.demomasters.lifemasters.exceptions.TaskNotFoundException;
 import com.demomasters.lifemasters.exceptions.UnauthorizedAccessException;
 import com.demomasters.lifemasters.models.Goal;
 import com.demomasters.lifemasters.models.Task;
+import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.repositories.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,7 +69,10 @@ public class GoalService {
     public GoalDTO createGoal(Integer userId, GoalDTO goalDTO) {
         // TODO: Add validations
         Goal newGoal = GoalConverter.toEntity(goalDTO);
-        newGoal.setUserId(userId);
+
+        User user = new User();
+        user.setId(userId);
+        newGoal.setUser(user);
 
         Goal createdGoal = goalRepository.save(newGoal);
         return GoalConverter.toDTO(createdGoal);
@@ -103,7 +107,7 @@ public class GoalService {
         Goal goal = goalRepository.findById(id)
                 .orElseThrow(() -> new GoalNotFoundException("Goal with ID " + id + " not found"));
 
-        if (!goal.getUserId().equals(userId)) {
+        if (!goal.getUser().getId().equals(userId)) {
             throw new UnauthorizedAccessException("User " + userId + " does not own this task");
         }
 

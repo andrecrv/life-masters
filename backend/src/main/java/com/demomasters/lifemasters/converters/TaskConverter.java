@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class TaskConverter {
 
     public static TaskDTO toDTO(Task task) {
-        return new TaskDTO(task.getId(), task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
+        return new TaskDTO(task.getId(), task.getUser().getId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
     }
 
     public static Task toEntity(TaskDTO taskDTO) {
@@ -26,13 +26,13 @@ public class TaskConverter {
 
     public static List<TaskDTO> toDTOList(List<Task> tasks) {
         return tasks.stream()
-                .map(task -> new TaskDTO(task.getId(), task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate()))
+                .map(task -> new TaskDTO(task.getId(), task.getUser().getId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate()))
                 .collect(Collectors.toList());
     }
 
-    public static List<Task> toEntityList(List<TaskDTO> taskDTOs) {
-        return taskDTOs.stream()
-                .map(taskDTO -> new Task(taskDTO.getUserId(), taskDTO.getDescription(), taskDTO.getStatus(), taskDTO.getPriority(), taskDTO.getTaskType(), taskDTO.getExp(), taskDTO.getCreateAtDate(), taskDTO.getDueDate()))
-                .collect(Collectors.toList());
-    }
+//    public static List<Task> toEntityList(List<TaskDTO> taskDTOs) {
+//        return taskDTOs.stream()
+//                .map(taskDTO -> new Task(taskDTO.getUserId(), taskDTO.getDescription(), taskDTO.getStatus(), taskDTO.getPriority(), taskDTO.getTaskType(), taskDTO.getExp(), taskDTO.getCreateAtDate(), taskDTO.getDueDate()))
+//                .collect(Collectors.toList());
+//    }
 }

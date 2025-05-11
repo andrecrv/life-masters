@@ -68,7 +68,10 @@ public class TaskService {
     public TaskDTO createTask(Integer userId, TaskDTO taskDTO) {
         // TODO: Add validations
         Task newTask = TaskConverter.toEntity(taskDTO);
-        newTask.setUserId(userId);
+
+        User user = new User();
+        user.setId(userId);
+        newTask.setUser(user);
 
         Task createdTask = taskRepository.save(newTask);
         return TaskConverter.toDTO(createdTask);
@@ -103,7 +106,7 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
 
-        if (!task.getUserId().equals(userId)) {
+        if (!task.getUser().getId().equals(userId)) {
             throw new UnauthorizedAccessException("User " + userId + " does not own this task");
         }
 

@@ -1,7 +1,5 @@
 package com.demomasters.lifemasters.dtos;
 
-import jakarta.persistence.*;
-
 import java.sql.Date;
 
 public class GoalDTO {
