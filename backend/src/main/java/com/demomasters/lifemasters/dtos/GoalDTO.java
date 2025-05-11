@@ -1,46 +1,31 @@
-package com.demomasters.lifemasters.models;
+package com.demomasters.lifemasters.dtos;
 
 import jakarta.persistence.*;
 
 import java.sql.Date;
 
-@Entity
-@Table(name = "goals")
-public class Goal {
+public class GoalDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+
     private Integer userId;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "status")
     private String status;
 
-    @Column(name = "difficulty")
     private String difficulty;
 
-    @Column(name = "goal_type")
     private String goalType;
 
-    @Column(name = "exp")
     private Integer exp;
 
-    @Column(name = "created_at")
     private Date createAtDate;
 
-    @Column(name = "due_date")
     private Date dueDate;
 
-    public Goal() {
-    }
-
-    public Goal(Integer userId, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
+    public GoalDTO(Integer id, Integer userId, String description, String status, String difficulty, String goalType, Integer exp, Date createAtDate, Date dueDate) {
+        this.id = id;
         this.userId = userId;
         this.description = description;
         this.status = status;
@@ -121,22 +106,5 @@ public class Goal {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    /*TO STRING*/
-
-    @Override
-    public String toString() {
-        return "Goal {" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", goalDescription='" + description + '\'' +
-                ", status='" + status + '\'' +
-                ", difficulty='" + difficulty + '\'' +
-                ", goalType='" + goalType + '\'' +
-                ", exp=" + exp +
-                ", createAtDate=" + createAtDate +
-                ", dueDate=" + dueDate +
-                '}';
     }
 }
