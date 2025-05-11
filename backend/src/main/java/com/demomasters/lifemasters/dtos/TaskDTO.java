@@ -1,52 +1,30 @@
-package com.demomasters.lifemasters.models;
-
-import jakarta.persistence.*;
+package com.demomasters.lifemasters.dtos;
 
 import java.sql.Date;
 
-@Entity
-@Table(name = "tasks")
-public class Task {
+public class TaskDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
 
-    @Column(name = "description")
+    private int userId;
+
     private String description;
 
-    @Column(name = "status")
     private String status;
 
-    @Column(name = "priority")
     private String priority;
 
-    @Column(name = "task_type")
     private String taskType;
 
-    @Column(name = "exp")
     private int exp;
 
-    @Column(name = "created_at")
     private Date createAtDate;
 
-    @Column(name = "due_date")
     private Date dueDate;
 
-
-    /* CONSTRUCTORS */
-
-    public Task() {
-
-    }
-
-    public Task(User user, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
-        this.user = user;
+    public TaskDTO(int id, int userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+        this.id = id;
+        this.userId = userId;
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -56,8 +34,6 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    /* GETTERS AND SETTERS */
-
     public int getId() {
         return id;
     }
@@ -66,12 +42,12 @@ public class Task {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
@@ -130,20 +106,4 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    /*TO STRING*/
-
-    @Override
-    public String toString() {
-        return "Task {" +
-                "id=" + id +
-                ", user=" + user +
-                ", taskDescription='" + description + '\'' +
-                ", status='" + status + '\'' +
-                ", priority='" + priority + '\'' +
-                ", taskType='" + taskType + '\'' +
-                ", exp=" + exp +
-                ", createAtDate=" + createAtDate +
-                ", dueDate=" + dueDate +
-                '}';
-    }
 }

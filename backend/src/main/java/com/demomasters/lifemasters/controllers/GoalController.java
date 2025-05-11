@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.dtos.GoalDTO;
 import com.demomasters.lifemasters.models.Goal;
 import com.demomasters.lifemasters.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,44 +19,32 @@ public class GoalController {
     private GoalService goalService;
 
     @GetMapping
-    public ResponseEntity<List<Goal>> getGoals() {
-        return new ResponseEntity<List<Goal>>(goalService.getGoals(), HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getGoals() {
+        return new ResponseEntity<>(goalService.getGoals(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Goal> getGoalById(@PathVariable Integer id) {
-        Goal goal = goalService.getGoalById(id);
-        if (goal == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(goal, HttpStatus.OK);
+    public ResponseEntity<GoalDTO> getGoalById(@PathVariable int id) {
+        GoalDTO goalDTO = goalService.getGoalById(id);
+        return new ResponseEntity<>(goalDTO, HttpStatus.OK);
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<Goal>> getGoalsByStatus(@RequestParam String status) {
-        List<Goal> goals = goalService.getGoalsByStatus(status);
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(goals, HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getGoalsByStatus(@RequestParam String status) {
+        List<GoalDTO> goalDTOs = goalService.getGoalsByStatus(status);
+        return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "difficulty")
-    public ResponseEntity<List<Goal>> getGoalsByDifficulty(@RequestParam String difficulty) {
-        List<Goal> goals = goalService.getGoalsByDifficulty(difficulty);
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<List<GoalDTO>> getGoalsByDifficulty(@RequestParam String difficulty) {
+        List<GoalDTO> goals = goalService.getGoalsByDifficulty(difficulty);
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
     @GetMapping(params = "goalType")
-    public ResponseEntity<List<Goal>> getGoalsByGoalType(@RequestParam String goalType) {
-        List<Goal> goals = goalService.getGoalsByGoalType(goalType);
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(goals, HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getGoalsByGoalType(@RequestParam String goalType) {
+        List<GoalDTO> goalDTOs = goalService.getGoalsByGoalType(goalType);
+        return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     /* Not used for now
@@ -70,7 +59,7 @@ public class GoalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Goal> updateGoal(@PathVariable Integer id, @RequestBody Goal goal) {
+    public ResponseEntity<Goal> updateGoal(@PathVariable int id, @RequestBody Goal goal) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {
@@ -85,7 +74,7 @@ public class GoalController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Goal> deleteGoal(@PathVariable Integer id) {
+    public ResponseEntity<Goal> deleteGoal(@PathVariable int id) {
         try {
             Goal existingGoal = goalService.getGoalById(id);
             if (existingGoal != null) {

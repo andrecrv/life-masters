@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class UserConverter {
 
     public static UserDTO toDTO(User user) {
-        return new UserDTO(user.getUsername(), user.getPassword(), user.getEmail(), user.getLevel(), user.getTitle());
+        return new UserDTO(user.getId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getLevel(), user.getTitle());
     }
 
     public static User toEntity(UserDTO userDTO) {
@@ -24,7 +24,7 @@ public class UserConverter {
 
     public static List<UserDTO> toDTOList(List<User> users) {
         return users.stream()
-                .map(user -> new UserDTO(user.getUsername(), user.getPassword(), user.getEmail(), user.getLevel(), user.getTitle()))
+                .map(user -> new UserDTO(user.getId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getLevel(), user.getTitle()))
                 .collect(Collectors.toList());
     }
 

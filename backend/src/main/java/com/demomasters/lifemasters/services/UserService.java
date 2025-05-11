@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserDTO findUser(Integer id) {
+    public UserDTO findUser(int id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
         return UserConverter.toDTO(user);
@@ -41,11 +41,11 @@ public class UserService {
     }
 
     public UserDTO createUser(UserDTO userDTO) {
-        if (findUserByUsername(userDTO.getUsername()) != null) {
+        if (userRepository.findUserByUsername(userDTO.getUsername()).isPresent()) {
             throw new DuplicateUserException("Username already exists");
         }
 
-        if (findUserByEmail(userDTO.getEmail()) != null) {
+        if (userRepository.findUserByEmail(userDTO.getEmail()).isPresent()) {
             throw new DuplicateUserException("Email already exists");
         }
 
@@ -57,7 +57,7 @@ public class UserService {
         return UserConverter.toDTO(createdUser);
     }
 
-    public UserDTO updateUser(Integer id, UserDTO userDTO) {
+    public UserDTO updateUser(int id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
 
@@ -78,7 +78,7 @@ public class UserService {
         return UserConverter.toDTO(updatedUser);
     }
 
-    public void deleteUser(Integer id) {
+    public void deleteUser(int id) {
         if (!userRepository.existsById(id)) {
             throw new UserNotFoundException("User with ID " + id + " not found");
         }

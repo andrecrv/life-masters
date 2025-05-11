@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.dtos.TaskDTO;
 import com.demomasters.lifemasters.models.Task;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.TaskService;
@@ -23,95 +24,44 @@ public class UserTasksController {
     private TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<List<Task>> getUserTasks(@PathVariable Integer userId) {
-        // Probably searching for a user not needed
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByUserId(userId);
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getUserTasks(@PathVariable int userId) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByUserId(userId);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<Task>> getUserTasksByStatus(@PathVariable Integer userId, @RequestParam String status) {
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByUserIdAndStatus(userId, status);
-
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getUserTasksByStatus(@PathVariable int userId, @RequestParam String status) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByUserIdAndStatus(userId, status);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "priority")
-    public ResponseEntity<List<Task>> getUserTasksByPriority(@PathVariable Integer userId, @RequestParam String priority) {
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Task> tasks = taskService.getTasksByUserIdAndPriority(userId, priority);
-
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getUserTasksByPriority(@PathVariable int userId, @RequestParam String priority) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByUserIdAndPriority(userId, priority);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "taskType")
-    public ResponseEntity<List<Task>> getUserTasksByType(@PathVariable Integer userId, @RequestParam String taskType) {
-        List<Task> tasks = taskService.getTasksByUserIdAndTaskType(userId, taskType);
-
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getUserTasksByType(@PathVariable int userId, @RequestParam String taskType) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByUserIdAndTaskType(userId, taskType);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Task> createTask(@PathVariable Integer userId, @RequestBody Task task) {
-        try {
-            User user = userService.findUser(userId);
-            Task createdTask = taskService.createTask(user, task);
-            return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<TaskDTO> createTask(@PathVariable int userId, @RequestBody TaskDTO taskDTO) {
+        TaskDTO createdTask = taskService.createTask(userId, taskDTO);
+        return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{taskId}")
-    public ResponseEntity<Task> updateTask(@PathVariable Integer taskId, @RequestBody Task task) {
-        try {
-            Task existingTask = taskService.getTaskById(taskId);
-            if (existingTask != null) {
-                Task updatedTask = taskService.updateTask(taskId, task);
-                return new ResponseEntity<>(updatedTask, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PatchMapping("/{taskId}")
+    public ResponseEntity<TaskDTO> updateTask(@PathVariable int userId, @PathVariable int taskId, @RequestBody TaskDTO taskDTO) {
+        TaskDTO updatedTask = taskService.updateTask(taskId, taskDTO);
+        return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }
 
     @DeleteMapping("/{taskId}")
-    public ResponseEntity<Task> deleteTask(@PathVariable Integer userId, @PathVariable Integer taskId) {
-        try {
-            Task existingTask = taskService.getTaskById(taskId);
-            if (existingTask != null) {
-                taskService.deleteTask(existingTask.getId());
-                return new ResponseEntity<>(HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Void> deleteTask(@PathVariable int userId, @PathVariable int taskId) {
+        taskService.deleteTask(userId, taskId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

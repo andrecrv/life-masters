@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserDTO {
 
+    private int id;
+
     @NotBlank(message = "Username is required")
     private String username;
 
@@ -19,12 +21,21 @@ public class UserDTO {
 
     private String title;
 
-    public UserDTO(String username, String password, String email, int level, String title) {
+    public UserDTO(int id, String username, String password, String email, int level, String title) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.level = level;
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

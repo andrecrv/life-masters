@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.dtos.GoalDTO;
 import com.demomasters.lifemasters.models.Goal;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.services.GoalService;
@@ -23,95 +24,45 @@ public class UserGoalsController {
     private GoalService goalService;
 
     @GetMapping
-    public ResponseEntity<List<Goal>> getUserGoals(@PathVariable Integer userId) {
-        // Probably searching for a user not needed
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Goal> goals = goalService.getGoalsByUserId(userId);
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(goals, HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getUserGoals(@PathVariable int userId) {
+        List<GoalDTO> goalDTOs = goalService.getGoalsByUserId(userId);
+        return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<Goal>> getUserGoalsByStatus(@PathVariable Integer userId, @RequestParam String status) {
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Goal> goals = goalService.getGoalsByUserIdAndStatus(userId, status);
-
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByStatus(@PathVariable int userId, @RequestParam String status) {
+        List<GoalDTO> goals = goalService.getGoalsByUserIdAndStatus(userId, status);
         return new ResponseEntity<>(goals, HttpStatus.OK);
     }
 
     @GetMapping(params = "difficulty")
-    public ResponseEntity<List<Goal>> getUserGoalsByDifficulty(@PathVariable Integer userId, @RequestParam String difficulty) {
-        User user = userService.findUser(userId);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<Goal> goals = goalService.getGoalsByUserIdAndDifficulty(userId, difficulty);
-
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(goals, HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByDifficulty(@PathVariable int userId, @RequestParam String difficulty) {
+        List<GoalDTO> goalDTOs = goalService.getGoalsByUserIdAndDifficulty(userId, difficulty);
+        return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "goalType")
-    public ResponseEntity<List<Goal>> getUserGoalsByGoalType(@PathVariable Integer userId, @RequestParam String goalType) {
-        List<Goal> goals = goalService.getGoalsByUserIdAndGoalType(userId, goalType);
-
-        if (goals.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(goals, HttpStatus.OK);
+    public ResponseEntity<List<GoalDTO>> getUserGoalsByGoalType(@PathVariable int userId, @RequestParam String goalType) {
+        List<GoalDTO> goalDTOs = goalService.getGoalsByUserIdAndGoalType(userId, goalType);
+        return new ResponseEntity<>(goalDTOs, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Goal> createGoal(@PathVariable Integer userId, @RequestBody Goal goal) {
-        try {
-            User user = userService.findUser(userId);
-            Goal createdGoal = goalService.createGoal(user, goal);
-            return new ResponseEntity<>(createdGoal, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<GoalDTO> createGoal(@PathVariable int userId, @RequestBody GoalDTO goalDTO) {
+        GoalDTO createdGoal = goalService.createGoal(userId, goalDTO);
+        return new ResponseEntity<>(createdGoal, HttpStatus.CREATED);
+
     }
 
-    @PutMapping("/{goalId}")
-    public ResponseEntity<Goal> updateGoal(@PathVariable Integer goalId, @RequestBody Goal goal) {
-        try {
-            Goal existingGoal = goalService.getGoalById(goalId);
-            if (existingGoal != null) {
-                Goal updatedGoal = goalService.updateGoal(goalId, goal);
-                return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PatchMapping("/{goalId}")
+    public ResponseEntity<GoalDTO> updateGoal(@PathVariable int userId, @PathVariable int goalId, @RequestBody GoalDTO goalDTO) {
+        GoalDTO updatedGoal = goalService.updateGoal(goalId, goalDTO);
+        return new ResponseEntity<>(updatedGoal, HttpStatus.OK);
     }
 
     @DeleteMapping("/{goalId}")
-    public ResponseEntity<Goal> deleteGoal(@PathVariable Integer userId, @PathVariable Integer goalId) {
-        try {
-            Goal existingGoal = goalService.getGoalById(goalId);
-            if (existingGoal != null) {
-                goalService.deleteGoal(existingGoal.getId());
-                return new ResponseEntity<>(HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Void> deleteGoal(@PathVariable int userId, @PathVariable int goalId) {
+        goalService.deleteGoal(userId, goalId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
