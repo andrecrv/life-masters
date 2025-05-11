@@ -1,14 +1,12 @@
 package com.demomasters.lifemasters.dtos;
 
-import jakarta.persistence.*;
-
 import java.sql.Date;
 
 public class TaskDTO {
 
-//    private Integer id;
+    private Integer id;
 
-    private int userId;
+    private Integer userId;
 
     private String description;
 
@@ -24,7 +22,8 @@ public class TaskDTO {
 
     private Date dueDate;
 
-    public TaskDTO(int userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+    public TaskDTO(Integer id, Integer userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+        this.id = id;
         this.userId = userId;
         this.description = description;
         this.status = status;
@@ -35,19 +34,19 @@ public class TaskDTO {
         this.dueDate = dueDate;
     }
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public int getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -87,7 +86,7 @@ public class TaskDTO {
         return exp;
     }
 
-    public void setExp(int exp) {
+    public void setExp(Integer exp) {
         this.exp = exp;
     }
 

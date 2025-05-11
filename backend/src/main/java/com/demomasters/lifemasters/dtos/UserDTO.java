@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserDTO {
 
+    private Integer id;
+
     @NotBlank(message = "Username is required")
     private String username;
 
@@ -15,16 +17,25 @@ public class UserDTO {
     @Email(message = "Email must be valid")
     private String email;
 
-    private int level;
+    private Integer level;
 
     private String title;
 
-    public UserDTO(String username, String password, String email, int level, String title) {
+    public UserDTO(Integer id, String username, String password, String email, Integer level, String title) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.level = level;
         this.title = title;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -55,7 +66,7 @@ public class UserDTO {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
