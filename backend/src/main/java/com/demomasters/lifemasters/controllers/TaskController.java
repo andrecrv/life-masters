@@ -1,5 +1,6 @@
 package com.demomasters.lifemasters.controllers;
 
+import com.demomasters.lifemasters.dtos.TaskDTO;
 import com.demomasters.lifemasters.models.Task;
 import com.demomasters.lifemasters.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,44 +19,32 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<List<Task>> getTasks() {
+    public ResponseEntity<List<TaskDTO>> getTasks() {
         return new ResponseEntity<>(taskService.getTasks(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Integer id) {
-        Task task = taskService.getTaskById(id);
-        if (task == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(task, HttpStatus.OK);
+    public ResponseEntity<TaskDTO> getTaskById(@PathVariable Integer id) {
+        TaskDTO taskDTO = taskService.getTaskById(id);
+        return new ResponseEntity<>(taskDTO, HttpStatus.OK);
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<Task>> getTasksByStatus(@RequestParam String status) {
-        List<Task> tasks = taskService.getTasksByStatus(status);
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getTasksByStatus(@RequestParam String status) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByStatus(status);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "priority")
-    public ResponseEntity<List<Task>> getTasksByPriority(@RequestParam String priority) {
-        List<Task> tasks = taskService.getTasksByPriority(priority);
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getTasksByPriority(@RequestParam String priority) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByPriority(priority);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     @GetMapping(params = "taskType")
-    public ResponseEntity<List<Task>> getTasksByType(@RequestParam String taskType) {
-        List<Task> tasks = taskService.getTasksByTaskType(taskType);
-        if (tasks.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getTasksByType(@RequestParam String taskType) {
+        List<TaskDTO> taskDTOs = taskService.getTasksByTaskType(taskType);
+        return new ResponseEntity<>(taskDTOs, HttpStatus.OK);
     }
 
     /* Not used for now

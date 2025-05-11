@@ -44,7 +44,7 @@ public class Task {
 
     }
 
-    public Task(int userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
+    public Task(Integer userId, String description, String status, String priority, String taskType, int exp, Date createAtDate, Date dueDate) {
         this.userId = userId;
         this.description = description;
         this.status = status;

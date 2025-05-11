@@ -1,5 +1,10 @@
 package com.demomasters.lifemasters.services;
 
+import com.demomasters.lifemasters.converters.TaskConverter;
+import com.demomasters.lifemasters.dtos.TaskDTO;
+import com.demomasters.lifemasters.exceptions.TaskNotFoundException;
+import com.demomasters.lifemasters.exceptions.UnauthorizedAccessException;
+import com.demomasters.lifemasters.exceptions.UserNotFoundException;
 import com.demomasters.lifemasters.models.Task;
 import com.demomasters.lifemasters.models.User;
 import com.demomasters.lifemasters.repositories.TaskRepository;
@@ -14,66 +19,94 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public List<Task> getTasks() {
-        return taskRepository.findAll();
+    public List<TaskDTO> getTasks() {
+        List<Task> tasks = taskRepository.findAll();
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public Task getTaskById(Integer id) {
-        return taskRepository.findById(id).orElse(null);
+    public TaskDTO getTaskById(Integer id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
+        return TaskConverter.toDTO(task);
     }
 
-    public List<Task> getTasksByUserId(Integer userId) {
-        return taskRepository.findByUserId(userId);
+    public List<TaskDTO> getTasksByUserId(Integer userId) {
+        List<Task> tasks = taskRepository.findByUserId(userId);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByStatus(String status) {
-        return taskRepository.findByStatus(status);
+    public List<TaskDTO> getTasksByStatus(String status) {
+        List<Task> tasks = taskRepository.findByStatus(status);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByPriority(String priority) {
-        return taskRepository.findByPriority(priority);
+    public List<TaskDTO> getTasksByPriority(String priority) {
+        List<Task> tasks = taskRepository.findByPriority(priority);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByTaskType(String taskType) {
-        return taskRepository.findByTaskType(taskType);
+    public List<TaskDTO> getTasksByTaskType(String taskType) {
+        List<Task> tasks = taskRepository.findByTaskType(taskType);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByUserIdAndStatus(Integer userId, String status) {
-        return taskRepository.findByUserIdAndStatus(userId, status);
+    public List<TaskDTO> getTasksByUserIdAndStatus(Integer userId, String status) {
+        List<Task> tasks = taskRepository.findByUserIdAndStatus(userId, status);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByUserIdAndPriority(Integer userId, String priority) {
-        return taskRepository.findByUserIdAndPriority(userId, priority);
+    public List<TaskDTO> getTasksByUserIdAndPriority(Integer userId, String priority) {
+        List<Task> tasks = taskRepository.findByUserIdAndPriority(userId, priority);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public List<Task> getTasksByUserIdAndTaskType(Integer userId, String taskType) {
-        return taskRepository.findByUserIdAndTaskType(userId, taskType);
+    public List<TaskDTO> getTasksByUserIdAndTaskType(Integer userId, String taskType) {
+        List<Task> tasks = taskRepository.findByUserIdAndTaskType(userId, taskType);
+        return TaskConverter.toDTOList(tasks);
     }
 
-    public Task createTask(User user, Task task) {
-        Task mockTask = new Task(user, task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
-        Task newTask = taskRepository.save(mockTask);
-        return newTask;
+    public TaskDTO createTask(Integer userId, TaskDTO taskDTO) {
+        // TODO: Add validations
+        Task newTask = TaskConverter.toEntity(taskDTO);
+        newTask.setUserId(userId);
+
+        Task createdTask = taskRepository.save(newTask);
+        return TaskConverter.toDTO(createdTask);
     }
 
-    public Task updateTask(Integer id, Task task) {
-        Task existingTask = getTaskById(id);
+    public TaskDTO updateTask(Integer id, TaskDTO taskDTO) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
 
-        if (existingTask == null) {
-            return null;
+        if (taskDTO.getDescription() != null && !taskDTO.getDescription().isBlank()) {
+            task.setDescription(taskDTO.getDescription());
         }
-        existingTask.setDescription(task.getDescription());
-        existingTask.setStatus(task.getStatus());
-        existingTask.setPriority(task.getPriority());
-        existingTask.setTaskType(task.getTaskType());
-        existingTask.setExp(task.getExp());
-        existingTask.setCreateAtDate(task.getCreateAtDate());
-        existingTask.setDueDate(task.getDueDate());
+        if (taskDTO.getStatus() != null && !taskDTO.getStatus().isBlank()) {
+            task.setStatus(taskDTO.getStatus());
+        }
+        if (taskDTO.getPriority() != null && !taskDTO.getPriority().isBlank()) {
+            task.setPriority(taskDTO.getPriority());
+        }
+        if (taskDTO.getTaskType() != null && !taskDTO.getTaskType().isBlank()) {
+            task.setTaskType(taskDTO.getTaskType());
+        }
 
-        return taskRepository.save(existingTask);
+//        task.setExp(taskDTO.getExp());
+//        task.setCreateAtDate(taskDTO.getCreateAtDate());
+//        task.setDueDate(taskDTO.getDueDate());
+
+        Task updatedTask = taskRepository.save(task);
+        return TaskConverter.toDTO(updatedTask);
     }
 
-    public void deleteTask(Integer id) {
-        taskRepository.deleteById(id);
+    public void deleteTask(Integer userId, Integer id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task with ID " + id + " not found"));
+
+        if (task.getUserId() != userId) {
+            throw new UnauthorizedAccessException("User " + userId + " does not own this task");
+        }
+
+        taskRepository.delete(task);
     }
 }

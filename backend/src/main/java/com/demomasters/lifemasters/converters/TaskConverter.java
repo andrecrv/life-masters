@@ -9,12 +9,11 @@ import java.util.stream.Collectors;
 public class TaskConverter {
 
     public static TaskDTO toDTO(Task task) {
-        return new TaskDTO(task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
+        return new TaskDTO(task.getId(), task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate());
     }
 
     public static Task toEntity(TaskDTO taskDTO) {
         Task task = new Task();
-        task.setUserId(taskDTO.getUserId());
         task.setDescription(taskDTO.getDescription());
         task.setStatus(taskDTO.getStatus());
         task.setPriority(taskDTO.getPriority());
@@ -27,7 +26,7 @@ public class TaskConverter {
 
     public static List<TaskDTO> toDTOList(List<Task> tasks) {
         return tasks.stream()
-                .map(task -> new TaskDTO(task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate()))
+                .map(task -> new TaskDTO(task.getId(), task.getUserId(), task.getDescription(), task.getStatus(), task.getPriority(), task.getTaskType(), task.getExp(), task.getCreateAtDate(), task.getDueDate()))
                 .collect(Collectors.toList());
     }
 
